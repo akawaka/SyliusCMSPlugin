@@ -1,0 +1,5 @@
+akawaka_sylius_cms_plugin_admin:
+    resource: "@AkawakaSyliusCMSPlugin/config/routes/admin.yaml"
+
+akawaka_sylius_cms_plugin_shop:
+    resource: "@AkawakaSyliusCMSPlugin/config/routes/shop.yaml"
