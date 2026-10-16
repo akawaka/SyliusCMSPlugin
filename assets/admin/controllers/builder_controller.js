@@ -8,6 +8,9 @@ import { createWysiwyg } from '../builder/wysiwyg.js';
 const GROUP = 'akawaka-cms-blocks';
 const INSPECTOR_DEBOUNCE = 250;
 
+// Tabler "grip-vertical": the drag affordance shown on every block bar.
+const GRIP = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="5" r="1"/><circle cx="9" cy="12" r="1"/><circle cx="9" cy="19" r="1"/><circle cx="15" cy="5" r="1"/><circle cx="15" cy="12" r="1"/><circle cx="15" cy="19" r="1"/></svg>';
+
 /**
  * Block based page builder: palette | canvas | inspector.
  * The block tree is kept in memory and serialized as JSON into the hidden input on every change.
@@ -126,6 +129,9 @@ export default class extends Controller {
             animation: 150,
             draggable: '.akb-palette__item',
             fallbackOnBody: true,
+            ghostClass: 'akb-ghost',
+            onStart: () => this.setDragging(true),
+            onEnd: () => this.setDragging(false),
         });
     }
 
@@ -178,8 +184,18 @@ export default class extends Controller {
             new Sortable(list, {
                 group: { name: GROUP, pull: true, put: (to, from, dragEl) => this.canDrop(to.el, dragEl) },
                 animation: 150,
-                handle: '.akb-handle',
+                // The whole block bar is the drag handle (except its buttons); a click still selects.
+                handle: '.akb-block__bar',
+                filter: '.akb-action',
+                preventOnFilter: false,
                 draggable: '.akb-block',
+                delay: 120,
+                delayOnTouchOnly: true,
+                touchStartThreshold: 4,
+                ghostClass: 'akb-ghost',
+                chosenClass: 'akb-chosen',
+                onStart: () => this.setDragging(true),
+                onEnd: () => this.setDragging(false),
                 fallbackOnBody: true,
                 swapThreshold: 0.65,
                 emptyInsertThreshold: 12,
@@ -203,7 +219,8 @@ export default class extends Controller {
 
         const bar = document.createElement('div');
         bar.className = 'akb-block__bar';
-        bar.innerHTML = `<span class="akb-handle" title="${this.escape(this.labelsValue.move)}">${entry?.icon ?? ''}</span><span class="akb-block__label"></span><span class="akb-block__summary"></span>`;
+        bar.title = this.labelsValue.move;
+        bar.innerHTML = `<span class="akb-grip">${GRIP}</span><span class="akb-type-icon">${entry?.icon ?? ''}</span><span class="akb-block__label"></span><span class="akb-block__summary"></span>`;
         bar.querySelector('.akb-block__label').textContent = entry?.label ?? block.type;
         bar.querySelector('.akb-block__summary').textContent = Tree.summarize(block);
 
@@ -231,6 +248,11 @@ export default class extends Controller {
         button.textContent = action === 'remove' ? '✕' : '⧉';
 
         return button;
+    }
+
+    /** Highlights every container a block can be dropped into while dragging. */
+    setDragging(active) {
+        this.canvasTarget.classList.toggle('is-dragging', active);
     }
 
     destroySortables() {
