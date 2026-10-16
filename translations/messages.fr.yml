@@ -35,6 +35,8 @@ akawaka_cms:
         duplicate: 'Dupliquer'
         remove: 'Supprimer'
         move: 'Glisser pour déplacer'
+        widen: 'Élargir le panneau'
+        narrow: 'Réduire le panneau'
         fullscreen: 'Plein écran'
         exit_fullscreen: 'Quitter le plein écran'
         copy_title: 'Copier depuis'

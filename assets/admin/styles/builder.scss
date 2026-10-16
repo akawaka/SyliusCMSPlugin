@@ -52,8 +52,18 @@ $akb-text-muted: var(--tblr-secondary, #667382);
         flex-direction: column;
     }
 
+    // Wide inspector: gives the settings column (e.g. the rich text editor) more room.
+    &--wide-inspector &__body {
+        grid-template-columns: 12.5rem minmax(0, 1fr) minmax(24rem, 55%);
+    }
+
+    &__pane--inspector {
+        padding-top: 0;
+    }
+
     &__canvas {
         background: $akb-muted;
+        container-type: inline-size;
     }
 
     &--broken &__body {
@@ -433,5 +443,47 @@ $akb-text-muted: var(--tblr-secondary, #667382);
         .akb__body {
             overflow-y: auto;
         }
+    }
+}
+
+// ----------------------------------------------- inspector width toggle
+.akb-inspector__tools {
+    // Zero-height sticky anchor: the button floats over the top-right corner without taking space.
+    position: sticky;
+    top: 0;
+    z-index: 3;
+    height: 0;
+}
+
+.akb-widen {
+    position: absolute;
+    top: 0.5rem;
+    right: 0;
+    background: $akb-surface;
+
+    // Same icon swap as the fullscreen toggle.
+    &__collapse,
+    &[aria-pressed='true'] &__expand {
+        display: none;
+    }
+
+    &[aria-pressed='true'] &__collapse {
+        display: inline;
+    }
+
+    @media (max-width: 991.98px) {
+        display: none;
+    }
+}
+
+.akb-inspector__title {
+    padding-right: 2.5rem;
+    padding-top: 0.75rem;
+}
+
+// A narrow canvas (e.g. with a wide inspector) stacks the columns instead of squeezing them.
+@container (max-width: 30rem) {
+    .akb-list--columns {
+        flex-direction: column;
     }
 }

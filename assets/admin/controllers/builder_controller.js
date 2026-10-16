@@ -7,6 +7,7 @@ import { createWysiwyg } from '../builder/wysiwyg.js';
 
 const GROUP = 'akawaka-cms-blocks';
 const INSPECTOR_DEBOUNCE = 250;
+const WIDE_STORAGE_KEY = 'akawaka_cms.inspector_wide';
 
 // Tabler "grip-vertical": the drag affordance shown on every block bar.
 const GRIP = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="5" r="1"/><circle cx="9" cy="12" r="1"/><circle cx="9" cy="19" r="1"/><circle cx="15" cy="5" r="1"/><circle cx="15" cy="12" r="1"/><circle cx="15" cy="19" r="1"/></svg>';
@@ -16,7 +17,7 @@ const GRIP = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke
  * The block tree is kept in memory and serialized as JSON into the hidden input on every change.
  */
 export default class extends Controller {
-    static targets = ['input', 'palette', 'canvas', 'inspector', 'undo', 'redo', 'error', 'fullscreen', 'copySelect'];
+    static targets = ['input', 'palette', 'canvas', 'inspector', 'undo', 'redo', 'error', 'fullscreen', 'copySelect', 'widen'];
 
     static values = {
         catalog: Array,
@@ -42,6 +43,7 @@ export default class extends Controller {
 
         this.tree = parsed;
         this.history = new History(this.serialize());
+        this.setWide(this.readWidePreference());
 
         this.renderPalette();
         this.render();
@@ -59,6 +61,37 @@ export default class extends Controller {
         this.paletteSortable?.destroy();
         this.element.removeEventListener('keydown', this.onKeydown);
         clearTimeout(this.inspectorTimer);
+    }
+
+    // ------------------------------------------------------- wide inspector
+
+    toggleWide() {
+        this.setWide(!this.wide);
+
+        try {
+            window.localStorage.setItem(WIDE_STORAGE_KEY, this.wide ? '1' : '0');
+        } catch {
+            // Storage can be unavailable (private mode): the preference simply is not remembered.
+        }
+    }
+
+    readWidePreference() {
+        try {
+            return window.localStorage.getItem(WIDE_STORAGE_KEY) === '1';
+        } catch {
+            return false;
+        }
+    }
+
+    /** Widens the right column (settings panel), e.g. to give the rich text editor more room. */
+    setWide(enabled) {
+        this.wide = enabled;
+        this.element.classList.toggle('akb--wide-inspector', enabled);
+
+        if (this.hasWidenTarget) {
+            this.widenTarget.setAttribute('aria-pressed', String(enabled));
+            this.widenTarget.title = enabled ? this.labelsValue.narrow : this.labelsValue.widen;
+        }
     }
 
     // ------------------------------------------------- copy from another locale

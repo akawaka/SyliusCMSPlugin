@@ -28,6 +28,8 @@
     copy_empty: 'akawaka_cms.builder.copy_empty'|trans,
     copy_confirm: 'akawaka_cms.builder.copy_confirm'|trans,
     fullscreen: 'akawaka_cms.builder.fullscreen'|trans,
+    widen: 'akawaka_cms.builder.widen'|trans,
+    narrow: 'akawaka_cms.builder.narrow'|trans,
     exit_fullscreen: 'akawaka_cms.builder.exit_fullscreen'|trans,
 } %}
 
@@ -77,7 +79,15 @@
             {% endif %}
         </div>
         <div class="akb__pane akb__canvas" data-akawaka-cms-builder-target="canvas" data-action="click->akawaka-cms-builder#onCanvasClick"></div>
-        <div class="akb__pane akb-inspector" data-akawaka-cms-builder-target="inspector" data-action="input->akawaka-cms-builder#onInspectorInput change->akawaka-cms-builder#onInspectorInput"></div>
+        <div class="akb__pane akb__pane--inspector">
+            <div class="akb-inspector__tools">
+                <button type="button" class="btn btn-sm akb-widen" aria-pressed="false" data-akawaka-cms-builder-target="widen" data-action="akawaka-cms-builder#toggleWide" title="{{ 'akawaka_cms.builder.widen'|trans }}">
+                    <span class="akb-widen__expand">{{ ux_icon('tabler:layout-sidebar-right-expand') }}</span>
+                    <span class="akb-widen__collapse">{{ ux_icon('tabler:layout-sidebar-right-collapse') }}</span>
+                </button>
+            </div>
+            <div class="akb-inspector" data-akawaka-cms-builder-target="inspector" data-action="input->akawaka-cms-builder#onInspectorInput change->akawaka-cms-builder#onInspectorInput"></div>
+        </div>
     </div>
 
     {{ form_widget(translation_form.blocks, {attr: {hidden: 'hidden', 'data-akawaka-cms-builder-target': 'input'}}) }}
