@@ -37,6 +37,18 @@ akawaka_cms:
         move: 'Drag to move'
         undo: 'Undo'
         redo: 'Redo'
+    preview:
+        toggle: 'Preview'
+        title: 'Page preview'
+        loading: 'Updating…'
+        error: 'The preview could not be updated.'
+        invalid: 'The content is not valid JSON.'
+        warnings: 'warning(s)'
+        mobile: 'Mobile'
+        tablet: 'Tablet'
+        desktop: 'Desktop'
+        refresh: 'Refresh'
+        open: 'Open in a new tab'
     form:
         page:
             title: Title

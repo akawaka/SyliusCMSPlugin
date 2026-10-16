@@ -250,3 +250,58 @@ $akb-text-muted: var(--tblr-secondary, #667382);
         font-size: 0.875rem;
     }
 }
+
+// ---------------------------------------------------------------- preview
+.akp {
+    margin-top: 0.75rem;
+    border: 1px solid $akb-border;
+    border-radius: 0.5rem;
+    background: $akb-surface;
+    overflow: hidden;
+
+    &__bar {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.5rem 0.75rem;
+        border-bottom: 1px solid $akb-border;
+        background: $akb-muted;
+
+        .btn.active {
+            border-color: $akb-primary;
+            color: $akb-primary;
+        }
+    }
+
+    &__stage {
+        display: flex;
+        justify-content: center;
+        height: 70vh;
+        min-height: 24rem;
+        overflow: hidden;
+        background: $akb-muted;
+    }
+
+    &__scaler {
+        flex: none;
+        height: 100%;
+        overflow: hidden;
+        background: #fff;
+        box-shadow: 0 0 0 1px $akb-border;
+    }
+
+    &__viewport {
+        position: relative;
+        transform-origin: top left;
+    }
+
+    &__frame {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        border: 0;
+        background: #fff;
+    }
+}

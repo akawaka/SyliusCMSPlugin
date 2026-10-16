@@ -37,6 +37,18 @@ akawaka_cms:
         move: 'Glisser pour déplacer'
         undo: 'Annuler'
         redo: 'Rétablir'
+    preview:
+        toggle: 'Aperçu'
+        title: 'Aperçu de la page'
+        loading: 'Mise à jour…'
+        error: 'L''aperçu n''a pas pu être mis à jour.'
+        invalid: 'Le contenu n''est pas un JSON valide.'
+        warnings: 'avertissement(s)'
+        mobile: 'Mobile'
+        tablet: 'Tablette'
+        desktop: 'Bureau'
+        refresh: 'Actualiser'
+        open: 'Ouvrir dans un nouvel onglet'
     form:
         page:
             title: Titre

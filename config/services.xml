@@ -45,6 +45,19 @@
             <tag name="controller.service_arguments" />
         </service>
 
+        <service id="Akawaka\SyliusCMSPlugin\Preview\PreviewStore">
+            <argument type="service" id="cache.app" />
+        </service>
+
+        <service id="Akawaka\SyliusCMSPlugin\Controller\Admin\PreviewController" public="true">
+            <argument key="$csrfTokenManager" type="service" id="security.csrf.token_manager" />
+            <tag name="controller.service_arguments" />
+        </service>
+
+        <service id="Akawaka\SyliusCMSPlugin\Controller\Shop\PreviewController" public="true">
+            <tag name="controller.service_arguments" />
+        </service>
+
         <service id="Akawaka\SyliusCMSPlugin\Controller\Shop\PageController" public="true">
             <argument type="service" id="akawaka_cms.repository.page" />
             <argument type="service" id="sylius.context.channel" />

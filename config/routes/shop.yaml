@@ -5,3 +5,11 @@ akawaka_cms_shop_page_show:
     requirements:
         _locale: '[a-z]{2,3}(?:_[A-Z]{2})?'
         slug: '.+'
+
+akawaka_cms_shop_page_preview:
+    path: /{_locale}/cms-preview/{token}
+    methods: [GET]
+    controller: Akawaka\SyliusCMSPlugin\Controller\Shop\PreviewController
+    requirements:
+        _locale: '[a-z]{2,3}(?:_[A-Z]{2})?'
+        token: '[a-f0-9]{32}'

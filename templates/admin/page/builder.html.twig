@@ -4,6 +4,14 @@
     {% set catalog = catalog|merge([entry|merge({icon: ux_icon(entry.icon) ~ ''})]) %}
 {% endfor %}
 
+{% set preview_labels = {
+    title: 'akawaka_cms.preview.title'|trans,
+    loading: 'akawaka_cms.preview.loading'|trans,
+    error: 'akawaka_cms.preview.error'|trans,
+    invalid: 'akawaka_cms.preview.invalid'|trans,
+    warnings: 'akawaka_cms.preview.warnings'|trans,
+} %}
+
 {% set labels = {
     empty_canvas: 'akawaka_cms.builder.empty_canvas'|trans,
     empty_container: 'akawaka_cms.builder.empty_container'|trans,
@@ -17,6 +25,15 @@
     move: 'akawaka_cms.builder.move'|trans,
 } %}
 
+<div class="akb-wrap"
+     data-controller="akawaka-cms-preview"
+     data-action="akawaka-cms-builder:change->akawaka-cms-preview#schedule"
+     data-akawaka-cms-preview-url-value="{{ path('akawaka_cms_admin_page_preview') }}"
+     data-akawaka-cms-preview-csrf-value="{{ csrf_token('akawaka_cms_preview') }}"
+     data-akawaka-cms-preview-locale-value="{{ locale }}"
+     data-akawaka-cms-preview-field-prefix-value="{{ translation_form.vars.full_name }}"
+     data-akawaka-cms-preview-devices-value="{{ {mobile: 375, tablet: 768, desktop: 1280}|json_encode }}"
+     data-akawaka-cms-preview-labels-value="{{ preview_labels|json_encode }}">
 <div class="akb"
      data-controller="akawaka-cms-builder"
      data-akawaka-cms-builder-catalog-value="{{ catalog|json_encode }}"
@@ -26,6 +43,7 @@
     <div class="akb__toolbar">
         <button type="button" class="btn btn-sm" data-akawaka-cms-builder-target="undo" data-action="akawaka-cms-builder#undo" title="{{ 'akawaka_cms.builder.undo'|trans }}">{{ ux_icon('tabler:arrow-back-up') }}</button>
         <button type="button" class="btn btn-sm" data-akawaka-cms-builder-target="redo" data-action="akawaka-cms-builder#redo" title="{{ 'akawaka_cms.builder.redo'|trans }}">{{ ux_icon('tabler:arrow-forward-up') }}</button>
+        <button type="button" class="btn btn-sm ms-auto" data-akawaka-cms-preview-target="toggle" data-action="akawaka-cms-preview#toggle">{{ ux_icon('tabler:device-desktop-analytics') }} {{ 'akawaka_cms.preview.toggle'|trans }}</button>
     </div>
 
     <div class="akb__error" hidden data-akawaka-cms-builder-target="error"></div>
@@ -40,4 +58,23 @@
     </div>
 
     {{ form_widget(translation_form.blocks, {attr: {hidden: 'hidden', 'data-akawaka-cms-builder-target': 'input'}}) }}
+</div>
+
+    <div class="akp" hidden data-akawaka-cms-preview-target="panel">
+        <div class="akp__bar">
+            {% for device, icon in {mobile: 'tabler:device-mobile', tablet: 'tabler:device-tablet', desktop: 'tabler:device-desktop'} %}
+                <button type="button" class="btn btn-sm" data-akawaka-cms-preview-target="device" data-device="{{ device }}" data-action="akawaka-cms-preview#selectDevice" title="{{ ('akawaka_cms.preview.' ~ device)|trans }}" aria-pressed="false">{{ ux_icon(icon) }} <span class="d-none d-md-inline">{{ ('akawaka_cms.preview.' ~ device)|trans }}</span></button>
+            {% endfor %}
+            <span class="akp__width text-muted small" data-akawaka-cms-preview-target="width"></span>
+            <span class="badge bg-warning-lt" hidden data-akawaka-cms-preview-target="warnings"></span>
+            <span class="small ms-auto" data-akawaka-cms-preview-target="status"></span>
+            <button type="button" class="btn btn-sm" data-action="akawaka-cms-preview#refresh" title="{{ 'akawaka_cms.preview.refresh'|trans }}">{{ ux_icon('tabler:refresh') }}</button>
+            <a class="btn btn-sm" target="_blank" rel="noopener" href="#" data-akawaka-cms-preview-target="open" title="{{ 'akawaka_cms.preview.open'|trans }}">{{ ux_icon('tabler:external-link') }}</a>
+        </div>
+        <div class="akp__stage" data-akawaka-cms-preview-target="stage">
+            <div class="akp__scaler" data-akawaka-cms-preview-target="scaler">
+                <div class="akp__viewport" data-akawaka-cms-preview-target="viewport"></div>
+            </div>
+        </div>
+    </div>
 </div>
