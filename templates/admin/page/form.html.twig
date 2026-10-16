@@ -52,7 +52,7 @@
         {% for locale, translation_form in form.translations %}
             <div class="tab-pane {% if loop.first %}active show{% endif %}" id="akawaka-cms-builder-{{ locale }}">
                 {{ form_errors(translation_form.blocks) }}
-                {% include '@AkawakaSyliusCMSPlugin/admin/page/builder.html.twig' with {translation_form: translation_form, locale: locale} only %}
+                {% include '@AkawakaSyliusCMSPlugin/admin/page/builder.html.twig' with {translation_form: translation_form, locale: locale, locales: form.translations|keys} only %}
             </div>
         {% endfor %}
     </div>

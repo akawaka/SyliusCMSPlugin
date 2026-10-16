@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 
-import { canContain, count, createBlock, duplicate, find, insert, move, parse, remove, summarize, syncColumns } from './tree.js';
+import { canContain, cloneWithNewIds, count, createBlock, duplicate, find, insert, move, parse, remove, summarize, syncColumns } from './tree.js';
 import { History } from './history.js';
 
 const catalog = {
@@ -108,4 +108,17 @@ test('history supports undo and redo and drops the redo branch on push', () => {
     history.push('d');
     assert.equal(history.canRedo, false);
     assert.equal(history.undo(), 'b');
+});
+
+test('cloneWithNewIds copies a whole tree without sharing ids or references', () => {
+    const source = [createBlock(catalog, 'columns'), createBlock(catalog, 'rich_text')];
+    const copy = cloneWithNewIds(source);
+
+    assert.equal(count(copy), count(source));
+    const ids = (nodes) => nodes.flatMap((node) => [node.id, ...ids(node.children ?? [])]);
+    const shared = ids(copy).filter((id) => ids(source).includes(id));
+    assert.deepEqual(shared, []);
+
+    copy[1].props.html = 'changed';
+    assert.equal(source[1].props.html, '');
 });

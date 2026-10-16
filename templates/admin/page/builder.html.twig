@@ -25,6 +25,8 @@
     duplicate: 'akawaka_cms.builder.duplicate'|trans,
     remove: 'akawaka_cms.builder.remove'|trans,
     move: 'akawaka_cms.builder.move'|trans,
+    copy_empty: 'akawaka_cms.builder.copy_empty'|trans,
+    copy_confirm: 'akawaka_cms.builder.copy_confirm'|trans,
     fullscreen: 'akawaka_cms.builder.fullscreen'|trans,
     exit_fullscreen: 'akawaka_cms.builder.exit_fullscreen'|trans,
 } %}
@@ -47,6 +49,16 @@
     <div class="akb__toolbar">
         <button type="button" class="btn btn-sm" data-akawaka-cms-builder-target="undo" data-action="akawaka-cms-builder#undo" title="{{ 'akawaka_cms.builder.undo'|trans }}">{{ ux_icon('tabler:arrow-back-up') }}</button>
         <button type="button" class="btn btn-sm" data-akawaka-cms-builder-target="redo" data-action="akawaka-cms-builder#redo" title="{{ 'akawaka_cms.builder.redo'|trans }}">{{ ux_icon('tabler:arrow-forward-up') }}</button>
+        {% if locales|length > 1 %}
+            <select class="form-select form-select-sm akb-copy" data-akawaka-cms-builder-target="copySelect"
+                    data-action="focus->akawaka-cms-builder#refreshCopyOptions pointerdown->akawaka-cms-builder#refreshCopyOptions change->akawaka-cms-builder#copyFromLocale"
+                    aria-label="{{ 'akawaka_cms.builder.copy_from'|trans }}">
+                <option value="">{{ 'akawaka_cms.builder.copy_from'|trans }}</option>
+                {% for other in locales %}
+                    {% if other != locale %}<option value="{{ other }}">{{ other }}</option>{% endif %}
+                {% endfor %}
+            </select>
+        {% endif %}
         <button type="button" class="btn btn-sm ms-auto" data-akawaka-cms-preview-target="toggle" data-action="akawaka-cms-preview#toggle">{{ ux_icon('tabler:device-desktop-analytics') }} <span data-akawaka-cms-preview-target="toggleLabel">{{ 'akawaka_cms.preview.toggle'|trans }}</span></button>
         <button type="button" class="btn btn-sm akb-fullscreen-toggle" aria-pressed="false" data-akawaka-cms-builder-target="fullscreen" data-action="akawaka-cms-builder#toggleFullscreen" title="{{ 'akawaka_cms.builder.fullscreen'|trans }}">
             <span class="akb-fullscreen-toggle__enter">{{ ux_icon('tabler:arrows-maximize') }}</span>

@@ -16,7 +16,7 @@ const GRIP = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke
  * The block tree is kept in memory and serialized as JSON into the hidden input on every change.
  */
 export default class extends Controller {
-    static targets = ['input', 'palette', 'canvas', 'inspector', 'undo', 'redo', 'error', 'fullscreen'];
+    static targets = ['input', 'palette', 'canvas', 'inspector', 'undo', 'redo', 'error', 'fullscreen', 'copySelect'];
 
     static values = {
         catalog: Array,
@@ -59,6 +59,49 @@ export default class extends Controller {
         this.paletteSortable?.destroy();
         this.element.removeEventListener('keydown', this.onKeydown);
         clearTimeout(this.inspectorTimer);
+    }
+
+    // ------------------------------------------------- copy from another locale
+
+    /** Blocks currently held by the builder of another locale of the same form (null if unavailable). */
+    readLocaleBlocks(locale) {
+        const form = this.element.closest('form') ?? document;
+        const input = [...form.querySelectorAll('.akb[data-locale]')]
+            .find((element) => element.dataset.locale === locale)
+            ?.querySelector('textarea[data-akawaka-cms-builder-target="input"]');
+
+        return input ? Tree.parse(input.value) : null;
+    }
+
+    /** Shows how many blocks each language holds, so the right source is easy to pick. */
+    refreshCopyOptions() {
+        this.copySelectTarget.querySelectorAll('option[value]:not([value=""])').forEach((option) => {
+            const blocks = this.readLocaleBlocks(option.value);
+            const total = blocks ? Tree.count(blocks) : 0;
+            option.textContent = `${option.value} (${total})`;
+            option.disabled = total === 0;
+        });
+    }
+
+    /** Replaces the content of this language with a copy of another one (undoable). */
+    copyFromLocale(event) {
+        const locale = event.target.value;
+        event.target.value = '';
+
+        const blocks = locale ? this.readLocaleBlocks(locale) : null;
+        if (!blocks || blocks.length === 0) {
+            window.alert(this.labelsValue.copy_empty);
+
+            return;
+        }
+
+        if (this.tree.length > 0 && !window.confirm(this.labelsValue.copy_confirm.replace('{locale}', locale))) {
+            return;
+        }
+
+        this.tree = Tree.cloneWithNewIds(blocks);
+        this.selectedId = null;
+        this.commit();
     }
 
     // ------------------------------------------------------------- fullscreen

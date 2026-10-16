@@ -136,6 +136,11 @@ export function regenerateIds(node) {
     return node;
 }
 
+/** Deep copy of a list of blocks with fresh ids (used to copy the content of another locale). */
+export function cloneWithNewIds(blocks) {
+    return clone(blocks).map(regenerateIds);
+}
+
 export function duplicate(tree, id) {
     const found = find(tree, id);
     if (!found) {
