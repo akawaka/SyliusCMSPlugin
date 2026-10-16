@@ -21,11 +21,6 @@ $akb-text-muted: var(--tblr-secondary, #667382);
     }
 
     // Not styled with Bootstrap's .alert-danger: Sylius counts those as form errors on tabs.
-    .akb-copy {
-        width: auto;
-        max-width: 14rem;
-    }
-
     &__error {
         margin: 0.75rem;
         padding: 0.75rem 1rem;
@@ -49,6 +44,12 @@ $akb-text-muted: var(--tblr-secondary, #667382);
         & + & {
             border-left: 1px solid $akb-border;
         }
+    }
+
+    // Palette on top, language copy pinned to the bottom of the column.
+    &__pane--palette {
+        display: flex;
+        flex-direction: column;
     }
 
     &__canvas {
@@ -107,6 +108,16 @@ $akb-text-muted: var(--tblr-secondary, #667382);
 }
 
 // ---------------------------------------------------------------- palette
+.akb-copy {
+    margin-top: auto;
+    padding-top: 0.75rem;
+    border-top: 1px solid $akb-border;
+
+    .akb-pane-title {
+        margin-top: 0.75rem;
+    }
+}
+
 .akb-palette {
     display: flex;
     flex-direction: column;
