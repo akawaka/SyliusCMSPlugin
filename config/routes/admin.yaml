@@ -40,3 +40,10 @@ akawaka_cms_admin_page_unpublish:
                 transition: unpublish
             redirect: akawaka_cms_admin_page_index
             flash: akawaka_cms.page.unpublished
+
+akawaka_cms_admin_block_form:
+    path: /admin/cms/blocks/{type}/form
+    methods: [GET]
+    controller: Akawaka\SyliusCMSPlugin\Controller\Admin\BlockFormController
+    requirements:
+        type: '[a-z_]+'

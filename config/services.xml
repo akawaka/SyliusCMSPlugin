@@ -37,8 +37,13 @@
         <service id="Akawaka\SyliusCMSPlugin\Validator\BlockTreeValidator" />
         <service id="Akawaka\SyliusCMSPlugin\Validator\Constraint\ValidBlockTreeValidator" />
 
+        <service id="Akawaka\SyliusCMSPlugin\Block\BlockCatalog" />
         <service id="Akawaka\SyliusCMSPlugin\Renderer\PageRenderer" />
         <service id="Akawaka\SyliusCMSPlugin\Twig\CmsExtension" />
+
+        <service id="Akawaka\SyliusCMSPlugin\Controller\Admin\BlockFormController" public="true">
+            <tag name="controller.service_arguments" />
+        </service>
 
         <service id="Akawaka\SyliusCMSPlugin\Controller\Shop\PageController" public="true">
             <argument type="service" id="akawaka_cms.repository.page" />

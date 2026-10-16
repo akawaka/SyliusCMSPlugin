@@ -5,6 +5,7 @@ akawaka_cms:
     ui:
         pages: Pages
         page: Page
+        general: 'General'
         content: Content
         publication: Publication
         updated_at: Updated at
@@ -22,6 +23,20 @@ akawaka_cms:
             primary: Primary
             secondary: Secondary
             outline-primary: Outline
+    builder:
+        blocks: 'Blocks'
+        empty_canvas: 'Drag blocks here, or click a block in the list to add it.'
+        empty_container: 'Drop blocks here'
+        select_hint: 'Select a block to edit its settings.'
+        no_props: 'This block has no settings.'
+        load_error: 'Could not load the block settings.'
+        invalid_json: 'The stored content is not a valid block list and cannot be edited here.'
+        confirm_remove: 'Remove this block and its content?'
+        duplicate: 'Duplicate'
+        remove: 'Remove'
+        move: 'Drag to move'
+        undo: 'Undo'
+        redo: 'Redo'
     form:
         page:
             title: Title

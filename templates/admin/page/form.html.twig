@@ -1,14 +1,30 @@
+{% from '@SyliusAdmin/shared/helper/translations.html.twig' import accordion_header %}
+
 {% set form = hookable_metadata.context.form %}
-{% import '@SyliusAdmin/shared/helper/translations.html.twig' as translations %}
 
 <div class="row">
-    <div class="col-12 col-md-8">
+    <div class="col-12 col-lg-8">
         <div class="card mb-3">
-            <div class="card-header"><div class="card-title">{{ 'akawaka_cms.ui.content'|trans }}</div></div>
-            {{ translations.default(form.translations, null, { accordion_flush: true }) }}
+            <div class="card-header"><div class="card-title">{{ 'akawaka_cms.ui.general'|trans }}</div></div>
+            <div class="accordion accordion-flush" id="akawaka-cms-general">
+                {% for locale, translation_form in form.translations %}
+                    <div class="accordion-item">
+                        {{ accordion_header(locale, 'akawaka-cms-general', loop.first) }}
+                        <div id="translation-akawaka-cms-general-{{ locale }}" class="accordion-collapse collapse {% if loop.first %}show{% endif %}" data-bs-parent="#akawaka-cms-general">
+                            <div class="accordion-body">
+                                {{ form_row(translation_form.title) }}
+                                {{ form_row(translation_form.slug) }}
+                                {{ form_row(translation_form.metaTitle) }}
+                                {{ form_row(translation_form.metaDescription) }}
+                                {{ form_row(translation_form.ogImage) }}
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
         </div>
     </div>
-    <div class="col-12 col-md-4">
+    <div class="col-12 col-lg-4">
         <div class="card mb-3">
             <div class="card-header"><div class="card-title">{{ 'akawaka_cms.ui.publication'|trans }}</div></div>
             <div class="card-body">
@@ -18,4 +34,26 @@
         </div>
     </div>
 </div>
+
+<div class="card mb-3">
+    <div class="card-header">
+        <div class="card-title">{{ 'akawaka_cms.ui.content'|trans }}</div>
+        <ul class="nav nav-tabs card-header-tabs ms-auto" role="tablist">
+            {% for locale, translation_form in form.translations %}
+                <li class="nav-item" role="presentation">
+                    <button type="button" class="nav-link {% if loop.first %}active{% endif %}" data-bs-toggle="tab" data-bs-target="#akawaka-cms-builder-{{ locale }}" role="tab">{{ locale }}</button>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="card-body tab-content">
+        {% for locale, translation_form in form.translations %}
+            <div class="tab-pane {% if loop.first %}active show{% endif %}" id="akawaka-cms-builder-{{ locale }}" role="tabpanel">
+                {{ form_errors(translation_form.blocks) }}
+                {% include '@AkawakaSyliusCMSPlugin/admin/page/builder.html.twig' with {translation_form: translation_form, locale: locale} only %}
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
 {{ form_rest(form) }}

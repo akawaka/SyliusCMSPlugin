@@ -1,0 +1,43 @@
+{# Page builder for one locale. Expects `translation_form` (PageTranslationType view). #}
+{% set catalog = [] %}
+{% for entry in cms_block_catalog() %}
+    {% set catalog = catalog|merge([entry|merge({icon: ux_icon(entry.icon) ~ ''})]) %}
+{% endfor %}
+
+{% set labels = {
+    empty_canvas: 'akawaka_cms.builder.empty_canvas'|trans,
+    empty_container: 'akawaka_cms.builder.empty_container'|trans,
+    select_hint: 'akawaka_cms.builder.select_hint'|trans,
+    no_props: 'akawaka_cms.builder.no_props'|trans,
+    load_error: 'akawaka_cms.builder.load_error'|trans,
+    invalid_json: 'akawaka_cms.builder.invalid_json'|trans,
+    confirm_remove: 'akawaka_cms.builder.confirm_remove'|trans,
+    duplicate: 'akawaka_cms.builder.duplicate'|trans,
+    remove: 'akawaka_cms.builder.remove'|trans,
+    move: 'akawaka_cms.builder.move'|trans,
+} %}
+
+<div class="akb"
+     data-controller="akawaka-cms-builder"
+     data-akawaka-cms-builder-catalog-value="{{ catalog|json_encode }}"
+     data-akawaka-cms-builder-form-url-value="{{ path('akawaka_cms_admin_block_form', {type: '__type__'}) }}"
+     data-akawaka-cms-builder-labels-value="{{ labels|json_encode }}"
+     data-locale="{{ locale }}">
+    <div class="akb__toolbar">
+        <button type="button" class="btn btn-sm" data-akawaka-cms-builder-target="undo" data-action="akawaka-cms-builder#undo" title="{{ 'akawaka_cms.builder.undo'|trans }}">{{ ux_icon('tabler:arrow-back-up') }}</button>
+        <button type="button" class="btn btn-sm" data-akawaka-cms-builder-target="redo" data-action="akawaka-cms-builder#redo" title="{{ 'akawaka_cms.builder.redo'|trans }}">{{ ux_icon('tabler:arrow-forward-up') }}</button>
+    </div>
+
+    <div class="alert alert-danger akb__error" hidden data-akawaka-cms-builder-target="error"></div>
+
+    <div class="akb__body">
+        <div class="akb__pane">
+            <h4 class="akb-pane-title">{{ 'akawaka_cms.builder.blocks'|trans }}</h4>
+            <div class="akb-palette" data-akawaka-cms-builder-target="palette"></div>
+        </div>
+        <div class="akb__pane akb__canvas" data-akawaka-cms-builder-target="canvas" data-action="click->akawaka-cms-builder#onCanvasClick"></div>
+        <div class="akb__pane akb-inspector" data-akawaka-cms-builder-target="inspector" data-action="input->akawaka-cms-builder#onInspectorInput change->akawaka-cms-builder#onInspectorInput"></div>
+    </div>
+
+    {{ form_widget(translation_form.blocks, {attr: {hidden: 'hidden', 'data-akawaka-cms-builder-target': 'input'}}) }}
+</div>

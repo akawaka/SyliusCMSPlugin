@@ -5,6 +5,7 @@ akawaka_cms:
     ui:
         pages: Pages
         page: Page
+        general: 'Général'
         content: Contenu
         publication: Publication
         updated_at: Mis à jour le
@@ -22,6 +23,20 @@ akawaka_cms:
             primary: Principal
             secondary: Secondaire
             outline-primary: Contour
+    builder:
+        blocks: 'Blocs'
+        empty_canvas: 'Glissez des blocs ici, ou cliquez sur un bloc de la liste pour l''ajouter.'
+        empty_container: 'Déposez des blocs ici'
+        select_hint: 'Sélectionnez un bloc pour modifier ses réglages.'
+        no_props: 'Ce bloc n''a pas de réglages.'
+        load_error: 'Impossible de charger les réglages du bloc.'
+        invalid_json: 'Le contenu enregistré n''est pas une liste de blocs valide et ne peut pas être modifié ici.'
+        confirm_remove: 'Supprimer ce bloc et son contenu ?'
+        duplicate: 'Dupliquer'
+        remove: 'Supprimer'
+        move: 'Glisser pour déplacer'
+        undo: 'Annuler'
+        redo: 'Rétablir'
     form:
         page:
             title: Titre
