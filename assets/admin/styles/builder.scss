@@ -54,6 +54,17 @@ $akb-text-muted: var(--tblr-secondary, #667382);
         display: none;
     }
 
+    // While previewing, the preview replaces the builder body: only the toolbar remains.
+    .akb-wrap--previewing & {
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+
+        .akb__body,
+        .akb__error {
+            display: none;
+        }
+    }
+
     @media (max-width: 991.98px) {
         &__body {
             grid-template-columns: 1fr;
@@ -253,9 +264,9 @@ $akb-text-muted: var(--tblr-secondary, #667382);
 
 // ---------------------------------------------------------------- preview
 .akp {
-    margin-top: 0.75rem;
     border: 1px solid $akb-border;
-    border-radius: 0.5rem;
+    border-top: 0;
+    border-radius: 0 0 0.5rem 0.5rem;
     background: $akb-surface;
     overflow: hidden;
 
@@ -277,7 +288,7 @@ $akb-text-muted: var(--tblr-secondary, #667382);
     &__stage {
         display: flex;
         justify-content: center;
-        height: 70vh;
+        height: min(42rem, 80vh);
         min-height: 24rem;
         overflow: hidden;
         background: $akb-muted;

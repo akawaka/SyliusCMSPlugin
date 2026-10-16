@@ -8,7 +8,7 @@ const REFRESH_DEBOUNCE = 500;
  * width emulates a mobile, tablet or desktop screen.
  */
 export default class extends Controller {
-    static targets = ['panel', 'stage', 'scaler', 'viewport', 'device', 'width', 'warnings', 'status', 'open', 'toggle'];
+    static targets = ['panel', 'stage', 'scaler', 'viewport', 'device', 'width', 'warnings', 'status', 'open', 'toggle', 'toggleLabel'];
 
     static values = {
         url: String,
@@ -47,6 +47,10 @@ export default class extends Controller {
         this.visible = !this.visible;
         this.panelTarget.hidden = !this.visible;
         this.toggleTarget.classList.toggle('active', this.visible);
+        this.toggleLabelTarget.textContent = this.visible ? this.labelsValue.edit : this.labelsValue.preview;
+
+        // The preview takes the place of the builder (palette, canvas, inspector).
+        this.element.classList.toggle('akb-wrap--previewing', this.visible);
 
         if (this.visible) {
             this.applyDevice();

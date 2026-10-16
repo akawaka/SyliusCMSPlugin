@@ -38,6 +38,7 @@ akawaka_cms:
         undo: 'Undo'
         redo: 'Redo'
     preview:
+        edit: 'Back to the editor'
         toggle: 'Preview'
         title: 'Page preview'
         loading: 'Updating…'
