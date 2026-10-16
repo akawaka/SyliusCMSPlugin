@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Akawaka\SyliusCMSPlugin\Entity;
 
+use Akawaka\SyliusCMSPlugin\Validator\Constraint\ValidBlockTree;
 use Doctrine\ORM\Mapping as ORM;
 use Sylius\Component\Resource\Model\AbstractTranslation;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -30,6 +31,7 @@ class PageTranslation extends AbstractTranslation implements PageTranslationInte
 
     /** @var array<int, array<string, mixed>> */
     #[ORM\Column(type: 'json')]
+    #[ValidBlockTree(groups: ['akawaka_cms'])]
     protected array $blocks = [];
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]

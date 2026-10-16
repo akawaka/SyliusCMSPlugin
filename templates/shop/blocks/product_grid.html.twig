@@ -1,0 +1,7 @@
+<div class="cms-block cms-product-grid container py-3" data-cms-block="{{ block.id }}">
+    <div class="row g-4 row-cols-2 row-cols-md-{{ props.columns > 4 ? 3 : props.columns }} row-cols-lg-{{ props.columns }}">
+        {% for product in data.products %}
+            <div class="col">{{ component('sylius_shop:product:card', { product: product, template: '@SyliusShop/product/common/card.html.twig' }) }}</div>
+        {% endfor %}
+    </div>
+</div>

@@ -10,6 +10,42 @@
     </imports>
 
     <services>
+        <defaults autowire="true" autoconfigure="true" />
+
+        <instanceof id="Akawaka\SyliusCMSPlugin\Block\BlockTypeInterface">
+            <tag name="akawaka_cms.block_type" />
+        </instanceof>
+
+        <prototype namespace="Akawaka\SyliusCMSPlugin\Block\Type\" resource="../src/Block/Type" />
+        <prototype namespace="Akawaka\SyliusCMSPlugin\Form\Type\Block\" resource="../src/Form/Type/Block" />
+
+        <service id="Akawaka\SyliusCMSPlugin\Block\BlockRegistry">
+            <argument type="tagged_iterator" tag="akawaka_cms.block_type" />
+        </service>
+
+        <service id="Akawaka\SyliusCMSPlugin\Block\Type\RichTextBlockType">
+            <argument type="service" id="html_sanitizer.sanitizer.akawaka_cms.rich_text" />
+        </service>
+
+        <service id="Akawaka\SyliusCMSPlugin\Block\Type\ProductGridBlockType">
+            <argument type="service" id="sylius.repository.product" />
+            <argument type="service" id="sylius.repository.taxon" />
+            <argument type="service" id="sylius.context.channel" />
+            <argument type="service" id="sylius.context.locale" />
+        </service>
+
+        <service id="Akawaka\SyliusCMSPlugin\Validator\BlockTreeValidator" />
+        <service id="Akawaka\SyliusCMSPlugin\Validator\Constraint\ValidBlockTreeValidator" />
+
+        <service id="Akawaka\SyliusCMSPlugin\Renderer\PageRenderer" />
+        <service id="Akawaka\SyliusCMSPlugin\Twig\CmsExtension" />
+
+        <service id="Akawaka\SyliusCMSPlugin\Controller\Shop\PageController" public="true">
+            <argument type="service" id="akawaka_cms.repository.page" />
+            <argument type="service" id="sylius.context.channel" />
+            <tag name="controller.service_arguments" />
+        </service>
+
         <service id="Akawaka\SyliusCMSPlugin\Menu\AdminMenuListener">
             <tag name="kernel.event_listener" event="sylius.menu.admin.main" />
         </service>

@@ -27,6 +27,18 @@ final class AkawakaSyliusCMSExtension extends AbstractResourceExtension implemen
     {
         $this->prependDoctrineMigrations($container);
 
+        $container->prependExtensionConfig('framework', [
+            'html_sanitizer' => [
+                'sanitizers' => [
+                    'akawaka_cms.rich_text' => [
+                        'allow_safe_elements' => true,
+                        'allow_relative_links' => true,
+                        'allow_relative_medias' => true,
+                    ],
+                ],
+            ],
+        ]);
+
         $container->prependExtensionConfig('doctrine', [
             'orm' => [
                 'mappings' => [

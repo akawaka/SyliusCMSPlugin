@@ -1,0 +1,25 @@
+akawaka_cms:
+    page:
+        code:
+            unique: Une page avec ce code existe déjà.
+            regex: Le code ne peut contenir que des lettres, chiffres, tirets et underscores.
+        slug:
+            unique: Ce slug est déjà utilisé pour cette langue.
+            regex: Le slug ne peut contenir que des minuscules, chiffres et tirets (et "/" pour les sous-chemins).
+        translation:
+            at_least_one: Renseignez au moins une traduction (titre).
+    block_tree:
+        violation: 'Blocs invalides à {{ path }}.'
+        invalid_tree: L'arbre de blocs doit être une liste de blocs.
+        invalid_block: 'Le bloc {{ path }} doit être un objet.'
+        unknown_keys: 'Le bloc {{ path }} a des clés inconnues : {{ keys }}.'
+        missing_id: 'Le bloc {{ path }} doit avoir un id non vide.'
+        duplicate_id: 'Bloc {{ path }} : l''id "{{ id }}" est utilisé plusieurs fois.'
+        unknown_type: 'Le bloc {{ path }} a un type inconnu "{{ type }}".'
+        invalid_props: 'Bloc {{ path }} : props doit être un objet.'
+        invalid_prop: 'Valeur invalide à {{ path }} : {{ message }}'
+        invalid_children: 'Bloc {{ path }} : children doit être une liste.'
+        internal_at_root: 'Bloc {{ path }} : "{{ type }}" ne peut pas être utilisé à la racine.'
+        child_not_allowed: 'Bloc {{ path }} : "{{ type }}" n''est pas autorisé dans "{{ parent }}".'
+        too_deep: 'Les blocs sont imbriqués trop profondément (max {{ max }} niveaux).'
+        too_many_blocks: 'Trop de blocs (max {{ max }}).'

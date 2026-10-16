@@ -1,0 +1,8 @@
+<section class="cms-block cms-banner position-relative text-white d-flex align-items-center py-5" data-cms-block="{{ block.id }}"
+         style="min-height: 22rem;{% if props.image %} background: linear-gradient(rgba(0,0,0,.45), rgba(0,0,0,.45)), url('{{ props.image|e('css') }}') center / cover no-repeat;{% else %} background: #343a40;{% endif %}">
+    <div class="container text-{{ props.alignment == 'left' ? 'start' : (props.alignment == 'right' ? 'end' : 'center') }}">
+        {% if props.title %}<h1 class="display-5 fw-bold">{{ props.title }}</h1>{% endif %}
+        {% if props.subtitle %}<p class="lead">{{ props.subtitle }}</p>{% endif %}
+        {% if props.buttonLabel and props.buttonUrl %}<a href="{{ props.buttonUrl }}" class="btn btn-primary btn-lg">{{ props.buttonLabel }}</a>{% endif %}
+    </div>
+</section>

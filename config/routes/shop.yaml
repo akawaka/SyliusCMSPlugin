@@ -1,1 +1,7 @@
-# Define your own shop routes here
+akawaka_cms_shop_page_show:
+    path: /{_locale}/pages/{slug}
+    methods: [GET]
+    controller: Akawaka\SyliusCMSPlugin\Controller\Shop\PageController
+    requirements:
+        _locale: '[a-z]{2,3}(?:_[A-Z]{2})?'
+        slug: '.+'

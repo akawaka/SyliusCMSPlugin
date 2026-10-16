@@ -1,0 +1,18 @@
+{% extends '@SyliusShop/shared/layout/base.html.twig' %}
+
+{% block title %}{{ translation.metaTitle|default(translation.title) }} | {{ parent() }}{% endblock %}
+
+{% block metatags %}
+    {{ parent() }}
+    {% if translation.metaDescription %}<meta name="description" content="{{ translation.metaDescription }}">{% endif %}
+    <meta property="og:title" content="{{ translation.metaTitle|default(translation.title) }}">
+    {% if translation.metaDescription %}<meta property="og:description" content="{{ translation.metaDescription }}">{% endif %}
+    {% if translation.ogImage %}<meta property="og:image" content="{{ translation.ogImage }}">{% endif %}
+    <link rel="canonical" href="{{ url('akawaka_cms_shop_page_show', {_locale: app.request.locale, slug: translation.slug}) }}">
+{% endblock %}
+
+{% block content %}
+    <div class="cms-page">
+        {{ cms_render(translation.blocks) }}
+    </div>
+{% endblock %}

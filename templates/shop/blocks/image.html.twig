@@ -1,0 +1,4 @@
+{% set img %}<img src="{{ props.src }}" alt="{{ props.alt }}" class="img-fluid w-100" loading="lazy">{% endset %}
+<div class="cms-block cms-image container py-3" data-cms-block="{{ block.id }}">
+    {% if props.link %}<a href="{{ props.link }}">{{ img }}</a>{% else %}{{ img }}{% endif %}
+</div>
