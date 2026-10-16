@@ -59,7 +59,7 @@ vendor/bin/behat --strict --tags="@javascript,@mink:chromedriver"
 ### Code Quality
 ```bash
 # PHPStan analysis
-vendor/bin/phpstan analyse -c phpstan.neon -l max src/
+vendor/bin/phpstan analyse -c phpstan.neon
 make phpstan  # Docker
 
 # Coding standards

@@ -10,6 +10,20 @@
     </imports>
 
     <services>
-        <!-- Put your services here -->
+        <service id="Akawaka\SyliusCMSPlugin\Menu\AdminMenuListener">
+            <tag name="kernel.event_listener" event="sylius.menu.admin.main" />
+        </service>
+
+        <service id="Akawaka\SyliusCMSPlugin\Form\Type\PageType">
+            <argument>%akawaka_cms.model.page.class%</argument>
+            <argument>%akawaka_cms.form.type.page.validation_groups%</argument>
+            <tag name="form.type" />
+        </service>
+
+        <service id="Akawaka\SyliusCMSPlugin\Form\Type\PageTranslationType">
+            <argument>%akawaka_cms.model.page_translation.class%</argument>
+            <argument>%akawaka_cms.form.type.page_translation.validation_groups%</argument>
+            <tag name="form.type" />
+        </service>
     </services>
 </container>

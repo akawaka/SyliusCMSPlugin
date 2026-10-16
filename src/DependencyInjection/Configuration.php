@@ -14,7 +14,7 @@ final class Configuration implements ConfigurationInterface
      */
     public function getConfigTreeBuilder(): TreeBuilder
     {
-        $treeBuilder = new TreeBuilder('akawaka_sylius_cms_plugin');
+        $treeBuilder = new TreeBuilder('akawaka_sylius_cms');
         $rootNode = $treeBuilder->getRootNode();
 
         return $treeBuilder;

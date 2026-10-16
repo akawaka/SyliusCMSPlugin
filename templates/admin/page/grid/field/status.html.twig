@@ -1,0 +1,2 @@
+{% set status = data %}
+<span class="badge {{ status.value == 'published' ? 'bg-green-lt' : 'bg-secondary-lt' }}">{{ status.label|trans }}</span>

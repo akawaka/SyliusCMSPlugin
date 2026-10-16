@@ -1,1 +1,5 @@
-# Put your plugin configuration here
+imports:
+    - { resource: "app/resources.yaml" }
+    - { resource: "app/grids.yaml" }
+    - { resource: "app/twig_hooks.yaml" }
+    - { resource: "app/workflow.yaml" }

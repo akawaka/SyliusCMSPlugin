@@ -1,0 +1,15 @@
+sylius_twig_hooks:
+    hooks:
+        'sylius_admin.page.create.content.form':
+            sections:
+                enabled: false
+            fields:
+                template: '@AkawakaSyliusCMSPlugin/admin/page/form.html.twig'
+                priority: 0
+
+        'sylius_admin.page.update.content.form':
+            sections:
+                enabled: false
+            fields:
+                template: '@AkawakaSyliusCMSPlugin/admin/page/form.html.twig'
+                priority: 0

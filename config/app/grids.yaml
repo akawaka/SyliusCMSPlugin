@@ -1,0 +1,77 @@
+sylius_grid:
+    grids:
+        akawaka_cms_admin_page:
+            driver:
+                name: doctrine/orm
+                options:
+                    class: "%akawaka_cms.model.page.class%"
+                    repository:
+                        method: createListQueryBuilder
+                        arguments: ["expr:service('sylius.context.locale').getLocaleCode()"]
+            sorting:
+                code: asc
+            fields:
+                title:
+                    type: string
+                    label: akawaka_cms.form.page.title
+                    sortable: translation.title
+                code:
+                    type: string
+                    label: sylius.ui.code
+                    sortable: ~
+                status:
+                    type: twig
+                    label: akawaka_cms.form.page.status
+                    sortable: ~
+                    options:
+                        template: '@AkawakaSyliusCMSPlugin/admin/page/grid/field/status.html.twig'
+                updatedAt:
+                    type: datetime
+                    label: akawaka_cms.ui.updated_at
+                    sortable: ~
+            filters:
+                search:
+                    type: string
+                    label: sylius.ui.search
+                    options:
+                        fields: [code, translation.title, translation.slug]
+                    form_options:
+                        type: !php/const Sylius\Component\Grid\Filter\StringFilter::TYPE_CONTAINS
+            actions:
+                main:
+                    create:
+                        type: create
+                item:
+                    publish:
+                        type: apply_transition
+                        label: akawaka_cms.ui.publish
+                        icon: 'tabler:eye'
+                        options:
+                            link:
+                                route: akawaka_cms_admin_page_publish
+                                parameters:
+                                    id: resource.id
+                            class: btn-success btn-icon
+                            show_disabled: false
+                            transition: publish
+                            graph: akawaka_cms_page
+                    unpublish:
+                        type: apply_transition
+                        label: akawaka_cms.ui.unpublish
+                        icon: 'tabler:eye-off'
+                        options:
+                            link:
+                                route: akawaka_cms_admin_page_unpublish
+                                parameters:
+                                    id: resource.id
+                            class: btn-warning btn-icon
+                            show_disabled: false
+                            transition: unpublish
+                            graph: akawaka_cms_page
+                    update:
+                        type: update
+                    delete:
+                        type: delete
+                bulk:
+                    delete:
+                        type: delete

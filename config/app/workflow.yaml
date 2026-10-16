@@ -1,0 +1,20 @@
+framework:
+    workflows:
+        akawaka_cms_page:
+            type: state_machine
+            marking_store:
+                type: method
+                property: status
+            supports:
+                - Akawaka\SyliusCMSPlugin\Entity\PageInterface
+            initial_marking: !php/enum Akawaka\SyliusCMSPlugin\Enum\PageStatus::Draft->value
+            places:
+                - !php/enum Akawaka\SyliusCMSPlugin\Enum\PageStatus::Draft->value
+                - !php/enum Akawaka\SyliusCMSPlugin\Enum\PageStatus::Published->value
+            transitions:
+                !php/enum Akawaka\SyliusCMSPlugin\Enum\PageTransition::Publish->value:
+                    from: !php/enum Akawaka\SyliusCMSPlugin\Enum\PageStatus::Draft->value
+                    to: !php/enum Akawaka\SyliusCMSPlugin\Enum\PageStatus::Published->value
+                !php/enum Akawaka\SyliusCMSPlugin\Enum\PageTransition::Unpublish->value:
+                    from: !php/enum Akawaka\SyliusCMSPlugin\Enum\PageStatus::Published->value
+                    to: !php/enum Akawaka\SyliusCMSPlugin\Enum\PageStatus::Draft->value

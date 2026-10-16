@@ -1,0 +1,18 @@
+parameters:
+    akawaka_cms.form.type.page.validation_groups: ['akawaka_cms']
+    akawaka_cms.form.type.page_translation.validation_groups: ['akawaka_cms']
+
+sylius_resource:
+    resources:
+        akawaka_cms.page:
+            driver: doctrine/orm
+            classes:
+                model: Akawaka\SyliusCMSPlugin\Entity\Page
+                interface: Akawaka\SyliusCMSPlugin\Entity\PageInterface
+                repository: Akawaka\SyliusCMSPlugin\Repository\PageRepository
+                form: Akawaka\SyliusCMSPlugin\Form\Type\PageType
+            translation:
+                classes:
+                    model: Akawaka\SyliusCMSPlugin\Entity\PageTranslation
+                    interface: Akawaka\SyliusCMSPlugin\Entity\PageTranslationInterface
+                    form: Akawaka\SyliusCMSPlugin\Form\Type\PageTranslationType

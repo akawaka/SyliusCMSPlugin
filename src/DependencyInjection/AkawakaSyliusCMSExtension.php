@@ -11,7 +11,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 
-final class AkawakaSyliusCMSPluginExtension extends AbstractResourceExtension implements PrependExtensionInterface
+final class AkawakaSyliusCMSExtension extends AbstractResourceExtension implements PrependExtensionInterface
 {
     use PrependDoctrineMigrationsTrait;
 
@@ -26,11 +26,25 @@ final class AkawakaSyliusCMSPluginExtension extends AbstractResourceExtension im
     public function prepend(ContainerBuilder $container): void
     {
         $this->prependDoctrineMigrations($container);
+
+        $container->prependExtensionConfig('doctrine', [
+            'orm' => [
+                'mappings' => [
+                    'AkawakaSyliusCMSPlugin' => [
+                        'type' => 'attribute',
+                        'is_bundle' => false,
+                        'dir' => __DIR__ . '/../Entity',
+                        'prefix' => 'Akawaka\\SyliusCMSPlugin\\Entity',
+                        'alias' => 'AkawakaSyliusCMSPlugin',
+                    ],
+                ],
+            ],
+        ]);
     }
 
     protected function getMigrationsNamespace(): string
     {
-        return 'DoctrineMigrations';
+        return 'Akawaka\\SyliusCMSPlugin\\Migrations';
     }
 
     protected function getMigrationsDirectory(): string
@@ -38,6 +52,7 @@ final class AkawakaSyliusCMSPluginExtension extends AbstractResourceExtension im
         return '@AkawakaSyliusCMSPlugin/src/Migrations';
     }
 
+    /** @return list<string> */
     protected function getNamespacesOfMigrationsExecutedBefore(): array
     {
         return [

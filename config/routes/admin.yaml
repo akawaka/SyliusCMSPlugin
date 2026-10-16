@@ -1,1 +1,42 @@
-# Define your own admin routes here
+akawaka_cms_admin_page:
+    resource: |
+        alias: akawaka_cms.page
+        section: admin
+        templates: "@SyliusAdmin\\shared\\crud"
+        except: ['show']
+        redirect: update
+        grid: akawaka_cms_admin_page
+        permission: true
+        vars:
+            all:
+                header: akawaka_cms.ui.pages
+            index:
+                icon: file-text
+    type: sylius.resource
+    prefix: /admin/cms
+
+akawaka_cms_admin_page_publish:
+    path: /admin/cms/pages/{id}/publish
+    methods: [PUT]
+    defaults:
+        _controller: akawaka_cms.controller.page::applyStateMachineTransitionAction
+        _sylius:
+            permission: true
+            state_machine:
+                graph: akawaka_cms_page
+                transition: publish
+            redirect: akawaka_cms_admin_page_index
+            flash: akawaka_cms.page.published
+
+akawaka_cms_admin_page_unpublish:
+    path: /admin/cms/pages/{id}/unpublish
+    methods: [PUT]
+    defaults:
+        _controller: akawaka_cms.controller.page::applyStateMachineTransitionAction
+        _sylius:
+            permission: true
+            state_machine:
+                graph: akawaka_cms_page
+                transition: unpublish
+            redirect: akawaka_cms_admin_page_index
+            flash: akawaka_cms.page.unpublished

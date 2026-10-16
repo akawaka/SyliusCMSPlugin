@@ -1,0 +1,33 @@
+akawaka_cms:
+    menu:
+        cms: CMS
+        pages: Pages
+    ui:
+        pages: Pages
+        page: Page
+        content: Content
+        publication: Publication
+        updated_at: Updated at
+        publish: Publish
+        unpublish: Unpublish
+        status:
+            draft: Draft
+            published: Published
+    form:
+        page:
+            title: Title
+            slug: Slug
+            status: Status
+            meta_title: Meta title
+            meta_description: Meta description
+            og_image: Open Graph image
+            blocks: Blocks (JSON)
+    page:
+        code:
+            unique: A page with this code already exists.
+            regex: The code may only contain letters, digits, dashes and underscores.
+        slug:
+            unique: This slug is already used for this locale.
+            regex: The slug may only contain lowercase letters, digits and dashes (and "/" for sub-paths).
+        translation:
+            at_least_one: Fill in at least one translation (title).
