@@ -35,6 +35,8 @@ akawaka_cms:
         duplicate: 'Duplicate'
         remove: 'Remove'
         move: 'Drag to move'
+        fullscreen: 'Fullscreen'
+        exit_fullscreen: 'Exit fullscreen'
         undo: 'Undo'
         redo: 'Redo'
     preview:

@@ -13,7 +13,7 @@ const INSPECTOR_DEBOUNCE = 250;
  * The block tree is kept in memory and serialized as JSON into the hidden input on every change.
  */
 export default class extends Controller {
-    static targets = ['input', 'palette', 'canvas', 'inspector', 'undo', 'redo', 'error'];
+    static targets = ['input', 'palette', 'canvas', 'inspector', 'undo', 'redo', 'error', 'fullscreen'];
 
     static values = {
         catalog: Array,
@@ -50,11 +50,47 @@ export default class extends Controller {
     }
 
     disconnect() {
+        this.setFullscreen(false);
         this.destroyEditors();
         this.destroySortables();
         this.paletteSortable?.destroy();
         this.element.removeEventListener('keydown', this.onKeydown);
         clearTimeout(this.inspectorTimer);
+    }
+
+    // ------------------------------------------------------------- fullscreen
+
+    toggleFullscreen() {
+        this.setFullscreen(!this.fullscreen);
+    }
+
+    /** CSS based (not the Fullscreen API) so editor popups and dialogs keep working. */
+    setFullscreen(enabled) {
+        const wrapper = this.element.closest('.akb-wrap');
+        if (!wrapper || enabled === Boolean(this.fullscreen)) {
+            return;
+        }
+
+        this.fullscreen = enabled;
+        wrapper.classList.toggle('akb-wrap--fullscreen', enabled);
+        document.documentElement.classList.toggle('akb-fullscreen-active', enabled);
+
+        if (this.hasFullscreenTarget) {
+            this.fullscreenTarget.setAttribute('aria-pressed', String(enabled));
+            this.fullscreenTarget.title = enabled ? this.labelsValue.exit_fullscreen : this.labelsValue.fullscreen;
+        }
+
+        if (enabled) {
+            this.onEscape = (event) => {
+                if (event.key === 'Escape' && !event.defaultPrevented) {
+                    this.setFullscreen(false);
+                }
+            };
+            document.addEventListener('keydown', this.onEscape);
+        } else if (this.onEscape) {
+            document.removeEventListener('keydown', this.onEscape);
+            this.onEscape = null;
+        }
     }
 
     // ---------------------------------------------------------------- palette
