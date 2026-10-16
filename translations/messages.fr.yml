@@ -50,7 +50,7 @@ akawaka_cms:
         alignment: Alignement
         rich_text:
             label: "Texte riche"
-            html: "Contenu (HTML)"
+            html: "Contenu"
         image:
             label: "Image"
             src: "URL de l'image"

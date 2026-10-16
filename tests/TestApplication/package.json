@@ -1,5 +1,6 @@
 {
     "dependencies": {
-        "sortablejs": "^1.15.6"
+        "sortablejs": "^1.15.6",
+        "suneditor": "^3.3.3"
     }
 }

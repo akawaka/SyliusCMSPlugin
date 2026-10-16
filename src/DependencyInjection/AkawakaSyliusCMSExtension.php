@@ -34,6 +34,13 @@ final class AkawakaSyliusCMSExtension extends AbstractResourceExtension implemen
                         'allow_safe_elements' => true,
                         'allow_relative_links' => true,
                         'allow_relative_medias' => true,
+                        // Formatting produced by the WYSIWYG editor (alignment, colors, table styling).
+                        'allow_attributes' => [
+                            'style' => ['p', 'span', 'div', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'blockquote', 'ul', 'ol', 'li', 'table', 'tr', 'td', 'th'],
+                            'class' => ['table', 'div', 'span', 'figure'],
+                            'colspan' => ['td', 'th'],
+                            'rowspan' => ['td', 'th'],
+                        ],
                     ],
                 ],
             ],

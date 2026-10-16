@@ -3,6 +3,7 @@ import Sortable from 'sortablejs';
 
 import { History } from '../builder/history.js';
 import * as Tree from '../builder/tree.js';
+import { createWysiwyg } from '../builder/wysiwyg.js';
 
 const GROUP = 'akawaka-cms-blocks';
 const INSPECTOR_DEBOUNCE = 250;
@@ -24,6 +25,7 @@ export default class extends Controller {
         this.catalog = Object.fromEntries(this.catalogValue.map((entry) => [entry.code, entry]));
         this.formCache = new Map();
         this.sortables = [];
+        this.editors = [];
         this.selectedId = null;
 
         const parsed = Tree.parse(this.inputTarget.value);
@@ -48,6 +50,7 @@ export default class extends Controller {
     }
 
     disconnect() {
+        this.destroyEditors();
         this.destroySortables();
         this.paletteSortable?.destroy();
         this.element.removeEventListener('keydown', this.onKeydown);
@@ -272,7 +275,26 @@ export default class extends Controller {
 
     // -------------------------------------------------------------- inspector
 
+    destroyEditors() {
+        this.editors.forEach((editor) => editor.destroy());
+        this.editors = [];
+    }
+
+    /** Fields flagged with data-akawaka-wysiwyg (e.g. rich text) are edited with SunEditor. */
+    enhanceForm(container) {
+        container.querySelectorAll('textarea[data-akawaka-wysiwyg]').forEach((textarea) => {
+            this.editors.push(
+                createWysiwyg(textarea, (html) => {
+                    textarea.value = html;
+                    textarea.dispatchEvent(new Event('input', { bubbles: true }));
+                }),
+            );
+        });
+    }
+
     async renderInspector() {
+        this.destroyEditors();
+
         const selected = this.selectedId ? Tree.find(this.tree, this.selectedId) : null;
         const token = (this.inspectorToken = Symbol());
 
@@ -312,6 +334,7 @@ export default class extends Controller {
         form.innerHTML = html;
         this.inspectorTarget.append(form);
         this.fillForm(form, node.props ?? {});
+        this.enhanceForm(form);
 
         if (form.querySelector('input, select, textarea') === null) {
             const none = document.createElement('p');

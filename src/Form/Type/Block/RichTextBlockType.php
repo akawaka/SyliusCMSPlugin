@@ -12,6 +12,6 @@ final class RichTextBlockType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $builder->add('html', TextareaType::class, ['label' => 'akawaka_cms.block.rich_text.html', 'required' => false]);
+        $builder->add('html', TextareaType::class, ['label' => 'akawaka_cms.block.rich_text.html', 'required' => false, 'attr' => ['data-akawaka-wysiwyg' => '1']]);
     }
 }

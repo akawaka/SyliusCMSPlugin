@@ -31,7 +31,7 @@ $akb-text-muted: var(--tblr-secondary, #667382);
 
     &__body {
         display: grid;
-        grid-template-columns: 12.5rem minmax(0, 1fr) 20rem;
+        grid-template-columns: 12.5rem minmax(0, 1fr) 24rem;
         height: 42rem;
         max-height: 80vh;
     }
