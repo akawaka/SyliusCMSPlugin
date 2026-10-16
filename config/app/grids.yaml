@@ -1,4 +1,7 @@
 sylius_grid:
+    templates:
+        action:
+            akawaka_cms_view_page: '@AkawakaSyliusCMSPlugin/admin/page/grid/action/view.html.twig'
     grids:
         akawaka_cms_admin_page:
             driver:
@@ -42,6 +45,12 @@ sylius_grid:
                     create:
                         type: create
                 item:
+                    view:
+                        type: akawaka_cms_view_page
+                        label: akawaka_cms.ui.view_page
+                        icon: 'tabler:external-link'
+                        options:
+                            class: btn-icon
                     publish:
                         type: apply_transition
                         label: akawaka_cms.ui.publish

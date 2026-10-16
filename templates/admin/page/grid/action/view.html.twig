@@ -1,0 +1,11 @@
+{% set translation = data.pageTranslation %}
+
+{% if data.published and translation.slug %}
+    <a class="btn {{ options.class|default }}"
+       href="{{ path('akawaka_cms_shop_page_show', {_locale: translation.locale, slug: translation.slug}) }}"
+       target="_blank" rel="noopener"
+       data-bs-toggle="tooltip" data-bs-title="{{ action.label|trans }}"
+       {{ sylius_test_html_attribute('action', action.name) }}>
+        {% if action.icon %}{{ ux_icon(action.icon) }}{% endif %}
+    </a>
+{% endif %}

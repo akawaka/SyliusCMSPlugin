@@ -9,6 +9,7 @@ akawaka_cms:
         publication: Publication
         updated_at: Updated at
         publish: Publish
+        view_page: View the page
         unpublish: Unpublish
         status:
             draft: Draft

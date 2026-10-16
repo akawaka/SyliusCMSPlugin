@@ -9,6 +9,7 @@ akawaka_cms:
         publication: Publication
         updated_at: Mis à jour le
         publish: Publier
+        view_page: Voir la page
         unpublish: Dépublier
         status:
             draft: Brouillon
