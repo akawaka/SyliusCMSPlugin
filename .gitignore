@@ -8,6 +8,7 @@
 
 /.phpunit.result.cache
 /phpunit.xml
+/compose.override.yml
 .phpunit.result.cache
 
 # Symfony CLI https://symfony.com/doc/current/setup/symfony_server.html#different-php-settings-per-project
