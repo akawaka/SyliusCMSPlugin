@@ -26,6 +26,15 @@ final class AdminMenuListener
         ;
 
         $cms
+            ->addChild('content_blocks', ['route' => 'akawaka_cms_admin_content_block_index', 'extras' => ['routes' => [
+                ['route' => 'akawaka_cms_admin_content_block_create'],
+                ['route' => 'akawaka_cms_admin_content_block_update'],
+            ]]])
+            ->setLabel('akawaka_cms.menu.content_blocks')
+            ->setLabelAttribute('icon', 'tabler:layout-board')
+        ;
+
+        $cms
             ->addChild('pages', ['route' => 'akawaka_cms_admin_page_index', 'extras' => ['routes' => [
                 ['route' => 'akawaka_cms_admin_page_create'],
                 ['route' => 'akawaka_cms_admin_page_update'],

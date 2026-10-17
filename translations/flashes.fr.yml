@@ -1,4 +1,7 @@
 akawaka_cms:
+    content_block:
+        published: Le bloc CMS a été publié.
+        unpublished: Le bloc CMS a été dépublié.
     homepage:
         published: L'accueil a été publié.
         unpublished: L'accueil a été dépublié.

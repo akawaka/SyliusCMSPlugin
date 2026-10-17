@@ -1,4 +1,14 @@
 akawaka_cms:
+    content_block:
+        code:
+            unique: Un bloc CMS avec ce code existe déjà.
+            regex: Le code ne peut contenir que des lettres, chiffres, tirets et underscores.
+        placements:
+            invalid: Les emplacements de hooks sont invalides.
+            too_many: 'Un bloc peut être attaché à {{ max }} hooks au maximum.'
+            hook_not_allowed: 'Le hook « {{ hook }} » n''est pas autorisé (préfixes autorisés : {{ prefixes }}).'
+            priority_range: 'La priorité doit être comprise entre {{ min }} et {{ max }}.'
+            duplicate: 'Le hook « {{ hook }} » est sélectionné deux fois.'
     homepage:
         channel:
             unique: Ce channel a déjà une page d'accueil.

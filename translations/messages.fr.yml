@@ -3,6 +3,7 @@ akawaka_cms:
         cms: CMS
         pages: Pages
         homepage: Accueil
+        content_blocks: Blocs CMS
     ui:
         pages: Pages
         page: Page
@@ -27,9 +28,28 @@ akawaka_cms:
         homepage: Accueil
         homepages: Accueils
         seo: SEO
+        content_block: Bloc CMS
+        content_blocks: Blocs CMS
+        placements: Emplacements
         view_homepage: 'Voir l''accueil'
     homepage:
         fallback_help: 'Tant que l''accueil n''est pas publié, ou sans contenu dans la langue du visiteur, l''accueil Sylius par défaut est affiché.'
+    content_block:
+        placements:
+            help: 'Sélectionnez les twig hooks où le bloc est affiché. La priorité l''ordonne parmi le contenu existant du hook (la plus haute en premier).'
+            search: 'Rechercher un hook…'
+            selected: 'Hooks sélectionnés'
+            none: 'Aucun hook sélectionné pour le moment.'
+            priority: Priorité
+            existing: 'Déjà présent dans ce hook'
+            remove: Retirer
+            custom: 'Nom de hook personnalisé'
+            add_custom: Ajouter
+            invalid_custom: 'Ce nom de hook n''est pas autorisé.'
+            load_error: 'Impossible de charger le contenu de ce hook.'
+            empty_hook: 'Rien n''est encore attaché à ce hook.'
+            expand_all: 'Tout déplier'
+            collapse_all: 'Tout replier'
     builder:
         blocks: 'Blocs'
         empty_canvas: 'Glissez des blocs ici, ou cliquez sur un bloc de la liste pour l''ajouter.'
@@ -66,6 +86,10 @@ akawaka_cms:
         refresh: 'Actualiser'
         open: 'Ouvrir dans un nouvel onglet'
     form:
+        content_block:
+            name: Nom
+            placements: Hooks
+            channels_help: 'Laissez vide pour afficher le bloc sur tous les channels.'
         homepage:
             meta_title_help: 'Affiché dans les résultats de recherche et l''onglet du navigateur. Visez 60 caractères maximum ; le nom du channel est utilisé s''il est vide.'
         page:

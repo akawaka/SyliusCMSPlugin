@@ -10,6 +10,7 @@ CMS pages for **Sylius 2.x**, built with a block-based **page builder** in the a
 - **Live preview**: the unsaved content is rendered by your real storefront layout and theme in an iframe sized as a mobile (375 px), tablet (768 px) or desktop (1280 px) screen.
 - **Copy the content of one language into another** (undoable).
 - **Homepage**: build the storefront homepage per channel and language, with a safe fallback to the Sylius one (see [Homepage](#homepage)).
+- **Content blocks on twig hooks**: reusable blocks attached, by priority, to one or several Sylius twig hooks chosen in a tree (see [Content blocks](#content-blocks-on-twig-hooks)).
 - **Blocks**: rich text, image, banner, columns, product grid, button, video (YouTube / Vimeo / file), custom HTML. Add your own in a few lines (see [Custom blocks](#custom-blocks)).
 - **SEO**: meta title / description, canonical URL, `hreflang` alternates, Open Graph and Twitter tags.
 - Translations: English and French.
@@ -119,6 +120,26 @@ No route configuration is needed: the override is done by an event listener, so 
 ### Preview
 
 The builder posts the unsaved content to `/admin/cms/preview` (CSRF protected). It is kept in the application cache for 30 minutes under a random 128-bit token, and rendered on the storefront at `/{locale}/cms-preview/{token}` (`noindex`, never cached). The token is the only access control: only a logged-in administrator can create one.
+
+
+### Content blocks on twig hooks
+
+**CMS → Content blocks** creates reusable content with the same builder and displays it **inside the Sylius twig hooks** of the storefront: a promo banner under the product price, reassurance text in the cart, a block in the footer…
+
+- **Placements**: pick the hooks in a searchable, collapsible **tree** (`sylius_shop.product.show.content.info.summary.prices`, …). A block can be attached to several hooks.
+- **Priority**: like any hookable, a block has a priority (higher renders first, −1000…1000). Selecting a hook shows what it already renders with its priority, and where your block will land. Equal priorities render after the existing content.
+- **Conditions**: only **published** blocks are displayed; restrict a block to some **channels** (none = all); the content is edited **per language**, a language without blocks displays nothing.
+- **Custom hooks**: the tree lists the hooks that have at least one hookable configured. Type the name of any other hook (for example one of your own templates) in the *Custom hook name* field.
+
+By default only the storefront hooks (`sylius_shop`) can be used. To allow the hooks of your application too:
+
+```yaml
+# config/packages/akawaka_cms.yaml
+akawaka_sylius_cms:
+    hook_prefixes: [sylius_shop, app]
+```
+
+How it works: the plugin decorates the twig hooks registry (`sylius_twig_hooks.registry.hookables`) so that published blocks are added to the hookables of the hook being rendered, then sorted by priority with the others. They go through the normal pipeline, so they show up in the Symfony profiler and in the HTML debug comments of the dev environment, and a block is loaded once per request. The blocks are static (they do not receive the context of the hook, such as the current product). If the CMS homepage replaces the Sylius homepage, the hooks of `sylius_shop.homepage.index` are not rendered at all.
 
 ## Theming
 

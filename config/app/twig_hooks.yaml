@@ -27,3 +27,17 @@ sylius_twig_hooks:
             fields:
                 template: '@AkawakaSyliusCMSPlugin/admin/homepage/form.html.twig'
                 priority: 0
+
+        'sylius_admin.content_block.create.content.form':
+            sections:
+                enabled: false
+            fields:
+                template: '@AkawakaSyliusCMSPlugin/admin/content_block/form.html.twig'
+                priority: 0
+
+        'sylius_admin.content_block.update.content.form':
+            sections:
+                enabled: false
+            fields:
+                template: '@AkawakaSyliusCMSPlugin/admin/content_block/form.html.twig'
+                priority: 0

@@ -1,0 +1,96 @@
+{% set form = hookable_metadata.context.form %}
+
+<div class="row">
+    <div class="col-12 col-lg-8">
+        <div class="card mb-3">
+            <div class="card-header"><div class="card-title">{{ 'akawaka_cms.ui.general'|trans }}</div></div>
+            <div class="card-body">
+                {{ form_row(form.name) }}
+                {{ form_row(form.code) }}
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-lg-4">
+        <div class="card mb-3">
+            <div class="card-header"><div class="card-title">{{ 'akawaka_cms.ui.publication'|trans }}</div></div>
+            <div class="card-body">
+                {{ form_row(form.channels) }}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% set picker_labels = {
+    none: 'akawaka_cms.content_block.placements.none'|trans,
+    priority: 'akawaka_cms.content_block.placements.priority'|trans,
+    existing: 'akawaka_cms.content_block.placements.existing'|trans,
+    remove: 'akawaka_cms.content_block.placements.remove'|trans,
+    invalid_custom: 'akawaka_cms.content_block.placements.invalid_custom'|trans,
+    load_error: 'akawaka_cms.content_block.placements.load_error'|trans,
+    empty_hook: 'akawaka_cms.content_block.placements.empty_hook'|trans,
+} %}
+
+<div class="card mb-3">
+    <div class="card-header"><div class="card-title">{{ 'akawaka_cms.ui.placements'|trans }}</div></div>
+    <div class="card-body"
+         data-controller="akawaka-cms-hook-picker"
+         data-block-label="{{ 'akawaka_cms.ui.content'|trans }}"
+         data-akawaka-cms-hook-picker-tree-value="{{ akawaka_cms_hook_tree()|json_encode }}"
+         data-akawaka-cms-hook-picker-info-url-value="{{ path('akawaka_cms_admin_hook_info', {name: '__hook__'}) }}"
+         data-akawaka-cms-hook-picker-labels-value="{{ picker_labels|json_encode }}">
+        <p class="text-secondary">{{ 'akawaka_cms.content_block.placements.help'|trans }}</p>
+        {{ form_errors(form.placements) }}
+        {{ form_widget(form.placements, {attr: {'data-akawaka-cms-hook-picker-target': 'input'}}) }}
+
+        <div class="akh">
+            <div class="akh__pane">
+                <div class="d-flex gap-2 align-items-center">
+                    <input type="search" class="form-control form-control-sm" placeholder="{{ 'akawaka_cms.content_block.placements.search'|trans }}"
+                           data-akawaka-cms-hook-picker-target="search" data-action="input->akawaka-cms-hook-picker#search keydown->akawaka-cms-hook-picker#preventSubmit">
+                    <span class="badge bg-secondary-lt" data-akawaka-cms-hook-picker-target="count"></span>
+                </div>
+                <div class="mt-2 small">
+                    <a href="#" data-action="akawaka-cms-hook-picker#expand:prevent">{{ 'akawaka_cms.content_block.placements.expand_all'|trans }}</a>
+                    ·
+                    <a href="#" data-action="akawaka-cms-hook-picker#collapse:prevent">{{ 'akawaka_cms.content_block.placements.collapse_all'|trans }}</a>
+                </div>
+                <div class="akh__tree" data-akawaka-cms-hook-picker-target="tree"></div>
+            </div>
+            <div class="akh__pane">
+                <h4 class="akb-pane-title">{{ 'akawaka_cms.content_block.placements.selected'|trans }}</h4>
+                <div data-akawaka-cms-hook-picker-target="selected"></div>
+                <div class="mt-3">
+                    <label class="form-label small">{{ 'akawaka_cms.content_block.placements.custom'|trans }}</label>
+                    <div class="input-group input-group-sm">
+                        <input type="text" class="form-control" placeholder="app.footer" data-akawaka-cms-hook-picker-target="custom" data-action="keydown->akawaka-cms-hook-picker#customKeydown">
+                        <button type="button" class="btn" data-action="akawaka-cms-hook-picker#addCustom">{{ 'akawaka_cms.content_block.placements.add_custom'|trans }}</button>
+                    </div>
+                    <div class="text-danger small mt-1" hidden data-akawaka-cms-hook-picker-target="customError"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card mb-3">
+    <div class="card-header">
+        <div class="card-title">{{ 'akawaka_cms.ui.content'|trans }}</div>
+        <ul class="nav nav-tabs card-header-tabs ms-auto">
+            {% for locale, translation_form in form.translations %}
+                <li class="nav-item">
+                    <a href="#akawaka-cms-builder-{{ locale }}" class="nav-link {% if loop.first %}active{% endif %}" data-bs-toggle="tab">{{ locale }}{% if not translation_form.blocks.vars.valid %} <span class="badge bg-danger ms-1">!</span>{% endif %}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="card-body tab-content">
+        {% for locale, translation_form in form.translations %}
+            <div class="tab-pane {% if loop.first %}active show{% endif %}" id="akawaka-cms-builder-{{ locale }}">
+                {{ form_errors(translation_form.blocks) }}
+                {% include '@AkawakaSyliusCMSPlugin/admin/page/builder.html.twig' with {translation_form: translation_form, locale: locale, locales: form.translations|keys} only %}
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+{{ form_rest(form) }}

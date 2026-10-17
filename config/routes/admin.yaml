@@ -95,3 +95,53 @@ akawaka_cms_admin_homepage_unpublish:
                 transition: unpublish
             redirect: akawaka_cms_admin_homepage_index
             flash: akawaka_cms.homepage.unpublished
+
+akawaka_cms_admin_content_block:
+    resource: |
+        alias: akawaka_cms.content_block
+        section: admin
+        templates: "@SyliusAdmin\\shared\\crud"
+        except: ['show']
+        redirect: update
+        grid: akawaka_cms_admin_content_block
+        permission: true
+        vars:
+            all:
+                header: akawaka_cms.ui.content_blocks
+            index:
+                icon: layout-board
+    type: sylius.resource
+    prefix: /admin/cms
+
+akawaka_cms_admin_content_block_publish:
+    path: /admin/cms/content-blocks/{id}/publish
+    methods: [PUT]
+    defaults:
+        _controller: akawaka_cms.controller.content_block::applyStateMachineTransitionAction
+        _sylius:
+            permission: true
+            state_machine:
+                graph: akawaka_cms_content_block
+                transition: publish
+            redirect: akawaka_cms_admin_content_block_index
+            flash: akawaka_cms.content_block.published
+
+akawaka_cms_admin_content_block_unpublish:
+    path: /admin/cms/content-blocks/{id}/unpublish
+    methods: [PUT]
+    defaults:
+        _controller: akawaka_cms.controller.content_block::applyStateMachineTransitionAction
+        _sylius:
+            permission: true
+            state_machine:
+                graph: akawaka_cms_content_block
+                transition: unpublish
+            redirect: akawaka_cms_admin_content_block_index
+            flash: akawaka_cms.content_block.unpublished
+
+akawaka_cms_admin_hook_info:
+    path: /admin/cms/hooks/{name}
+    methods: [GET]
+    controller: Akawaka\SyliusCMSPlugin\Controller\Admin\HookInfoController
+    requirements:
+        name: '[^/]+'

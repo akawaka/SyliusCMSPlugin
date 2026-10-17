@@ -1,0 +1,4 @@
+{% set context = hookable_metadata.context %}
+<div class="cms-hook-block" data-cms-content-block="{{ context.cms_block_code }}">
+    {{ cms_render(context.cms_blocks) }}
+</div>

@@ -1,0 +1,6 @@
+{% set placements = data|default([]) %}
+{% if placements is empty %}
+    <span class="text-secondary">—</span>
+{% else %}
+    <span class="badge bg-blue-lt" title="{{ placements|map(p => p.hook)|join("\n") }}">{{ placements|length }}</span>
+{% endif %}

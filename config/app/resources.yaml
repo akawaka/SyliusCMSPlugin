@@ -3,6 +3,8 @@ parameters:
     akawaka_cms.form.type.page_translation.validation_groups: ['akawaka_cms']
     akawaka_cms.form.type.homepage.validation_groups: ['akawaka_cms']
     akawaka_cms.form.type.homepage_translation.validation_groups: ['akawaka_cms']
+    akawaka_cms.form.type.content_block.validation_groups: ['akawaka_cms']
+    akawaka_cms.form.type.content_block_translation.validation_groups: ['akawaka_cms']
 
 sylius_resource:
     resources:
@@ -30,3 +32,15 @@ sylius_resource:
                     model: Akawaka\SyliusCMSPlugin\Entity\HomepageTranslation
                     interface: Akawaka\SyliusCMSPlugin\Entity\HomepageTranslationInterface
                     form: Akawaka\SyliusCMSPlugin\Form\Type\HomepageTranslationType
+        akawaka_cms.content_block:
+            driver: doctrine/orm
+            classes:
+                model: Akawaka\SyliusCMSPlugin\Entity\ContentBlock
+                interface: Akawaka\SyliusCMSPlugin\Entity\ContentBlockInterface
+                repository: Akawaka\SyliusCMSPlugin\Repository\ContentBlockRepository
+                form: Akawaka\SyliusCMSPlugin\Form\Type\ContentBlockType
+            translation:
+                classes:
+                    model: Akawaka\SyliusCMSPlugin\Entity\ContentBlockTranslation
+                    interface: Akawaka\SyliusCMSPlugin\Entity\ContentBlockTranslationInterface
+                    form: Akawaka\SyliusCMSPlugin\Form\Type\ContentBlockTranslationType

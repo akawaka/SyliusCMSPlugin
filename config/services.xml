@@ -66,6 +66,29 @@
             <argument key="$homepageRepository" type="service" id="akawaka_cms.repository.homepage" />
         </service>
 
+        <service id="Akawaka\SyliusCMSPlugin\Hook\HookPrefixes">
+            <argument>%akawaka_cms.hook_prefixes%</argument>
+        </service>
+        <service id="Akawaka\SyliusCMSPlugin\Hook\HookTreeBuilder" />
+        <service id="Akawaka\SyliusCMSPlugin\Twig\HookTreeExtension" />
+
+        <service id="Akawaka\SyliusCMSPlugin\Hook\ContentBlockHookablesProvider">
+            <argument key="$repository" type="service" id="akawaka_cms.repository.content_block" />
+            <argument key="$channelContext" type="service" id="sylius.context.channel" />
+            <argument key="$localeContext" type="service" id="sylius.context.locale" />
+            <tag name="kernel.reset" method="reset" />
+        </service>
+
+        <service id="Akawaka\SyliusCMSPlugin\Hook\CmsHookablesRegistry" decorates="sylius_twig_hooks.registry.hookables" decoration-on-invalid="ignore">
+            <argument key="$inner" type="service" id="Akawaka\SyliusCMSPlugin\Hook\CmsHookablesRegistry.inner" />
+        </service>
+
+        <service id="Akawaka\SyliusCMSPlugin\Controller\Admin\HookInfoController" public="true">
+            <tag name="controller.service_arguments" />
+        </service>
+
+        <service id="Akawaka\SyliusCMSPlugin\Validator\Constraint\ValidPlacementsValidator" />
+
         <service id="Akawaka\SyliusCMSPlugin\Menu\AdminMenuListener">
             <tag name="kernel.event_listener" event="sylius.menu.admin.main" />
         </service>
@@ -91,6 +114,18 @@
         <service id="Akawaka\SyliusCMSPlugin\Form\Type\HomepageTranslationType">
             <argument>%akawaka_cms.model.homepage_translation.class%</argument>
             <argument>%akawaka_cms.form.type.homepage_translation.validation_groups%</argument>
+            <tag name="form.type" />
+        </service>
+
+        <service id="Akawaka\SyliusCMSPlugin\Form\Type\ContentBlockType">
+            <argument>%akawaka_cms.model.content_block.class%</argument>
+            <argument>%akawaka_cms.form.type.content_block.validation_groups%</argument>
+            <tag name="form.type" />
+        </service>
+
+        <service id="Akawaka\SyliusCMSPlugin\Form\Type\ContentBlockTranslationType">
+            <argument>%akawaka_cms.model.content_block_translation.class%</argument>
+            <argument>%akawaka_cms.form.type.content_block_translation.validation_groups%</argument>
             <tag name="form.type" />
         </service>
     </services>

@@ -3,6 +3,7 @@ akawaka_cms:
         cms: CMS
         pages: Pages
         homepage: Homepage
+        content_blocks: Content blocks
     ui:
         pages: Pages
         page: Page
@@ -27,9 +28,28 @@ akawaka_cms:
         homepage: Homepage
         homepages: Homepages
         seo: SEO
+        content_block: Content block
+        content_blocks: Content blocks
+        placements: Placements
         view_homepage: View the homepage
     homepage:
         fallback_help: 'When the homepage is not published, or has no content for the visitor''s language, the default Sylius homepage is displayed.'
+    content_block:
+        placements:
+            help: 'Select the twig hooks the block is displayed in. The priority orders it among the existing content of the hook (higher first).'
+            search: 'Search a hook…'
+            selected: 'Selected hooks'
+            none: 'No hook selected yet.'
+            priority: Priority
+            existing: 'Already in this hook'
+            remove: Remove
+            custom: 'Custom hook name'
+            add_custom: Add
+            invalid_custom: 'This hook name is not allowed.'
+            load_error: 'Could not load the content of this hook.'
+            empty_hook: 'Nothing is attached to this hook yet.'
+            expand_all: 'Expand all'
+            collapse_all: 'Collapse all'
     builder:
         blocks: 'Blocks'
         empty_canvas: 'Drag blocks here, or click a block in the list to add it.'
@@ -66,6 +86,10 @@ akawaka_cms:
         refresh: 'Refresh'
         open: 'Open in a new tab'
     form:
+        content_block:
+            name: Name
+            placements: Hooks
+            channels_help: 'Leave empty to display the block on every channel.'
         homepage:
             meta_title_help: 'Shown in search results and the browser tab. Aim for 60 characters or less; the channel name is used when empty.'
         page:

@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Tests\Akawaka\SyliusCMSPlugin\Functional;
 
+use Akawaka\SyliusCMSPlugin\Entity\ContentBlock;
+use Akawaka\SyliusCMSPlugin\Entity\ContentBlockTranslation;
 use Akawaka\SyliusCMSPlugin\Entity\Homepage;
 use Akawaka\SyliusCMSPlugin\Entity\HomepageTranslation;
 use Akawaka\SyliusCMSPlugin\Entity\Page;
@@ -83,6 +85,34 @@ abstract class FunctionalTestCase extends WebTestCase
         return $homepage;
     }
 
+    /**
+     * @param list<array{hook: string, priority: int}> $placements
+     * @param list<array<string, mixed>> $blocks
+     * @param list<ChannelInterface> $channels
+     */
+    protected function createContentBlock(string $code, array $placements, PageStatus $status = PageStatus::Published, array $blocks = [], array $channels = [], string $locale = 'en_US'): ContentBlock
+    {
+        $block = new ContentBlock();
+        $block->setCode(self::CODE_PREFIX . $code);
+        $block->setName('Block ' . $code);
+        $block->setStatus($status);
+        $block->setPlacements($placements);
+        foreach ($channels as $channel) {
+            $block->addChannel($channel);
+        }
+
+        $block->setCurrentLocale($locale);
+        $block->setFallbackLocale($locale);
+        $translation = $block->getTranslation($locale);
+        \assert($translation instanceof ContentBlockTranslation);
+        $translation->setBlocks($blocks ?: [['id' => $code, 'type' => 'rich_text', 'props' => ['html' => '<p>Content of ' . $code . '</p>']]]);
+
+        $this->entityManager()->persist($block);
+        $this->entityManager()->flush();
+
+        return $block;
+    }
+
     protected function channel(): ChannelInterface
     {
         $channel = static::getContainer()->get('sylius.repository.channel');
@@ -92,6 +122,22 @@ abstract class FunctionalTestCase extends WebTestCase
         \assert($first instanceof ChannelInterface);
 
         return $first;
+    }
+
+    protected function otherChannel(): ChannelInterface
+    {
+        $main = $this->channel();
+        $channel = static::getContainer()->get('sylius.factory.channel')->createNew();
+        \assert($channel instanceof ChannelInterface);
+        $channel->setCode(self::CODE_PREFIX . 'other');
+        $channel->setName('Functional other channel');
+        $channel->setBaseCurrency($main->getBaseCurrency());
+        $channel->setDefaultLocale($main->getDefaultLocale());
+        $channel->setTaxCalculationStrategy($main->getTaxCalculationStrategy());
+        $this->entityManager()->persist($channel);
+        $this->entityManager()->flush();
+
+        return $channel;
     }
 
     protected function logInAsAdministrator(): void
@@ -114,6 +160,12 @@ abstract class FunctionalTestCase extends WebTestCase
 
         foreach ($em->getRepository(Homepage::class)->findAll() as $homepage) {
             $em->remove($homepage);
+        }
+
+        foreach ($em->getRepository(ContentBlock::class)->findAll() as $block) {
+            if (str_starts_with((string) $block->getCode(), self::CODE_PREFIX)) {
+                $em->remove($block);
+            }
         }
 
         foreach ($em->getRepository(ChannelInterface::class)->findAll() as $channel) {

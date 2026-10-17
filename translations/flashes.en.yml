@@ -1,4 +1,7 @@
 akawaka_cms:
+    content_block:
+        published: The content block has been published.
+        unpublished: The content block has been unpublished.
     homepage:
         published: The homepage has been published.
         unpublished: The homepage has been unpublished.

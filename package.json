@@ -5,7 +5,7 @@
     "description": "Page builder assets of the Akawaka Sylius CMS plugin",
     "type": "module",
     "scripts": {
-        "test": "node --test assets/admin/builder/tree.test.js"
+        "test": "node --test assets/admin/builder/*.test.js"
     },
     "dependencies": {
         "@hotwired/stimulus": "^3.2.2",

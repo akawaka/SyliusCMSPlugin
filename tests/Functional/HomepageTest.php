@@ -6,7 +6,6 @@ namespace Tests\Akawaka\SyliusCMSPlugin\Functional;
 
 use Akawaka\SyliusCMSPlugin\Entity\Homepage;
 use Akawaka\SyliusCMSPlugin\Enum\PageStatus;
-use Sylius\Component\Core\Model\ChannelInterface;
 
 final class HomepageTest extends FunctionalTestCase
 {
@@ -138,21 +137,5 @@ final class HomepageTest extends FunctionalTestCase
         $crawler = $this->client->request('GET', '/admin/cms/homepages/' . $homepage->getId() . '/edit');
 
         return (string) $crawler->filter('[data-akawaka-cms-preview-csrf-value]')->attr('data-akawaka-cms-preview-csrf-value');
-    }
-
-    private function otherChannel(): ChannelInterface
-    {
-        $main = $this->channel();
-        $channel = static::getContainer()->get('sylius.factory.channel')->createNew();
-        \assert($channel instanceof ChannelInterface);
-        $channel->setCode(self::CODE_PREFIX . 'other');
-        $channel->setName('Functional other channel');
-        $channel->setBaseCurrency($main->getBaseCurrency());
-        $channel->setDefaultLocale($main->getDefaultLocale());
-        $channel->setTaxCalculationStrategy($main->getTaxCalculationStrategy());
-        $this->entityManager()->persist($channel);
-        $this->entityManager()->flush();
-
-        return $channel;
     }
 }
