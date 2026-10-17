@@ -236,6 +236,29 @@ Other hooks of `BlockTypeInterface`:
 
 Mark a field of the settings form with `'attr' => ['data-akawaka-wysiwyg' => '1']` to edit a textarea with the WYSIWYG, as the rich text block does.
 
+## Page picker form type
+
+`PageAutocompleteType` is a reusable admin field to pick a CMS page with autocompletion (search on the title, slug and code), for instance to link a menu entry to a page from another plugin:
+
+```php
+use Akawaka\SyliusCMSPlugin\Form\Type\PageAutocompleteType;
+
+$builder->add('page', PageAutocompleteType::class, [
+    'label' => 'app.form.page',
+    'required' => false,
+    'extra_options' => ['only_published' => true, 'channel_code' => 'WEB'],
+]);
+```
+
+The value is the `Page` entity (map it as a `ManyToOne` to `PageInterface`, or read its `code`). Build the storefront link with `path('akawaka_cms_shop_page_show', {_locale: locale, slug: page.getPageTranslation(locale).slug})`.
+
+| `extra_options` | Default | Effect |
+| --- | --- | --- |
+| `only_published` | `true` | Hide the draft pages. |
+| `channel_code` | `null` | Only pages available in this channel. |
+
+Options must go in `extra_options`: it is the only array sent back to the autocomplete endpoint. The field relies on `symfony/ux-autocomplete`, enabled in the Sylius admin by default (`@symfony/ux-autocomplete` in `assets/controllers.json`).
+
 ## Development
 
 ```bash
