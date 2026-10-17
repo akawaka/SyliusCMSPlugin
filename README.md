@@ -109,7 +109,7 @@ sylius_twig_hooks:
 1. **CMS → Pages → Create**. Fill the title and slug of each language, pick the channels, and build the content in the **Content** card (one tab per language).
 2. Drag blocks from the palette (or click them) into the canvas; drag a block by its bar to reorder or move it into a column. Select a block to edit its settings on the right.
 3. Use **Preview** to see the page with your real storefront layout, and the device buttons to check mobile / tablet / desktop. **Copy from** (bottom of the *Blocks* column) copies another language's blocks.
-4. **Update**, then **Publish** from the page list. The eye button opens the published page.
+4. **Update**, then **Publish** with the button next to *Back* and *Update* on the edit page (or from the list; it only changes the status, so save your changes first). The eye button of the list opens the published page. The same button exists for the homepage and the content blocks.
 
 ### Homepage
 

@@ -1,0 +1,28 @@
+{# Publish / unpublish button of the edit page of a CMS resource; configured by the hookable (graph, route_prefix). #}
+{% set resource = hookable_metadata.context.resource %}
+{% set configuration = hookable_metadata.configuration %}
+{% set graph = configuration.graph %}
+{% set route_prefix = configuration.route_prefix %}
+
+{% if sylius_sm_can(resource, graph, 'publish') %}
+    {% set transition = 'publish' %}
+    {% set icon = 'tabler:eye' %}
+    {% set class = 'btn-success' %}
+{% elseif sylius_sm_can(resource, graph, 'unpublish') %}
+    {% set transition = 'unpublish' %}
+    {% set icon = 'tabler:eye-off' %}
+    {% set class = 'btn-warning' %}
+{% endif %}
+
+{% if transition is defined %}
+    <form action="{{ path(route_prefix ~ '_' ~ transition, {id: resource.id}) }}" method="post" class="d-inline-block" {{ sylius_test_html_attribute('publication-form') }}>
+        {% if sylius_csrf_protection_enabled() %}
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token(resource.id) }}">
+        {% endif %}
+        <input type="hidden" name="_method" value="PUT">
+        <button type="submit" class="btn {{ class }}" {{ sylius_test_html_attribute('publication-' ~ transition) }}>
+            {{ ux_icon(icon) }}
+            {{ ('akawaka_cms.ui.' ~ transition)|trans }}
+        </button>
+    </form>
+{% endif %}

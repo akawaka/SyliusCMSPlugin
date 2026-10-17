@@ -41,3 +41,27 @@ sylius_twig_hooks:
             fields:
                 template: '@AkawakaSyliusCMSPlugin/admin/content_block/form.html.twig'
                 priority: 0
+
+        'sylius_admin.page.update.content.header.title_block.actions':
+            publication:
+                template: '@AkawakaSyliusCMSPlugin/admin/shared/update_publication_button.html.twig'
+                configuration:
+                    graph: akawaka_cms_page
+                    route_prefix: akawaka_cms_admin_page
+                priority: 50
+
+        'sylius_admin.homepage.update.content.header.title_block.actions':
+            publication:
+                template: '@AkawakaSyliusCMSPlugin/admin/shared/update_publication_button.html.twig'
+                configuration:
+                    graph: akawaka_cms_homepage
+                    route_prefix: akawaka_cms_admin_homepage
+                priority: 50
+
+        'sylius_admin.content_block.update.content.header.title_block.actions':
+            publication:
+                template: '@AkawakaSyliusCMSPlugin/admin/shared/update_publication_button.html.twig'
+                configuration:
+                    graph: akawaka_cms_content_block
+                    route_prefix: akawaka_cms_admin_content_block
+                priority: 50

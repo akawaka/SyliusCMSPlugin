@@ -25,7 +25,7 @@ akawaka_cms_admin_page_publish:
             state_machine:
                 graph: akawaka_cms_page
                 transition: publish
-            redirect: akawaka_cms_admin_page_index
+            redirect: referer
             flash: akawaka_cms.page.published
 
 akawaka_cms_admin_page_unpublish:
@@ -38,7 +38,7 @@ akawaka_cms_admin_page_unpublish:
             state_machine:
                 graph: akawaka_cms_page
                 transition: unpublish
-            redirect: akawaka_cms_admin_page_index
+            redirect: referer
             flash: akawaka_cms.page.unpublished
 
 akawaka_cms_admin_block_form:
@@ -80,7 +80,7 @@ akawaka_cms_admin_homepage_publish:
             state_machine:
                 graph: akawaka_cms_homepage
                 transition: publish
-            redirect: akawaka_cms_admin_homepage_index
+            redirect: referer
             flash: akawaka_cms.homepage.published
 
 akawaka_cms_admin_homepage_unpublish:
@@ -93,7 +93,7 @@ akawaka_cms_admin_homepage_unpublish:
             state_machine:
                 graph: akawaka_cms_homepage
                 transition: unpublish
-            redirect: akawaka_cms_admin_homepage_index
+            redirect: referer
             flash: akawaka_cms.homepage.unpublished
 
 akawaka_cms_admin_content_block:
@@ -123,7 +123,7 @@ akawaka_cms_admin_content_block_publish:
             state_machine:
                 graph: akawaka_cms_content_block
                 transition: publish
-            redirect: akawaka_cms_admin_content_block_index
+            redirect: referer
             flash: akawaka_cms.content_block.published
 
 akawaka_cms_admin_content_block_unpublish:
@@ -136,7 +136,7 @@ akawaka_cms_admin_content_block_unpublish:
             state_machine:
                 graph: akawaka_cms_content_block
                 transition: unpublish
-            redirect: akawaka_cms_admin_content_block_index
+            redirect: referer
             flash: akawaka_cms.content_block.unpublished
 
 akawaka_cms_admin_hook_info:
