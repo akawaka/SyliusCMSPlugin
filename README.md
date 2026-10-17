@@ -232,6 +232,10 @@ The functional tests boot the test application and use the `test` database (`DAT
 
 Project conventions are listed in [`AGENTS.md`](AGENTS.md).
 
+## Multi-tenant platforms
+
+The plugin only relies on the ORM and overridable resources; see [docs/multi-tenant.md](docs/multi-tenant.md).
+
 ## Limitations
 
 - Images are plain URLs (no integration with a media library yet).

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Akawaka\SyliusCMSPlugin\Unit\Preview;
 
+use Akawaka\SyliusCMSPlugin\Entity\PageTranslation;
 use Akawaka\SyliusCMSPlugin\Preview\PagePreview;
 use Akawaka\SyliusCMSPlugin\Preview\PreviewStore;
 use PHPUnit\Framework\TestCase;
@@ -51,7 +52,7 @@ final class PreviewStoreTest extends TestCase
 
     public function testItBuildsATransientTranslation(): void
     {
-        $translation = $this->preview('Hello')->toTranslation();
+        $translation = $this->preview('Hello')->applyTo(new PageTranslation());
 
         self::assertSame('Hello', $translation->getTitle());
         self::assertSame('fr_FR', $translation->getLocale());

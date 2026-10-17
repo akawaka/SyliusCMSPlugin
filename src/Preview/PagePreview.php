@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Akawaka\SyliusCMSPlugin\Preview;
 
-use Akawaka\SyliusCMSPlugin\Entity\PageTranslation;
+use Akawaka\SyliusCMSPlugin\Entity\PageTranslationInterface;
 
 /** Unsaved content of one page translation, rendered by the storefront preview. */
 final readonly class PagePreview
@@ -47,9 +47,9 @@ final readonly class PagePreview
         return get_object_vars($this);
     }
 
-    public function toTranslation(): PageTranslation
+    /** Fills a blank translation, to be created by the caller from the page translation resource factory. */
+    public function applyTo(PageTranslationInterface $translation): PageTranslationInterface
     {
-        $translation = new PageTranslation();
         $translation->setLocale($this->locale);
         $translation->setTitle($this->title);
         $translation->setSlug($this->slug);

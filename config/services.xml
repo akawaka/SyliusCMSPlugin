@@ -42,7 +42,7 @@
         </service>
 
         <service id="Akawaka\SyliusCMSPlugin\Preview\PreviewStore">
-            <argument type="service" id="cache.app" />
+            <argument type="service" id="akawaka_cms.preview_cache" />
         </service>
 
         <service id="Akawaka\SyliusCMSPlugin\Controller\Admin\PreviewController" public="true">
@@ -51,6 +51,7 @@
         </service>
 
         <service id="Akawaka\SyliusCMSPlugin\Controller\Shop\PreviewController" public="true">
+            <argument key="$pageTranslationFactory" type="service" id="akawaka_cms.factory.page_translation" />
             <tag name="controller.service_arguments" />
         </service>
 

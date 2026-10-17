@@ -91,6 +91,7 @@ Sylius 2 plugin (`Akawaka\SyliusCMSPlugin`) providing CMS pages with a block-bas
 - **Admin**: Sylius resource + grid (`config/app/*.yaml`), page form in `templates/admin/page`, builder JavaScript in `assets/admin` (Stimulus controllers `builder` and `preview`, pure logic in `assets/admin/builder`).
 - **Storefront & preview**: `src/Controller/Shop` (page and preview), `src/Preview` (cache-backed storage of unsaved content), admin preview endpoint in `src/Controller/Admin`.
 - **Config**: `src/DependencyInjection` (alias `akawaka_sylius_cms`), `config/services.xml`, `config/routes`.
+- **Multi-tenant**: keep the plugin compatible with the multi-tenant SaaS rules (resources overridable, no SQL outside the ORM, no global state); see `docs/multi-tenant.md`.
 - **Test application**: `tests/TestApplication` (built on `sylius/test-application`).
 
 ### Tests and quality

@@ -20,6 +20,7 @@ final class AkawakaSyliusCMSExtension extends AbstractResourceExtension implemen
     {
         $config = $this->processConfiguration(new Configuration(), $configs);
         $container->setParameter('akawaka_cms.hook_prefixes', array_values($config['hook_prefixes']));
+        $container->setAlias('akawaka_cms.preview_cache', $config['preview_cache_pool']);
 
         // Custom block types (in the host application) are registered just by implementing the interface.
         $container->registerForAutoconfiguration(BlockTypeInterface::class)->addTag('akawaka_cms.block_type');

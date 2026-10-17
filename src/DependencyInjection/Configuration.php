@@ -22,6 +22,11 @@ final class Configuration implements ConfigurationInterface
                     ->defaultValue(['sylius_shop'])
                     ->requiresAtLeastOneElement()
                 ->end()
+                ->scalarNode('preview_cache_pool')
+                    ->info('Service id of the PSR-6 cache pool holding unsaved page previews (replace it to isolate or decorate the storage).')
+                    ->defaultValue('cache.app')
+                    ->cannotBeEmpty()
+                ->end()
             ->end()
         ;
 
