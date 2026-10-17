@@ -1,129 +1,212 @@
-<p align="center">
-    <a href="https://sylius.com" target="_blank">
-        <picture>
-          <source media="(prefers-color-scheme: dark)" srcset="https://media.sylius.com/sylius-logo-800-dark.png">
-          <source media="(prefers-color-scheme: light)" srcset="https://media.sylius.com/sylius-logo-800.png">
-          <img alt="Sylius Logo." src="https://media.sylius.com/sylius-logo-800.png">
-        </picture>
-    </a>
-</p>
+# Akawaka Sylius CMS Plugin
 
-<h1 align="center">Plugin Skeleton</h1>
+CMS pages for **Sylius 2.x**, built with a block-based **page builder** in the admin and a **real, live preview** of the storefront on mobile, tablet and desktop.
 
-<p align="center">Skeleton for starting Sylius plugins.</p>
+## Features
 
-## Documentation
+- **Pages** with translations (title, slug, SEO fields, content), channels, and a `draft` → `published` workflow (Symfony Workflow).
+- **Page builder** (Stimulus + SortableJS): block palette, nested drag & drop canvas, per-block settings, duplicate / remove, undo / redo, fullscreen, widenable settings panel.
+- **Rich text** blocks edited with a WYSIWYG ([SunEditor](https://suneditor.com)), sanitized on output.
+- **Live preview**: the unsaved content is rendered by your real storefront layout and theme in an iframe sized as a mobile (375 px), tablet (768 px) or desktop (1280 px) screen.
+- **Copy the content of one language into another** (undoable).
+- **Blocks**: rich text, image, banner, columns, product grid, button, video (YouTube / Vimeo / file), custom HTML. Add your own in a few lines (see [Custom blocks](#custom-blocks)).
+- **SEO**: meta title / description, canonical URL, `hreflang` alternates, Open Graph and Twitter tags.
+- Translations: English and French.
 
-For a comprehensive guide on Sylius Plugins development please go to Sylius documentation,
-there you will find the <a href="https://docs.sylius.com/plugins-development-guide/how-to-create-a-plugin-for-sylius">Plugin Development Guide</a> - it's a great place to start.
+The page content is stored as a JSON block tree in the page translation, so adding a block type never needs a migration.
 
-For more information about the **Test Application** included in the skeleton, please refer to the [Sylius documentation](https://docs.sylius.com/plugins-development-guide/test-application).
+## Requirements
 
-## Quickstart Installation
+- PHP 8.2+
+- Sylius 2.0+
+- Node / Yarn to build the admin assets
 
-Run `composer create-project sylius/plugin-skeleton ProjectName`.
+## Installation
 
-### Traditional
+### 1. Install the package
 
-1. From the plugin skeleton root directory, run the following commands:
+```bash
+composer require akawaka/sylius-cms-plugin
+```
 
-    ```bash
-    (cd vendor/sylius/test-application && yarn install)
-    (cd vendor/sylius/test-application && yarn build)
-    vendor/bin/console assets:install
-   
-    vendor/bin/console doctrine:database:create
-    vendor/bin/console doctrine:migrations:migrate -n
-    # Optionally load data fixtures
-    vendor/bin/console sylius:fixtures:load -n
-    ```
+### 2. Register the bundle
 
-To be able to set up a plugin's database, remember to configure your database credentials in `tests/TestApplication/.env` and `tests/TestApplication/.env.test`.
+```php
+// config/bundles.php
+return [
+    // ...
+    Akawaka\SyliusCMSPlugin\AkawakaSyliusCMSPlugin::class => ['all' => true],
+];
+```
 
-2. Run your local server:
+### 3. Import the configuration and the routes
 
-      ```bash
-      symfony server:ca:install
-      symfony server:start -d
-      ```
+```yaml
+# config/packages/akawaka_cms.yaml
+imports:
+    - { resource: '@AkawakaSyliusCMSPlugin/config/config.yaml' }
+```
 
-3. Open your browser and navigate to `https://localhost:8000`.
+```yaml
+# config/routes/akawaka_cms.yaml
+akawaka_cms_admin:
+    resource: '@AkawakaSyliusCMSPlugin/config/routes/admin.yaml'
 
-### Docker
+akawaka_cms_shop:
+    resource: '@AkawakaSyliusCMSPlugin/config/routes/shop.yaml'
+```
 
-1. Execute `make init` to initialize the container and install the dependencies.
+The admin routes live under `/admin/cms/...` and the storefront pages under `/{_locale}/pages/{slug}`.
 
-2. Execute `make database-init` to create the database and run migrations.
+### 4. Update the database
 
-3. (Optional) Execute `make load-fixtures` to load the fixtures.
+```bash
+bin/console doctrine:migrations:migrate
+```
 
-4. Your app is available at `http://localhost`.
+### 5. Build the admin assets
+
+The page builder is a JavaScript entry that must be part of your **admin** Webpack Encore build. Install its dependencies and add the entry:
+
+```bash
+yarn add @hotwired/stimulus sortablejs suneditor
+```
+
+```js
+// webpack.config.js, in the admin configuration
+Encore
+    .addEntry('akawaka-cms-admin', './vendor/akawaka/sylius-cms-plugin/assets/admin/entrypoint.js')
+```
+
+Then load it in the admin layout, for example with Sylius Twig hooks:
+
+```yaml
+# config/packages/sylius_twig_hooks.yaml
+sylius_twig_hooks:
+    hooks:
+        'sylius_admin.base#javascripts':
+            akawaka_cms:
+                template: 'admin/akawaka_cms/javascripts.html.twig'
+        'sylius_admin.base#stylesheets':
+            akawaka_cms:
+                template: 'admin/akawaka_cms/stylesheets.html.twig'
+```
+
+```twig
+{# templates/admin/akawaka_cms/javascripts.html.twig #}
+{{ encore_entry_script_tags('akawaka-cms-admin', null, 'admin') }}
+
+{# templates/admin/akawaka_cms/stylesheets.html.twig #}
+{{ encore_entry_link_tags('akawaka-cms-admin', null, 'admin') }}
+```
+
+(`'admin'` is the name of your admin Encore build.) The plugin starts its own Stimulus application, so it does not depend on your `controllers.json`.
 
 ## Usage
 
-### Running plugin tests
+1. **CMS → Pages → Create**. Fill the title and slug of each language, pick the channels, and build the content in the **Content** card (one tab per language).
+2. Drag blocks from the palette (or click them) into the canvas; drag a block by its bar to reorder or move it into a column. Select a block to edit its settings on the right.
+3. Use **Preview** to see the page with your real storefront layout, and the device buttons to check mobile / tablet / desktop. **Copy from** (bottom of the *Blocks* column) copies another language's blocks.
+4. **Update**, then **Publish** from the page list. The eye button opens the published page.
 
-  - PHPUnit
+### Preview
 
-    ```bash
-    vendor/bin/phpunit
-    ```
+The builder posts the unsaved content to `/admin/cms/preview` (CSRF protected). It is kept in the application cache for 30 minutes under a random 128-bit token, and rendered on the storefront at `/{locale}/cms-preview/{token}` (`noindex`, never cached). The token is the only access control: only a logged-in administrator can create one.
 
-  - Behat (non-JS scenarios)
+## Theming
 
-    ```bash
-    vendor/bin/behat --strict --tags="~@javascript&&~@mink:chromedriver"
-    ```
+Every block is rendered by a Twig template. Override any of them in your theme or application:
 
-  - Behat (JS scenarios)
- 
-    1. [Install Symfony CLI command](https://symfony.com/download).
- 
-    2. Start Headless Chrome:
-    
-      ```bash
-      google-chrome-stable --enable-automation --disable-background-networking --no-default-browser-check --no-first-run --disable-popup-blocking --disable-default-apps --allow-insecure-localhost --disable-translate --disable-extensions --no-sandbox --enable-features=Metal --headless --remote-debugging-port=9222 --window-size=2880,1800 --proxy-server='direct://' --proxy-bypass-list='*' http://127.0.0.1
-      ```
-    
-    3. Install SSL certificates (only once needed) and run test application's webserver on `127.0.0.1:8080`:
-    
-      ```bash
-      symfony server:ca:install
-      APP_ENV=test symfony server:start --port=8080 --daemon
-      ```
-    
-    4. Run Behat:
-    
-      ```bash
-      vendor/bin/behat --strict --tags="@javascript,@mink:chromedriver"
-      ```
-    
-  - Static Analysis
-      
-    - PHPStan
-    
-      ```bash
-      vendor/bin/phpstan analyse -c phpstan.neon -l max src/  
-      ```
+```
+templates/bundles/AkawakaSyliusCMSPlugin/shop/blocks/banner.html.twig
+templates/bundles/AkawakaSyliusCMSPlugin/shop/page/show.html.twig
+```
 
-  - Coding Standard
-  
-    ```bash
-    vendor/bin/ecs check
-    ```
+Block templates receive `block` (`id`, `type`), `props` (the settings merged with the defaults), `data` (extra data from the block type) and `children` (the rendered children). Keep `data-cms-block="{{ block.id }}"` on the root element.
 
-### Opening Sylius with your plugin
+## Custom blocks
 
-- Using `test` environment:
+A block type is a service implementing `Akawaka\SyliusCMSPlugin\Block\BlockTypeInterface` (usually by extending `AbstractBlockType`). It is registered automatically through autoconfiguration.
 
-    ```bash
-    APP_ENV=test vendor/bin/console sylius:fixtures:load -n
-    APP_ENV=test symfony server:start -d
-    ```
-    
-- Using `dev` environment:
+```php
+// src/Cms/QuoteBlockType.php
+namespace App\Cms;
 
-    ```bash
-    vendor/bin/console sylius:fixtures:load -n
-    symfony server:start -d
-    ```
+use Akawaka\SyliusCMSPlugin\Block\AbstractBlockType;
+
+final class QuoteBlockType extends AbstractBlockType
+{
+    public function getCode(): string { return 'quote'; }          // stored in the JSON tree
+    public function getIcon(): string { return 'tabler:quote'; }   // Tabler icon of the palette
+    public function getFormType(): string { return QuoteBlockFormType::class; }
+    public function getDefaults(): array { return ['text' => '', 'author' => '']; }
+}
+```
+
+```php
+// src/Cms/QuoteBlockFormType.php: describes, renders (inspector) and validates the settings
+final class QuoteBlockFormType extends AbstractType
+{
+    public function buildForm(FormBuilderInterface $builder, array $options): void
+    {
+        $builder
+            ->add('text', TextareaType::class, ['label' => 'app.cms.quote.text', 'constraints' => [new NotBlank()]])
+            ->add('author', TextType::class, ['label' => 'app.cms.quote.author', 'required' => false])
+        ;
+    }
+}
+```
+
+```twig
+{# templates/bundles/AkawakaSyliusCMSPlugin/shop/blocks/quote.html.twig #}
+<blockquote class="cms-block container" data-cms-block="{{ block.id }}">
+    {{ props.text }}<footer>{{ props.author }}</footer>
+</blockquote>
+```
+
+```yaml
+# translations/messages.en.yml
+akawaka_cms:
+    block:
+        quote:
+            label: Quote
+```
+
+That is all: the block appears in the palette, its settings form is rendered in the inspector, its settings are validated on save, and it is rendered on the storefront. The base class takes the label key from `akawaka_cms.block.<code>.label` and the template from `@AkawakaSyliusCMSPlugin/shop/blocks/<code>.html.twig`; override `getLabel()` / `getTemplate()` to change them.
+
+Other hooks of `BlockTypeInterface`:
+
+| Method | Use |
+| --- | --- |
+| `getViewData(array $props)` | Extra data for the template (`data`), e.g. load products (see `ProductGridBlockType`). |
+| `acceptsChild(string $code)` | Make the block a container (see `ColumnsBlockType`). |
+| `isInternal()` | Hide the block from the palette (only created by its parent). |
+
+Mark a field of the settings form with `'attr' => ['data-akawaka-wysiwyg' => '1']` to edit a textarea with the WYSIWYG, as the rich text block does.
+
+## Development
+
+```bash
+composer install
+(cd vendor/sylius/test-application && yarn install && yarn build)
+vendor/bin/console doctrine:database:create && vendor/bin/console doctrine:migrations:migrate -n
+vendor/bin/console sylius:fixtures:load -n
+symfony server:start        # the test application, admin at /admin
+
+vendor/bin/phpunit          # PHP unit tests
+npm test                    # JavaScript unit tests (node --test)
+vendor/bin/ecs check        # coding standard
+vendor/bin/phpstan analyse -c phpstan.neon   # level max
+```
+
+Project conventions are listed in [`AGENTS.md`](AGENTS.md).
+
+## Limitations
+
+- Images are plain URLs (no integration with a media library yet).
+- Blocks are validated against their form type; the preview of an incomplete page is displayed with warnings instead of being blocked.
+- The storefront routes are not listed in a sitemap: use your sitemap solution of choice with `akawaka_cms_shop_page_show`.
+
+## License
+
+MIT.

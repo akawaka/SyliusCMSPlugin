@@ -65,6 +65,10 @@ akawaka_cms:
             status: Status
             meta_title: Meta title
             meta_description: Meta description
+            slug_help: 'Lowercase letters, digits and dashes (use "/" for sub-paths). The page is served at /{locale}/pages/{slug}.'
+            meta_title_help: 'Shown in search results and the browser tab. Aim for 60 characters or less; the page title is used when empty.'
+            meta_description_help: 'Summary shown in search results. Aim for 160 characters or less.'
+            og_image_help: 'Image shown when the page is shared (absolute URL, or a path on this site). 1200×630 px works best.'
             og_image: Open Graph image
             blocks: Blocks (JSON)
     block:
@@ -106,3 +110,5 @@ akawaka_cms:
         html:
             label: "Custom HTML"
             code: "HTML code"
+    shop:
+        video: 'Video'

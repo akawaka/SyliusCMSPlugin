@@ -7,11 +7,11 @@ namespace Akawaka\SyliusCMSPlugin\Block;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 /** Describes the registered block types for the page builder front-end. */
-final class BlockCatalog
+final readonly class BlockCatalog
 {
     public function __construct(
-        private readonly BlockRegistry $registry,
-        private readonly TranslatorInterface $translator,
+        private BlockRegistry $registry,
+        private TranslatorInterface $translator,
     ) {
     }
 

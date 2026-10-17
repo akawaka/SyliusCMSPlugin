@@ -9,11 +9,30 @@
     {% if preview %}
         <meta name="robots" content="noindex, nofollow">
     {% else %}
+        {% set canonical = url('akawaka_cms_shop_page_show', {_locale: translation.locale, slug: translation.slug}) %}
+        {% set channel_locales = [] %}
+        {% for channel_locale in sylius.channel.locales %}{% set channel_locales = channel_locales|merge([channel_locale.code]) %}{% endfor %}
+
         {% if translation.metaDescription %}<meta name="description" content="{{ translation.metaDescription }}">{% endif %}
+        <link rel="canonical" href="{{ canonical }}">
+
+        {# One alternate per published translation available in this channel, including the current page. #}
+        {% for alternate in page.translations %}
+            {% if alternate.slug and alternate.locale in channel_locales %}
+                <link rel="alternate" hreflang="{{ alternate.locale|replace({'_': '-'}) }}" href="{{ url('akawaka_cms_shop_page_show', {_locale: alternate.locale, slug: alternate.slug}) }}">
+            {% endif %}
+        {% endfor %}
+
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="{{ sylius.channel.name }}">
+        <meta property="og:locale" content="{{ translation.locale }}">
+        <meta property="og:url" content="{{ canonical }}">
         <meta property="og:title" content="{{ translation.metaTitle|default(translation.title) }}">
         {% if translation.metaDescription %}<meta property="og:description" content="{{ translation.metaDescription }}">{% endif %}
-        {% if translation.ogImage %}<meta property="og:image" content="{{ translation.ogImage }}">{% endif %}
-        <link rel="canonical" href="{{ url('akawaka_cms_shop_page_show', {_locale: app.request.locale, slug: translation.slug}) }}">
+        {% if translation.ogImage %}<meta property="og:image" content="{{ absolute_url(translation.ogImage) }}">{% endif %}
+        <meta name="twitter:card" content="{{ translation.ogImage ? 'summary_large_image' : 'summary' }}">
+        <meta name="twitter:title" content="{{ translation.metaTitle|default(translation.title) }}">
+        {% if translation.metaDescription %}<meta name="twitter:description" content="{{ translation.metaDescription }}">{% endif %}
     {% endif %}
 {% endblock %}
 

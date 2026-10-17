@@ -12,10 +12,6 @@
     <services>
         <defaults autowire="true" autoconfigure="true" />
 
-        <instanceof id="Akawaka\SyliusCMSPlugin\Block\BlockTypeInterface">
-            <tag name="akawaka_cms.block_type" />
-        </instanceof>
-
         <prototype namespace="Akawaka\SyliusCMSPlugin\Block\Type\" resource="../src/Block/Type" />
         <prototype namespace="Akawaka\SyliusCMSPlugin\Form\Type\Block\" resource="../src/Form/Type/Block" />
 

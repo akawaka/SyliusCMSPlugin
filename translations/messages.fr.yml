@@ -65,6 +65,10 @@ akawaka_cms:
             status: Statut
             meta_title: Meta title
             meta_description: Meta description
+            slug_help: 'Minuscules, chiffres et tirets (« / » pour les sous-chemins). La page est servie sur /{locale}/pages/{slug}.'
+            meta_title_help: 'Affiché dans les résultats de recherche et l''onglet du navigateur. Visez 60 caractères maximum ; le titre de la page est utilisé s''il est vide.'
+            meta_description_help: 'Résumé affiché dans les résultats de recherche. Visez 160 caractères maximum.'
+            og_image_help: 'Image affichée lors du partage de la page (URL absolue ou chemin sur ce site). 1200×630 px est idéal.'
             og_image: Image Open Graph
             blocks: Blocs (JSON)
     block:
@@ -106,3 +110,5 @@ akawaka_cms:
         html:
             label: "HTML personnalisé"
             code: "Code HTML"
+    shop:
+        video: 'Vidéo'

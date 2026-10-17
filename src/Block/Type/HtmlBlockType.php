@@ -8,7 +8,7 @@ use Akawaka\SyliusCMSPlugin\Block\AbstractBlockType;
 use Akawaka\SyliusCMSPlugin\Enum\BlockType;
 use Akawaka\SyliusCMSPlugin\Form\Type\Block\HtmlBlockType as HtmlForm;
 
-/** Renders raw, unsanitized HTML: only trusted administrators should be allowed to use it. */
+/** Renders raw, unsanitized HTML. */
 final class HtmlBlockType extends AbstractBlockType
 {
     public function getCode(): string

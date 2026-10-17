@@ -1,7 +1,7 @@
 <div class="cms-block cms-video container py-3" data-cms-block="{{ block.id }}">
     <div class="ratio ratio-16x9">
         {% if data.embed %}
-            <iframe src="{{ data.embed }}{{ props.autoplay ? '?autoplay=1&mute=1' : '' }}" allowfullscreen loading="lazy" title="Video"></iframe>
+            <iframe src="{{ data.embed }}{{ props.autoplay ? '?autoplay=1&mute=1' : '' }}" allowfullscreen loading="lazy" title="{{ 'akawaka_cms.shop.video'|trans }}"></iframe>
         {% elseif data.file %}
             <video src="{{ data.file }}" controls {{ props.autoplay ? 'autoplay muted' : '' }}></video>
         {% endif %}

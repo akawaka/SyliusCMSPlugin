@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Akawaka\SyliusCMSPlugin\DependencyInjection;
 
+use Akawaka\SyliusCMSPlugin\Block\BlockTypeInterface;
 use Sylius\Bundle\CoreBundle\DependencyInjection\PrependDoctrineMigrationsTrait;
 use Sylius\Bundle\ResourceBundle\DependencyInjection\Extension\AbstractResourceExtension;
 use Symfony\Component\Config\FileLocator;
@@ -18,6 +19,9 @@ final class AkawakaSyliusCMSExtension extends AbstractResourceExtension implemen
     /** @psalm-suppress UnusedVariable */
     public function load(array $configs, ContainerBuilder $container): void
     {
+        // Custom block types (in the host application) are registered just by implementing the interface.
+        $container->registerForAutoconfiguration(BlockTypeInterface::class)->addTag('akawaka_cms.block_type');
+
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__ . '/../../config'));
 
         $loader->load('services.xml');

@@ -30,6 +30,16 @@ final class BlockTreeValidatorTest extends TestCase
         $this->validator = new BlockTreeValidator($this->createRegistry(), $formFactory);
     }
 
+    /**
+     * @param list<\Akawaka\SyliusCMSPlugin\Validator\BlockTreeViolation> $violations
+     *
+     * @return list<string>
+     */
+    private function messages(array $violations): array
+    {
+        return array_map(static fn ($violation): string => $violation->message, $violations);
+    }
+
     public function testAValidTreePasses(): void
     {
         $tree = [

@@ -6,6 +6,8 @@ namespace Tests\Akawaka\SyliusCMSPlugin\Unit\Renderer;
 
 use Akawaka\SyliusCMSPlugin\Renderer\PageRenderer;
 use PHPUnit\Framework\TestCase;
+use Symfony\Bridge\Twig\Extension\TranslationExtension;
+use Symfony\Component\Translation\IdentityTranslator;
 use Tests\Akawaka\SyliusCMSPlugin\Unit\BlockFactoryTrait;
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
@@ -21,7 +23,10 @@ final class PageRendererTest extends TestCase
         $loader = new FilesystemLoader();
         $loader->addPath(__DIR__ . '/../../../templates', 'AkawakaSyliusCMSPlugin');
 
-        $this->renderer = new PageRenderer($this->createRegistry(), new Environment($loader, ['strict_variables' => true]));
+        $twig = new Environment($loader, ['strict_variables' => true]);
+        $twig->addExtension(new TranslationExtension(new IdentityTranslator()));
+
+        $this->renderer = new PageRenderer($this->createRegistry(), $twig);
     }
 
     public function testItRendersNestedBlocks(): void

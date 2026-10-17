@@ -81,37 +81,19 @@ composer run test-app-init
 
 ## Architecture
 
-This is a **Sylius Plugin Skeleton** - a template for creating Sylius e-commerce plugins. It provides a complete development environment with both traditional and Docker setups.
+Sylius 2 plugin (`Akawaka\SyliusCMSPlugin`) providing CMS pages with a block-based page builder. See `README.md` for the feature overview and `AGENTS.md` for the coding conventions.
 
-### Core Structure
-- **Main Plugin Class**: `src/AcmeSyliusExamplePlugin.php` - Entry point using `SyliusPluginTrait`
-- **DI Extension**: `src/DependencyInjection/AcmeSyliusExampleExtension.php` - Handles service loading and Doctrine migrations
-- **Services**: `config/services.xml` - Service definitions with XML configuration
-- **Routes**: `config/routes/` - Separate admin and shop route definitions
-- **Templates**: `templates/` - Twig templates for admin and shop with Twig hooks support
+- **Domain**: `src/Entity` (`Page`, `PageTranslation` with the block tree stored as JSON), `src/Enum` (`PageStatus`, `PageTransition`, `BlockType`, ...), publication workflow in `config/app/workflow.yaml`.
+- **Blocks**: `src/Block` (`BlockTypeInterface`, `BlockRegistry`, `BlockCatalog`) and `src/Block/Type/*` (one class per block); each has a settings form in `src/Form/Type/Block` and a storefront template in `templates/shop/blocks`.
+- **Tree validation / rendering**: `src/Validator/BlockTreeValidator`, `src/Renderer/PageRenderer`, `src/Twig/CmsExtension`.
+- **Admin**: Sylius resource + grid (`config/app/*.yaml`), page form in `templates/admin/page`, builder JavaScript in `assets/admin` (Stimulus controllers `builder` and `preview`, pure logic in `assets/admin/builder`).
+- **Storefront & preview**: `src/Controller/Shop` (page and preview), `src/Preview` (cache-backed storage of unsaved content), admin preview endpoint in `src/Controller/Admin`.
+- **Config**: `src/DependencyInjection` (alias `akawaka_sylius_cms`), `config/services.xml`, `config/routes`.
+- **Test application**: `tests/TestApplication` (built on `sylius/test-application`).
 
-### Key Features
-- **Test Application**: Uses `sylius/test-application` for plugin testing in isolation
-- **Asset Management**: Webpack Encore for frontend asset compilation
-- **Database**: Doctrine migrations with proper namespace handling
-- **Testing**: Full Behat + PHPUnit setup with browser testing support
-- **Code Quality**: PHPStan, ECS (Easy Coding Standard), and Rector integration
-
-### Development Environment
-- **Docker**: Complete containerized environment with PHP, Node.js, and database
-- **Traditional**: Local Symfony server with manual dependency management
-- **Frontend**: Yarn-based asset pipeline through test application
-
-### Testing Strategy
-- **Unit/Integration**: PHPUnit for isolated component testing
-- **Functional**: Behat for feature testing with browser automation
-- **Static Analysis**: PHPStan for type checking and code quality
-- **Standards**: ECS for coding standard enforcement
-
-### Database Configuration
-Database credentials should be configured in:
-- `tests/TestApplication/.env` (for development)
-- `tests/TestApplication/.env.test` (for testing)
+### Tests and quality
+- `vendor/bin/phpunit` (unit tests in `tests/Unit`), `npm test` (JavaScript logic), `vendor/bin/ecs check`, `vendor/bin/phpstan analyse -c phpstan.neon` (level max).
+- Rebuild the admin assets after JavaScript/SCSS changes: `(cd vendor/sylius/test-application && yarn build)`.
 
 ## AI Development Guides
 
