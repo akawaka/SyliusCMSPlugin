@@ -193,11 +193,14 @@ vendor/bin/console doctrine:database:create && vendor/bin/console doctrine:migra
 vendor/bin/console sylius:fixtures:load -n
 symfony server:start        # the test application, admin at /admin
 
-vendor/bin/phpunit          # PHP unit tests
+vendor/bin/phpunit --testsuite Unit   # PHP unit tests
+APP_ENV=test vendor/bin/phpunit --testsuite Functional   # needs the test database (see below)
 npm test                    # JavaScript unit tests (node --test)
 vendor/bin/ecs check        # coding standard
 vendor/bin/phpstan analyse -c phpstan.neon   # level max
 ```
+
+The functional tests boot the test application and use the `test` database (`DATABASE_URL` in `tests/TestApplication/.env.test`, override it in your environment). Create it once with `APP_ENV=test vendor/bin/console doctrine:database:create && APP_ENV=test vendor/bin/console doctrine:migrations:migrate -n && APP_ENV=test vendor/bin/console sylius:fixtures:load -n`; the tests clean up the pages they create.
 
 Project conventions are listed in [`AGENTS.md`](AGENTS.md).
 

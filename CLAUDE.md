@@ -92,7 +92,7 @@ Sylius 2 plugin (`Akawaka\SyliusCMSPlugin`) providing CMS pages with a block-bas
 - **Test application**: `tests/TestApplication` (built on `sylius/test-application`).
 
 ### Tests and quality
-- `vendor/bin/phpunit` (unit tests in `tests/Unit`), `npm test` (JavaScript logic), `vendor/bin/ecs check`, `vendor/bin/phpstan analyse -c phpstan.neon` (level max).
+- `vendor/bin/phpunit` (unit tests in `tests/Unit`, functional tests in `tests/Functional` booting the test application on the `test` database — see README), `npm test` (JavaScript logic), `vendor/bin/ecs check`, `vendor/bin/phpstan analyse -c phpstan.neon` (level max).
 - Rebuild the admin assets after JavaScript/SCSS changes: `(cd vendor/sylius/test-application && yarn build)`.
 
 ## AI Development Guides
