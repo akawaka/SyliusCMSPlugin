@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Akawaka\SyliusCMSPlugin\Form\Type;
 
+use Akawaka\SyliusCMSPlugin\Form\DataTransformer\BlocksJsonTransformer;
 use Sylius\Bundle\ResourceBundle\Form\Type\AbstractResourceType;
-use Symfony\Component\Form\CallbackTransformer;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -42,14 +42,7 @@ final class PageTranslationType extends AbstractResourceType
             ])
         ;
 
-        $builder->get('blocks')->addModelTransformer(new CallbackTransformer(
-            static fn (?array $blocks): string => json_encode($blocks ?? [], \JSON_PRETTY_PRINT | \JSON_UNESCAPED_UNICODE | \JSON_UNESCAPED_SLASHES | \JSON_THROW_ON_ERROR),
-            static function (?string $json): array {
-                $decoded = json_decode($json ?: '[]', true);
-
-                return \is_array($decoded) ? $decoded : [];
-            },
-        ));
+        $builder->get('blocks')->addModelTransformer(new BlocksJsonTransformer());
     }
 
     public function getBlockPrefix(): string

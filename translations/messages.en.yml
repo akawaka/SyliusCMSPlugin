@@ -2,6 +2,7 @@ akawaka_cms:
     menu:
         cms: CMS
         pages: Pages
+        homepage: Homepage
     ui:
         pages: Pages
         page: Page
@@ -23,6 +24,12 @@ akawaka_cms:
             primary: Primary
             secondary: Secondary
             outline-primary: Outline
+        homepage: Homepage
+        homepages: Homepages
+        seo: SEO
+        view_homepage: View the homepage
+    homepage:
+        fallback_help: 'When the homepage is not published, or has no content for the visitor''s language, the default Sylius homepage is displayed.'
     builder:
         blocks: 'Blocks'
         empty_canvas: 'Drag blocks here, or click a block in the list to add it.'
@@ -59,6 +66,8 @@ akawaka_cms:
         refresh: 'Refresh'
         open: 'Open in a new tab'
     form:
+        homepage:
+            meta_title_help: 'Shown in search results and the browser tab. Aim for 60 characters or less; the channel name is used when empty.'
         page:
             title: Title
             slug: Slug

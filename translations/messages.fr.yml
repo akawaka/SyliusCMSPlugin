@@ -2,6 +2,7 @@ akawaka_cms:
     menu:
         cms: CMS
         pages: Pages
+        homepage: Accueil
     ui:
         pages: Pages
         page: Page
@@ -23,6 +24,12 @@ akawaka_cms:
             primary: Principal
             secondary: Secondaire
             outline-primary: Contour
+        homepage: Accueil
+        homepages: Accueils
+        seo: SEO
+        view_homepage: 'Voir l''accueil'
+    homepage:
+        fallback_help: 'Tant que l''accueil n''est pas publié, ou sans contenu dans la langue du visiteur, l''accueil Sylius par défaut est affiché.'
     builder:
         blocks: 'Blocs'
         empty_canvas: 'Glissez des blocs ici, ou cliquez sur un bloc de la liste pour l''ajouter.'
@@ -59,6 +66,8 @@ akawaka_cms:
         refresh: 'Actualiser'
         open: 'Ouvrir dans un nouvel onglet'
     form:
+        homepage:
+            meta_title_help: 'Affiché dans les résultats de recherche et l''onglet du navigateur. Visez 60 caractères maximum ; le nom du channel est utilisé s''il est vide.'
         page:
             title: Titre
             slug: Slug

@@ -60,6 +60,12 @@
             <tag name="controller.service_arguments" />
         </service>
 
+        <service id="Akawaka\SyliusCMSPlugin\Controller\Shop\HomepageController" public="true" />
+
+        <service id="Akawaka\SyliusCMSPlugin\EventListener\HomepageControllerListener">
+            <argument key="$homepageRepository" type="service" id="akawaka_cms.repository.homepage" />
+        </service>
+
         <service id="Akawaka\SyliusCMSPlugin\Menu\AdminMenuListener">
             <tag name="kernel.event_listener" event="sylius.menu.admin.main" />
         </service>
@@ -73,6 +79,18 @@
         <service id="Akawaka\SyliusCMSPlugin\Form\Type\PageTranslationType">
             <argument>%akawaka_cms.model.page_translation.class%</argument>
             <argument>%akawaka_cms.form.type.page_translation.validation_groups%</argument>
+            <tag name="form.type" />
+        </service>
+
+        <service id="Akawaka\SyliusCMSPlugin\Form\Type\HomepageType">
+            <argument>%akawaka_cms.model.homepage.class%</argument>
+            <argument>%akawaka_cms.form.type.homepage.validation_groups%</argument>
+            <tag name="form.type" />
+        </service>
+
+        <service id="Akawaka\SyliusCMSPlugin\Form\Type\HomepageTranslationType">
+            <argument>%akawaka_cms.model.homepage_translation.class%</argument>
+            <argument>%akawaka_cms.form.type.homepage_translation.validation_groups%</argument>
             <tag name="form.type" />
         </service>
     </services>

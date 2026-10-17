@@ -1,4 +1,7 @@
 akawaka_cms:
+    homepage:
+        published: The homepage has been published.
+        unpublished: The homepage has been unpublished.
     page:
         published: The page has been published.
         unpublished: The page has been unpublished.

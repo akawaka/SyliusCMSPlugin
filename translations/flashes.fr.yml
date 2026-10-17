@@ -1,4 +1,7 @@
 akawaka_cms:
+    homepage:
+        published: L'accueil a été publié.
+        unpublished: L'accueil a été dépublié.
     page:
         published: La page a été publiée.
         unpublished: La page a été dépubliée.

@@ -1,0 +1,56 @@
+{% set form = hookable_metadata.context.form %}
+
+<div class="row">
+    <div class="col-12 col-lg-8">
+        <div class="card mb-3">
+            <div class="card-header"><div class="card-title">{{ 'akawaka_cms.ui.seo'|trans }}</div></div>
+            <div class="accordion accordion-flush" id="akawaka-cms-general">
+                {% for locale, translation_form in form.translations %}
+                    <div class="accordion-item">
+                        {% from '@SyliusAdmin/shared/helper/translations.html.twig' import accordion_header %}
+                        {{ accordion_header(locale, 'akawaka-cms-general', loop.first) }}
+                        <div id="translation-akawaka-cms-general-{{ locale }}" class="accordion-collapse collapse {% if loop.first %}show{% endif %}" data-bs-parent="#akawaka-cms-general">
+                            <div class="accordion-body">
+                                {{ form_row(translation_form.metaTitle) }}
+                                {{ form_row(translation_form.metaDescription) }}
+                                {{ form_row(translation_form.ogImage) }}
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-lg-4">
+        <div class="card mb-3">
+            <div class="card-header"><div class="card-title">{{ 'akawaka_cms.ui.publication'|trans }}</div></div>
+            <div class="card-body">
+                {{ form_row(form.channel) }}
+                <p class="text-secondary small mb-0">{{ 'akawaka_cms.homepage.fallback_help'|trans }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card mb-3">
+    <div class="card-header">
+        <div class="card-title">{{ 'akawaka_cms.ui.content'|trans }}</div>
+        <ul class="nav nav-tabs card-header-tabs ms-auto">
+            {% for locale, translation_form in form.translations %}
+                <li class="nav-item">
+                    <a href="#akawaka-cms-builder-{{ locale }}" class="nav-link {% if loop.first %}active{% endif %}" data-bs-toggle="tab">{{ locale }}{% if not translation_form.blocks.vars.valid %} <span class="badge bg-danger ms-1">!</span>{% endif %}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="card-body tab-content">
+        {% for locale, translation_form in form.translations %}
+            <div class="tab-pane {% if loop.first %}active show{% endif %}" id="akawaka-cms-builder-{{ locale }}">
+                {{ form_errors(translation_form.blocks) }}
+                {% include '@AkawakaSyliusCMSPlugin/admin/page/builder.html.twig' with {translation_form: translation_form, locale: locale, locales: form.translations|keys} only %}
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+{{ form_rest(form) }}

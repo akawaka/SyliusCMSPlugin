@@ -52,3 +52,46 @@ akawaka_cms_admin_page_preview:
     path: /admin/cms/preview
     methods: [POST]
     controller: Akawaka\SyliusCMSPlugin\Controller\Admin\PreviewController
+
+akawaka_cms_admin_homepage:
+    resource: |
+        alias: akawaka_cms.homepage
+        section: admin
+        templates: "@SyliusAdmin\\shared\\crud"
+        except: ['show']
+        redirect: update
+        grid: akawaka_cms_admin_homepage
+        permission: true
+        vars:
+            all:
+                header: akawaka_cms.ui.homepage
+            index:
+                icon: home
+    type: sylius.resource
+    prefix: /admin/cms
+
+akawaka_cms_admin_homepage_publish:
+    path: /admin/cms/homepage/{id}/publish
+    methods: [PUT]
+    defaults:
+        _controller: akawaka_cms.controller.homepage::applyStateMachineTransitionAction
+        _sylius:
+            permission: true
+            state_machine:
+                graph: akawaka_cms_homepage
+                transition: publish
+            redirect: akawaka_cms_admin_homepage_index
+            flash: akawaka_cms.homepage.published
+
+akawaka_cms_admin_homepage_unpublish:
+    path: /admin/cms/homepage/{id}/unpublish
+    methods: [PUT]
+    defaults:
+        _controller: akawaka_cms.controller.homepage::applyStateMachineTransitionAction
+        _sylius:
+            permission: true
+            state_machine:
+                graph: akawaka_cms_homepage
+                transition: unpublish
+            redirect: akawaka_cms_admin_homepage_index
+            flash: akawaka_cms.homepage.unpublished

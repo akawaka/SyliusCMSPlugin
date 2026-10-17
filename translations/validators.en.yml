@@ -1,4 +1,7 @@
 akawaka_cms:
+    homepage:
+        channel:
+            unique: This channel already has a homepage.
     page:
         code:
             unique: A page with this code already exists.

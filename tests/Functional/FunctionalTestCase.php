@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Tests\Akawaka\SyliusCMSPlugin\Functional;
 
+use Akawaka\SyliusCMSPlugin\Entity\Homepage;
+use Akawaka\SyliusCMSPlugin\Entity\HomepageTranslation;
 use Akawaka\SyliusCMSPlugin\Entity\Page;
 use Akawaka\SyliusCMSPlugin\Entity\PageTranslation;
 use Akawaka\SyliusCMSPlugin\Enum\PageStatus;
@@ -61,6 +63,26 @@ abstract class FunctionalTestCase extends WebTestCase
         return $page;
     }
 
+    /** @param list<array<string, mixed>> $blocks */
+    protected function createHomepage(PageStatus $status = PageStatus::Published, array $blocks = [], string $locale = 'en_US', ?ChannelInterface $channel = null): Homepage
+    {
+        $homepage = new Homepage();
+        $homepage->setChannel($channel ?? $this->channel());
+        $homepage->setStatus($status);
+
+        $homepage->setCurrentLocale($locale);
+        $homepage->setFallbackLocale($locale);
+        $translation = $homepage->getTranslation($locale);
+        \assert($translation instanceof HomepageTranslation);
+        $translation->setBlocks($blocks);
+        $translation->setMetaDescription('Homepage description');
+
+        $this->entityManager()->persist($homepage);
+        $this->entityManager()->flush();
+
+        return $homepage;
+    }
+
     protected function channel(): ChannelInterface
     {
         $channel = static::getContainer()->get('sylius.repository.channel');
@@ -87,6 +109,16 @@ abstract class FunctionalTestCase extends WebTestCase
         foreach ($em->getRepository(Page::class)->findAll() as $page) {
             if (str_starts_with((string) $page->getCode(), self::CODE_PREFIX)) {
                 $em->remove($page);
+            }
+        }
+
+        foreach ($em->getRepository(Homepage::class)->findAll() as $homepage) {
+            $em->remove($homepage);
+        }
+
+        foreach ($em->getRepository(ChannelInterface::class)->findAll() as $channel) {
+            if (str_starts_with((string) $channel->getCode(), self::CODE_PREFIX)) {
+                $em->remove($channel);
             }
         }
 

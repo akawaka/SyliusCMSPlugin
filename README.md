@@ -9,6 +9,7 @@ CMS pages for **Sylius 2.x**, built with a block-based **page builder** in the a
 - **Rich text** blocks edited with a WYSIWYG ([SunEditor](https://suneditor.com)), sanitized on output.
 - **Live preview**: the unsaved content is rendered by your real storefront layout and theme in an iframe sized as a mobile (375 px), tablet (768 px) or desktop (1280 px) screen.
 - **Copy the content of one language into another** (undoable).
+- **Homepage**: build the storefront homepage per channel and language, with a safe fallback to the Sylius one (see [Homepage](#homepage)).
 - **Blocks**: rich text, image, banner, columns, product grid, button, video (YouTube / Vimeo / file), custom HTML. Add your own in a few lines (see [Custom blocks](#custom-blocks)).
 - **SEO**: meta title / description, canonical URL, `hreflang` alternates, Open Graph and Twitter tags.
 - Translations: English and French.
@@ -108,6 +109,12 @@ sylius_twig_hooks:
 2. Drag blocks from the palette (or click them) into the canvas; drag a block by its bar to reorder or move it into a column. Select a block to edit its settings on the right.
 3. Use **Preview** to see the page with your real storefront layout, and the device buttons to check mobile / tablet / desktop. **Copy from** (bottom of the *Blocks* column) copies another language's blocks.
 4. **Update**, then **Publish** from the page list. The eye button opens the published page.
+
+### Homepage
+
+**CMS → Homepage** builds the storefront homepage with the same builder and preview. There is one homepage per channel, with content per language. It replaces the default Sylius homepage (`sylius_shop_homepage`) only while it is **published** and has blocks for the visitor's language; otherwise (draft, no content in that language, another channel) the default Sylius homepage is displayed, so nothing breaks while you prepare it. The page gets its own canonical URL, `hreflang` alternates and Open Graph tags; the meta title falls back to the channel name.
+
+No route configuration is needed: the override is done by an event listener, so it does not depend on the order in which the routes are imported.
 
 ### Preview
 

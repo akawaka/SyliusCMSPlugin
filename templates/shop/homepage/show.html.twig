@@ -1,0 +1,14 @@
+{% extends '@AkawakaSyliusCMSPlugin/shop/page/show.html.twig' %}
+
+{% set cms_title = translation.metaTitle|default(sylius.channel.name) %}
+{% set cms_canonical = url('sylius_shop_homepage', {_locale: translation.locale}) %}
+
+{# One alternate per translation of the homepage that has content and is available in this channel. #}
+{% set cms_alternates = [] %}
+{% if homepage is defined %}
+    {% for alternate in homepage.translations %}
+        {% if alternate.blocks is not empty %}
+            {% set cms_alternates = cms_alternates|merge([{locale: alternate.locale, url: url('sylius_shop_homepage', {_locale: alternate.locale})}]) %}
+        {% endif %}
+    {% endfor %}
+{% endif %}

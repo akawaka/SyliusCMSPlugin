@@ -1,0 +1,9 @@
+{% if data.published and data.channel.defaultLocale %}
+    <a class="btn {{ options.class|default }}"
+       href="{{ path('sylius_shop_homepage', {_locale: data.channel.defaultLocale.code}) }}"
+       target="_blank" rel="noopener"
+       data-bs-toggle="tooltip" data-bs-title="{{ action.label|trans }}"
+       {{ sylius_test_html_attribute('action', action.name) }}>
+        {% if action.icon %}{{ ux_icon(action.icon) }}{% endif %}
+    </a>
+{% endif %}

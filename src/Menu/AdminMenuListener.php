@@ -17,6 +17,15 @@ final class AdminMenuListener
         ;
 
         $cms
+            ->addChild('homepage', ['route' => 'akawaka_cms_admin_homepage_index', 'extras' => ['routes' => [
+                ['route' => 'akawaka_cms_admin_homepage_create'],
+                ['route' => 'akawaka_cms_admin_homepage_update'],
+            ]]])
+            ->setLabel('akawaka_cms.menu.homepage')
+            ->setLabelAttribute('icon', 'tabler:home')
+        ;
+
+        $cms
             ->addChild('pages', ['route' => 'akawaka_cms_admin_page_index', 'extras' => ['routes' => [
                 ['route' => 'akawaka_cms_admin_page_create'],
                 ['route' => 'akawaka_cms_admin_page_update'],

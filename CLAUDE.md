@@ -84,6 +84,7 @@ composer run test-app-init
 Sylius 2 plugin (`Akawaka\SyliusCMSPlugin`) providing CMS pages with a block-based page builder. See `README.md` for the feature overview and `AGENTS.md` for the coding conventions.
 
 - **Domain**: `src/Entity` (`Page`, `PageTranslation` with the block tree stored as JSON), `src/Enum` (`PageStatus`, `PageTransition`, `BlockType`, ...), publication workflow in `config/app/workflow.yaml`.
+- **Homepage**: `Homepage` / `HomepageTranslation` (one per channel, same workflow as pages, shared `BlocksContentTrait`); `EventListener/HomepageControllerListener` swaps the controller of `sylius_shop_homepage` for `Controller/Shop/HomepageController` when a published homepage has blocks for the locale (else Sylius is untouched).
 - **Blocks**: `src/Block` (`BlockTypeInterface`, `BlockRegistry`, `BlockCatalog`) and `src/Block/Type/*` (one class per block); each has a settings form in `src/Form/Type/Block` and a storefront template in `templates/shop/blocks`.
 - **Tree validation / rendering**: `src/Validator/BlockTreeValidator`, `src/Renderer/PageRenderer`, `src/Twig/CmsExtension`.
 - **Admin**: Sylius resource + grid (`config/app/*.yaml`), page form in `templates/admin/page`, builder JavaScript in `assets/admin` (Stimulus controllers `builder` and `preview`, pure logic in `assets/admin/builder`).
