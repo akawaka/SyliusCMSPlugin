@@ -4,27 +4,6 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Development Commands
 
-### Docker Environment (Recommended)
-```bash
-# Initialize Docker environment and install dependencies
-make init
-
-# Initialize database and run migrations
-make database-init
-
-# Load fixtures (optional)
-make load-fixtures
-
-# Start/stop containers
-make up
-make down
-
-# Access containers
-make php-shell
-make node-shell
-```
-
-### Traditional Development
 ```bash
 # Frontend setup
 (cd vendor/sylius/test-application && yarn install)
@@ -38,44 +17,10 @@ vendor/bin/console sylius:fixtures:load -n
 
 # Start server
 symfony server:start -d
-```
 
-### Testing
-```bash
-# PHPUnit tests
-vendor/bin/phpunit
-make phpunit  # Docker
-
-# Behat tests (non-JS)
-vendor/bin/behat --strict --tags="~@javascript&&~@mink:chromedriver"
-make behat  # Docker
-
-# Behat tests (JS scenarios)
-# Requires Chrome headless and symfony server
-APP_ENV=test symfony server:start --port=8080 --daemon
-vendor/bin/behat --strict --tags="@javascript,@mink:chromedriver"
-```
-
-### Code Quality
-```bash
-# PHPStan analysis
-vendor/bin/phpstan analyse -c phpstan.neon
-make phpstan  # Docker
-
-# Coding standards
-vendor/bin/ecs check
-make ecs  # Docker
-```
-
-### Composer Scripts
-```bash
-# Database reset with fixtures
+# Database reset with fixtures / frontend rebuild / complete test app initialization
 composer run database-reset
-
-# Frontend rebuild
 composer run frontend-clear
-
-# Complete test app initialization
 composer run test-app-init
 ```
 
@@ -97,13 +42,3 @@ Sylius 2 plugin (`Akawaka\SyliusCMSPlugin`) providing CMS pages with a block-bas
 ### Tests and quality
 - `vendor/bin/phpunit` (unit tests in `tests/Unit`, functional tests in `tests/Functional` booting the test application on the `test` database — see README), `npm test` (JavaScript logic), `vendor/bin/ecs check`, `vendor/bin/phpstan analyse -c phpstan.neon` (level max).
 - Rebuild the admin assets after JavaScript/SCSS changes: `(cd vendor/sylius/test-application && yarn build)`.
-
-## AI Development Guides
-
-This project includes specialized AI guides to assist with common plugin development tasks:
-
-- **CLEANUP_GUIDE.md** - Guidelines for cleaning up and organizing plugin code
-- **RENAME_GUIDE.md** - Step-by-step instructions for renaming plugins and components
-- **COMPATIBILITY_GUIDE.md** - Best practices for maintaining compatibility across different Sylius versions
-
-These guides provide detailed instructions and automated workflows to help maintain code quality and ensure proper plugin structure.

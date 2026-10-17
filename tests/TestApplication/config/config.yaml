@@ -1,6 +1,5 @@
 imports:
     - { resource: "@AkawakaSyliusCMSPlugin/config/config.yaml" }
-    - { resource: "services_test.php" }
 
 twig:
     paths:
