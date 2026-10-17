@@ -1,6 +1,17 @@
-# Akawaka Sylius CMS Plugin
+<p align="center">
+    <img src="doc/logo-akawaka.png" style="width: 500px;">
+</p>
 
-CMS pages for **Sylius 2.x**, built with a block-based **page builder** in the admin and a **real, live preview** of the storefront on mobile, tablet and desktop.
+<p align="center">
+AKAWAKA is a software development company specializing in e-commerce platforms and custom web applications. 
+We help businesses evolve or rebuild their platforms with a pragmatic approach: improving existing solutions or starting from scratch, notably with Sylius. 
+Our team also handles data migration, SEO preservation, and business continuity. 
+With strong expertise in PHP and Symfony, Akawaka builds web solutions tailored to our clients’ business needs.
+</p>
+
+<h1 align="center">Akawaka Sylius CMS Plugin</h1>
+
+<p align="center">CMS pages for **Sylius 2.x**, built with a block-based **page builder** in the admin and a **real, live preview** of the storefront on mobile, tablet and desktop.</p>
 
 ## Features
 
@@ -27,46 +38,22 @@ The page content is stored as a JSON block tree in the page translation, so addi
 
 ### 1. Install the package
 
+Add the [Akawaka Flex recipes](https://github.com/akawaka/symfony-recipes) endpoint to your project, then require the plugin:
+
 ```bash
+composer config --json extra.symfony.endpoint '["https://api.github.com/repos/akawaka/symfony-recipes/contents/index.json?ref=flex/main","flex://defaults"]'
 composer require akawaka/sylius-cms-plugin
 ```
 
-### 2. Register the bundle
+Symfony Flex registers the bundle and creates `config/packages/akawaka_cms.yaml` and `config/routes/akawaka_cms.yaml` (see [Manual installation](#manual-installation-without-flex) for their content).
 
-```php
-// config/bundles.php
-return [
-    // ...
-    Akawaka\SyliusCMSPlugin\AkawakaSyliusCMSPlugin::class => ['all' => true],
-];
-```
-
-### 3. Import the configuration and the routes
-
-```yaml
-# config/packages/akawaka_cms.yaml
-imports:
-    - { resource: '@AkawakaSyliusCMSPlugin/config/config.yaml' }
-```
-
-```yaml
-# config/routes/akawaka_cms.yaml
-akawaka_cms_admin:
-    resource: '@AkawakaSyliusCMSPlugin/config/routes/admin.yaml'
-
-akawaka_cms_shop:
-    resource: '@AkawakaSyliusCMSPlugin/config/routes/shop.yaml'
-```
-
-The admin routes live under `/admin/cms/...` and the storefront pages under `/{_locale}/pages/{slug}`.
-
-### 4. Update the database
+### 2. Update the database
 
 ```bash
 bin/console doctrine:migrations:migrate
 ```
 
-### 5. Build the admin assets
+### 3. Build the admin assets
 
 The page builder is a JavaScript entry that must be part of your **admin** Webpack Encore build. Install its dependencies and add the entry:
 
@@ -103,6 +90,43 @@ sylius_twig_hooks:
 ```
 
 (`'admin'` is the name of your admin Encore build.) The plugin starts its own Stimulus application, so it does not depend on your `controllers.json`.
+
+### Manual installation (without Flex)
+
+Replace the first step above with:
+
+1. Require the plugin and register the bundle:
+
+    ```bash
+    composer require akawaka/sylius-cms-plugin
+    ```
+
+    ```php
+    // config/bundles.php
+    return [
+        // ...
+        Akawaka\SyliusCMSPlugin\AkawakaSyliusCMSPlugin::class => ['all' => true],
+    ];
+    ```
+
+1. Import the configuration and the routes:
+
+    ```yaml
+    # config/packages/akawaka_cms.yaml
+    imports:
+        - { resource: '@AkawakaSyliusCMSPlugin/config/config.yaml' }
+    ```
+
+    ```yaml
+    # config/routes/akawaka_cms.yaml
+    akawaka_cms_admin:
+        resource: '@AkawakaSyliusCMSPlugin/config/routes/admin.yaml'
+
+    akawaka_cms_shop:
+        resource: '@AkawakaSyliusCMSPlugin/config/routes/shop.yaml'
+    ```
+
+    The admin routes live under `/admin/cms/...` and the storefront pages under `/{_locale}/pages/{slug}`.
 
 ## Usage
 
