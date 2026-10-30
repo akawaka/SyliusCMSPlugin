@@ -30,8 +30,8 @@ The page content is stored as a JSON block tree in the page translation, so addi
 
 ## Requirements
 
-- PHP 8.2+
-- Sylius 2.0+
+- PHP 8.3+
+- Sylius 2.3+
 - Node / Yarn to build the admin assets
 
 ## Installation
