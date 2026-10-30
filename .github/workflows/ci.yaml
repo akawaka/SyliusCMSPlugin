@@ -57,6 +57,15 @@ jobs:
                     php-version: ${{ matrix.php }}
                     coverage: none
             -   run: composer install --no-interaction --prefer-dist
+            -   uses: actions/setup-node@v4
+                with:
+                    node-version: '24'
+            -   name: Build the assets of the test application
+                working-directory: vendor/sylius/test-application
+                run: |
+                    yarn install
+                    yarn build
+            -   run: vendor/bin/console assets:install vendor/sylius/test-application/public
             -   run: vendor/bin/console doctrine:database:create
             -   run: vendor/bin/console doctrine:migrations:migrate -n
             -   run: vendor/bin/console sylius:fixtures:load -n
