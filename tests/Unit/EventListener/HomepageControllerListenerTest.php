@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Tests\Akawaka\SyliusCMSPlugin\Unit\EventListener;
+namespace Tests\AKAWAKA\SyliusCMSPlugin\Unit\EventListener;
 
-use Akawaka\SyliusCMSPlugin\Controller\Shop\HomepageController;
-use Akawaka\SyliusCMSPlugin\EventListener\HomepageControllerListener;
-use Akawaka\SyliusCMSPlugin\Repository\HomepageRepository;
+use AKAWAKA\SyliusCMSPlugin\Controller\Shop\HomepageController;
+use AKAWAKA\SyliusCMSPlugin\EventListener\HomepageControllerListener;
+use AKAWAKA\SyliusCMSPlugin\Repository\HomepageRepository;
 use PHPUnit\Framework\TestCase;
 use Sylius\Component\Channel\Context\ChannelContextInterface;
 use Sylius\Component\Channel\Context\ChannelNotFoundException;

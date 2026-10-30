@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Akawaka\SyliusCMSPlugin\Hook;
+namespace AKAWAKA\SyliusCMSPlugin\Hook;
 
 /**
  * Turns flat twig hook names ("sylius_shop.product.show.content", "sylius_admin.base#javascripts") into the tree

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Akawaka\SyliusCMSPlugin\Controller\Admin;
+namespace AKAWAKA\SyliusCMSPlugin\Controller\Admin;
 
-use Akawaka\SyliusCMSPlugin\Block\BlockRegistry;
+use AKAWAKA\SyliusCMSPlugin\Block\BlockRegistry;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;

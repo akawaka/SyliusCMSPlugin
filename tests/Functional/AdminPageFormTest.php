@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Tests\Akawaka\SyliusCMSPlugin\Functional;
+namespace Tests\AKAWAKA\SyliusCMSPlugin\Functional;
 
-use Akawaka\SyliusCMSPlugin\Entity\Page;
+use AKAWAKA\SyliusCMSPlugin\Entity\Page;
 
 final class AdminPageFormTest extends FunctionalTestCase
 {

@@ -11,39 +11,39 @@ sylius_resource:
         akawaka_cms.page:
             driver: doctrine/orm
             classes:
-                model: Akawaka\SyliusCMSPlugin\Entity\Page
-                interface: Akawaka\SyliusCMSPlugin\Entity\PageInterface
+                model: AKAWAKA\SyliusCMSPlugin\Entity\Page
+                interface: AKAWAKA\SyliusCMSPlugin\Entity\PageInterface
                 factory: Sylius\Resource\Factory\Factory
-                repository: Akawaka\SyliusCMSPlugin\Repository\PageRepository
-                form: Akawaka\SyliusCMSPlugin\Form\Type\PageType
+                repository: AKAWAKA\SyliusCMSPlugin\Repository\PageRepository
+                form: AKAWAKA\SyliusCMSPlugin\Form\Type\PageType
             translation:
                 classes:
-                    model: Akawaka\SyliusCMSPlugin\Entity\PageTranslation
-                    interface: Akawaka\SyliusCMSPlugin\Entity\PageTranslationInterface
-                    form: Akawaka\SyliusCMSPlugin\Form\Type\PageTranslationType
+                    model: AKAWAKA\SyliusCMSPlugin\Entity\PageTranslation
+                    interface: AKAWAKA\SyliusCMSPlugin\Entity\PageTranslationInterface
+                    form: AKAWAKA\SyliusCMSPlugin\Form\Type\PageTranslationType
         akawaka_cms.homepage:
             driver: doctrine/orm
             classes:
-                model: Akawaka\SyliusCMSPlugin\Entity\Homepage
-                interface: Akawaka\SyliusCMSPlugin\Entity\HomepageInterface
+                model: AKAWAKA\SyliusCMSPlugin\Entity\Homepage
+                interface: AKAWAKA\SyliusCMSPlugin\Entity\HomepageInterface
                 factory: Sylius\Resource\Factory\Factory
-                repository: Akawaka\SyliusCMSPlugin\Repository\HomepageRepository
-                form: Akawaka\SyliusCMSPlugin\Form\Type\HomepageType
+                repository: AKAWAKA\SyliusCMSPlugin\Repository\HomepageRepository
+                form: AKAWAKA\SyliusCMSPlugin\Form\Type\HomepageType
             translation:
                 classes:
-                    model: Akawaka\SyliusCMSPlugin\Entity\HomepageTranslation
-                    interface: Akawaka\SyliusCMSPlugin\Entity\HomepageTranslationInterface
-                    form: Akawaka\SyliusCMSPlugin\Form\Type\HomepageTranslationType
+                    model: AKAWAKA\SyliusCMSPlugin\Entity\HomepageTranslation
+                    interface: AKAWAKA\SyliusCMSPlugin\Entity\HomepageTranslationInterface
+                    form: AKAWAKA\SyliusCMSPlugin\Form\Type\HomepageTranslationType
         akawaka_cms.content_block:
             driver: doctrine/orm
             classes:
-                model: Akawaka\SyliusCMSPlugin\Entity\ContentBlock
-                interface: Akawaka\SyliusCMSPlugin\Entity\ContentBlockInterface
+                model: AKAWAKA\SyliusCMSPlugin\Entity\ContentBlock
+                interface: AKAWAKA\SyliusCMSPlugin\Entity\ContentBlockInterface
                 factory: Sylius\Resource\Factory\Factory
-                repository: Akawaka\SyliusCMSPlugin\Repository\ContentBlockRepository
-                form: Akawaka\SyliusCMSPlugin\Form\Type\ContentBlockType
+                repository: AKAWAKA\SyliusCMSPlugin\Repository\ContentBlockRepository
+                form: AKAWAKA\SyliusCMSPlugin\Form\Type\ContentBlockType
             translation:
                 classes:
-                    model: Akawaka\SyliusCMSPlugin\Entity\ContentBlockTranslation
-                    interface: Akawaka\SyliusCMSPlugin\Entity\ContentBlockTranslationInterface
-                    form: Akawaka\SyliusCMSPlugin\Form\Type\ContentBlockTranslationType
+                    model: AKAWAKA\SyliusCMSPlugin\Entity\ContentBlockTranslation
+                    interface: AKAWAKA\SyliusCMSPlugin\Entity\ContentBlockTranslationInterface
+                    form: AKAWAKA\SyliusCMSPlugin\Form\Type\ContentBlockTranslationType

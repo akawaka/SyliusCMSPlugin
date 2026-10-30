@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Tests\Akawaka\SyliusCMSPlugin\Unit\Block;
+namespace Tests\AKAWAKA\SyliusCMSPlugin\Unit\Block;
 
-use Akawaka\SyliusCMSPlugin\Block\BlockCatalog;
+use AKAWAKA\SyliusCMSPlugin\Block\BlockCatalog;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Translation\IdentityTranslator;
-use Tests\Akawaka\SyliusCMSPlugin\Unit\BlockFactoryTrait;
+use Tests\AKAWAKA\SyliusCMSPlugin\Unit\BlockFactoryTrait;
 
 final class BlockCatalogTest extends TestCase
 {

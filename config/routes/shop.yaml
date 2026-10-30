@@ -1,7 +1,7 @@
 akawaka_cms_shop_page_show:
     path: /{_locale}/pages/{slug}
     methods: [GET]
-    controller: Akawaka\SyliusCMSPlugin\Controller\Shop\PageController
+    controller: AKAWAKA\SyliusCMSPlugin\Controller\Shop\PageController
     requirements:
         _locale: '[a-z]{2,3}(?:_[A-Z]{2})?'
         slug: '.+'
@@ -9,7 +9,7 @@ akawaka_cms_shop_page_show:
 akawaka_cms_shop_page_preview:
     path: /{_locale}/cms-preview/{token}
     methods: [GET]
-    controller: Akawaka\SyliusCMSPlugin\Controller\Shop\PreviewController
+    controller: AKAWAKA\SyliusCMSPlugin\Controller\Shop\PreviewController
     requirements:
         _locale: '[a-z]{2,3}(?:_[A-Z]{2})?'
         token: '[a-f0-9]{32}'

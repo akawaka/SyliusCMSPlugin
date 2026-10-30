@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Akawaka\SyliusCMSPlugin\Controller\Shop;
+namespace AKAWAKA\SyliusCMSPlugin\Controller\Shop;
 
-use Akawaka\SyliusCMSPlugin\Entity\PageTranslationInterface;
-use Akawaka\SyliusCMSPlugin\Preview\PreviewStore;
+use AKAWAKA\SyliusCMSPlugin\Entity\PageTranslationInterface;
+use AKAWAKA\SyliusCMSPlugin\Preview\PreviewStore;
 use Sylius\Resource\Factory\FactoryInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;

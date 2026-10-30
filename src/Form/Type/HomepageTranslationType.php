@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Akawaka\SyliusCMSPlugin\Form\Type;
+namespace AKAWAKA\SyliusCMSPlugin\Form\Type;
 
-use Akawaka\SyliusCMSPlugin\Form\DataTransformer\BlocksJsonTransformer;
+use AKAWAKA\SyliusCMSPlugin\Form\DataTransformer\BlocksJsonTransformer;
 use Sylius\Bundle\ResourceBundle\Form\Type\AbstractResourceType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;

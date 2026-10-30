@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Akawaka\SyliusCMSPlugin\Migrations;
+namespace AKAWAKA\SyliusCMSPlugin\Migrations;
 
 use Doctrine\DBAL\Schema\Schema;
 use Doctrine\Migrations\AbstractMigration;

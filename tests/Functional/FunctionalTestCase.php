@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Tests\Akawaka\SyliusCMSPlugin\Functional;
+namespace Tests\AKAWAKA\SyliusCMSPlugin\Functional;
 
-use Akawaka\SyliusCMSPlugin\Entity\ContentBlock;
-use Akawaka\SyliusCMSPlugin\Entity\ContentBlockTranslation;
-use Akawaka\SyliusCMSPlugin\Entity\Homepage;
-use Akawaka\SyliusCMSPlugin\Entity\HomepageTranslation;
-use Akawaka\SyliusCMSPlugin\Entity\Page;
-use Akawaka\SyliusCMSPlugin\Entity\PageTranslation;
-use Akawaka\SyliusCMSPlugin\Enum\PageStatus;
+use AKAWAKA\SyliusCMSPlugin\Entity\ContentBlock;
+use AKAWAKA\SyliusCMSPlugin\Entity\ContentBlockTranslation;
+use AKAWAKA\SyliusCMSPlugin\Entity\Homepage;
+use AKAWAKA\SyliusCMSPlugin\Entity\HomepageTranslation;
+use AKAWAKA\SyliusCMSPlugin\Entity\Page;
+use AKAWAKA\SyliusCMSPlugin\Entity\PageTranslation;
+use AKAWAKA\SyliusCMSPlugin\Enum\PageStatus;
 use Doctrine\ORM\EntityManagerInterface;
 use Sylius\Component\Core\Model\ChannelInterface;
 use Sylius\Component\Core\Repository\ChannelRepositoryInterface;

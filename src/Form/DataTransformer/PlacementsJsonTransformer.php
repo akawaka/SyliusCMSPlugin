@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Akawaka\SyliusCMSPlugin\Form\DataTransformer;
+namespace AKAWAKA\SyliusCMSPlugin\Form\DataTransformer;
 
 use Symfony\Component\Form\CallbackTransformer;
 

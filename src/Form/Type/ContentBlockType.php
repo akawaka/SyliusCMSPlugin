@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Akawaka\SyliusCMSPlugin\Form\Type;
+namespace AKAWAKA\SyliusCMSPlugin\Form\Type;
 
-use Akawaka\SyliusCMSPlugin\Entity\ContentBlockInterface;
-use Akawaka\SyliusCMSPlugin\Entity\ContentBlockTranslationInterface;
-use Akawaka\SyliusCMSPlugin\Form\DataTransformer\PlacementsJsonTransformer;
+use AKAWAKA\SyliusCMSPlugin\Entity\ContentBlockInterface;
+use AKAWAKA\SyliusCMSPlugin\Entity\ContentBlockTranslationInterface;
+use AKAWAKA\SyliusCMSPlugin\Form\DataTransformer\PlacementsJsonTransformer;
 use Sylius\Bundle\ChannelBundle\Form\Type\ChannelChoiceType;
 use Sylius\Bundle\ResourceBundle\Form\Type\AbstractResourceType;
 use Sylius\Bundle\ResourceBundle\Form\Type\ResourceTranslationsType;

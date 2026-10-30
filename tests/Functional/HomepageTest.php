@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Tests\Akawaka\SyliusCMSPlugin\Functional;
+namespace Tests\AKAWAKA\SyliusCMSPlugin\Functional;
 
-use Akawaka\SyliusCMSPlugin\Entity\Homepage;
-use Akawaka\SyliusCMSPlugin\Enum\PageStatus;
+use AKAWAKA\SyliusCMSPlugin\Entity\Homepage;
+use AKAWAKA\SyliusCMSPlugin\Enum\PageStatus;
 
 final class HomepageTest extends FunctionalTestCase
 {

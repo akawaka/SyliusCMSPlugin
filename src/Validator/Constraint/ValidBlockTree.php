@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Akawaka\SyliusCMSPlugin\Validator\Constraint;
+namespace AKAWAKA\SyliusCMSPlugin\Validator\Constraint;
 
 use Symfony\Component\Validator\Constraint;
 

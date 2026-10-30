@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Akawaka\SyliusCMSPlugin\Block\Type;
+namespace AKAWAKA\SyliusCMSPlugin\Block\Type;
 
-use Akawaka\SyliusCMSPlugin\Block\AbstractBlockType;
-use Akawaka\SyliusCMSPlugin\Enum\Alignment;
-use Akawaka\SyliusCMSPlugin\Enum\BlockType;
-use Akawaka\SyliusCMSPlugin\Enum\ButtonStyle;
-use Akawaka\SyliusCMSPlugin\Form\Type\Block\ButtonBlockType as ButtonForm;
+use AKAWAKA\SyliusCMSPlugin\Block\AbstractBlockType;
+use AKAWAKA\SyliusCMSPlugin\Enum\Alignment;
+use AKAWAKA\SyliusCMSPlugin\Enum\BlockType;
+use AKAWAKA\SyliusCMSPlugin\Enum\ButtonStyle;
+use AKAWAKA\SyliusCMSPlugin\Form\Type\Block\ButtonBlockType as ButtonForm;
 
 final class ButtonBlockType extends AbstractBlockType
 {

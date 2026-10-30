@@ -51,12 +51,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Akawaka\\SyliusCMSPlugin\\": "src/"
+            "AKAWAKA\\SyliusCMSPlugin\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Tests\\Akawaka\\SyliusCMSPlugin\\": [
+            "Tests\\AKAWAKA\\SyliusCMSPlugin\\": [
                 "tests/",
                 "tests/TestApplication/src/"
             ]

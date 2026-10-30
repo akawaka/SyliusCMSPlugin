@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Akawaka\SyliusCMSPlugin\Validator;
+namespace AKAWAKA\SyliusCMSPlugin\Validator;
 
 final readonly class BlockTreeViolation
 {

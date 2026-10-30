@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Akawaka\SyliusCMSPlugin\Hook;
+namespace AKAWAKA\SyliusCMSPlugin\Hook;
 
 use Sylius\TwigHooks\Hookable\AbstractHookable;
 use Sylius\TwigHooks\Hookable\Merger\HookableMerger;

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Akawaka\SyliusCMSPlugin\Renderer;
+namespace AKAWAKA\SyliusCMSPlugin\Renderer;
 
-use Akawaka\SyliusCMSPlugin\Block\BlockRegistry;
+use AKAWAKA\SyliusCMSPlugin\Block\BlockRegistry;
 use Twig\Environment;
 use Twig\Markup;
 

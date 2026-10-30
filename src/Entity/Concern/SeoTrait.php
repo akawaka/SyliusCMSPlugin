@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Akawaka\SyliusCMSPlugin\Entity\Concern;
+namespace AKAWAKA\SyliusCMSPlugin\Entity\Concern;
 
 use Doctrine\ORM\Mapping as ORM;
 

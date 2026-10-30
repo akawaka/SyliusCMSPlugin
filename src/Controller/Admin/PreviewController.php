@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Akawaka\SyliusCMSPlugin\Controller\Admin;
+namespace AKAWAKA\SyliusCMSPlugin\Controller\Admin;
 
-use Akawaka\SyliusCMSPlugin\Preview\PagePreview;
-use Akawaka\SyliusCMSPlugin\Preview\PreviewStore;
-use Akawaka\SyliusCMSPlugin\Validator\BlockTreeValidator;
+use AKAWAKA\SyliusCMSPlugin\Preview\PagePreview;
+use AKAWAKA\SyliusCMSPlugin\Preview\PreviewStore;
+use AKAWAKA\SyliusCMSPlugin\Validator\BlockTreeValidator;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;

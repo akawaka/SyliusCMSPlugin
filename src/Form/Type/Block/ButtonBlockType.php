@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Akawaka\SyliusCMSPlugin\Form\Type\Block;
+namespace AKAWAKA\SyliusCMSPlugin\Form\Type\Block;
 
-use Akawaka\SyliusCMSPlugin\Enum\Alignment;
-use Akawaka\SyliusCMSPlugin\Enum\ButtonStyle;
+use AKAWAKA\SyliusCMSPlugin\Enum\Alignment;
+use AKAWAKA\SyliusCMSPlugin\Enum\ButtonStyle;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EnumType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;

@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Tests\Akawaka\SyliusCMSPlugin\Functional;
+namespace Tests\AKAWAKA\SyliusCMSPlugin\Functional;
 
-use Akawaka\SyliusCMSPlugin\Entity\ContentBlock;
-use Akawaka\SyliusCMSPlugin\Enum\PageStatus;
+use AKAWAKA\SyliusCMSPlugin\Entity\ContentBlock;
+use AKAWAKA\SyliusCMSPlugin\Enum\PageStatus;
 
 final class ContentBlockTest extends FunctionalTestCase
 {

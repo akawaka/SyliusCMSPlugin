@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Akawaka\SyliusCMSPlugin\Block\Type;
+namespace AKAWAKA\SyliusCMSPlugin\Block\Type;
 
-use Akawaka\SyliusCMSPlugin\Block\AbstractBlockType;
-use Akawaka\SyliusCMSPlugin\Enum\BlockType;
-use Akawaka\SyliusCMSPlugin\Form\Type\Block\ImageBlockType as ImageForm;
+use AKAWAKA\SyliusCMSPlugin\Block\AbstractBlockType;
+use AKAWAKA\SyliusCMSPlugin\Enum\BlockType;
+use AKAWAKA\SyliusCMSPlugin\Form\Type\Block\ImageBlockType as ImageForm;
 
 final class ImageBlockType extends AbstractBlockType
 {

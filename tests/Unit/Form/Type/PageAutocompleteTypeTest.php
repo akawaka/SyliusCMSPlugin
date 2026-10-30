@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Tests\Akawaka\SyliusCMSPlugin\Unit\Form\Type;
+namespace Tests\AKAWAKA\SyliusCMSPlugin\Unit\Form\Type;
 
-use Akawaka\SyliusCMSPlugin\Entity\Page;
-use Akawaka\SyliusCMSPlugin\Entity\PageTranslation;
-use Akawaka\SyliusCMSPlugin\Form\Type\PageAutocompleteType;
+use AKAWAKA\SyliusCMSPlugin\Entity\Page;
+use AKAWAKA\SyliusCMSPlugin\Entity\PageTranslation;
+use AKAWAKA\SyliusCMSPlugin\Form\Type\PageAutocompleteType;
 use Doctrine\ORM\QueryBuilder;
 use PHPUnit\Framework\TestCase;
 use Sylius\Bundle\AdminBundle\Form\Type\TranslatableAutocompleteType;

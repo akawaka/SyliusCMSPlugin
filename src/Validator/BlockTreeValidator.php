@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Akawaka\SyliusCMSPlugin\Validator;
+namespace AKAWAKA\SyliusCMSPlugin\Validator;
 
-use Akawaka\SyliusCMSPlugin\Block\BlockRegistry;
+use AKAWAKA\SyliusCMSPlugin\Block\BlockRegistry;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Form\FormInterface;

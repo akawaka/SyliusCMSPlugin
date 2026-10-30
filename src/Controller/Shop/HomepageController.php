@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Akawaka\SyliusCMSPlugin\Controller\Shop;
+namespace AKAWAKA\SyliusCMSPlugin\Controller\Shop;
 
-use Akawaka\SyliusCMSPlugin\Entity\HomepageInterface;
+use AKAWAKA\SyliusCMSPlugin\Entity\HomepageInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;

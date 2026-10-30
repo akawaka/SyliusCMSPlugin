@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Akawaka\SyliusCMSPlugin\Repository;
+namespace AKAWAKA\SyliusCMSPlugin\Repository;
 
-use Akawaka\SyliusCMSPlugin\Entity\HomepageInterface;
-use Akawaka\SyliusCMSPlugin\Enum\PageStatus;
+use AKAWAKA\SyliusCMSPlugin\Entity\HomepageInterface;
+use AKAWAKA\SyliusCMSPlugin\Enum\PageStatus;
 use Doctrine\ORM\QueryBuilder;
 use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
 use Sylius\Component\Channel\Model\ChannelInterface;

@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Akawaka\SyliusCMSPlugin\Twig;
+namespace AKAWAKA\SyliusCMSPlugin\Twig;
 
-use Akawaka\SyliusCMSPlugin\Hook\CmsHookablesRegistry;
-use Akawaka\SyliusCMSPlugin\Hook\HookTreeBuilder;
+use AKAWAKA\SyliusCMSPlugin\Hook\CmsHookablesRegistry;
+use AKAWAKA\SyliusCMSPlugin\Hook\HookTreeBuilder;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 

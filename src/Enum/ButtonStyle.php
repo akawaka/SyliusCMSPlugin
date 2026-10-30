@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Akawaka\SyliusCMSPlugin\Enum;
+namespace AKAWAKA\SyliusCMSPlugin\Enum;
 
 enum ButtonStyle: string
 {

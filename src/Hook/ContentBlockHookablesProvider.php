@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Akawaka\SyliusCMSPlugin\Hook;
+namespace AKAWAKA\SyliusCMSPlugin\Hook;
 
-use Akawaka\SyliusCMSPlugin\Entity\ContentBlockInterface;
-use Akawaka\SyliusCMSPlugin\Entity\ContentBlockTranslationInterface;
-use Akawaka\SyliusCMSPlugin\Repository\ContentBlockRepository;
+use AKAWAKA\SyliusCMSPlugin\Entity\ContentBlockInterface;
+use AKAWAKA\SyliusCMSPlugin\Entity\ContentBlockTranslationInterface;
+use AKAWAKA\SyliusCMSPlugin\Repository\ContentBlockRepository;
 use Sylius\Component\Channel\Context\ChannelContextInterface;
 use Sylius\Component\Channel\Context\ChannelNotFoundException;
 use Sylius\Component\Locale\Context\LocaleContextInterface;

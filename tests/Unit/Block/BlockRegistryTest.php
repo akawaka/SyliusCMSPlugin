@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Tests\Akawaka\SyliusCMSPlugin\Unit\Block;
+namespace Tests\AKAWAKA\SyliusCMSPlugin\Unit\Block;
 
-use Akawaka\SyliusCMSPlugin\Enum\BlockType;
+use AKAWAKA\SyliusCMSPlugin\Enum\BlockType;
 use PHPUnit\Framework\TestCase;
-use Tests\Akawaka\SyliusCMSPlugin\Unit\BlockFactoryTrait;
+use Tests\AKAWAKA\SyliusCMSPlugin\Unit\BlockFactoryTrait;
 
 final class BlockRegistryTest extends TestCase
 {

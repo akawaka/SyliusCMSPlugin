@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Akawaka\SyliusCMSPlugin\Controller\Shop;
+namespace AKAWAKA\SyliusCMSPlugin\Controller\Shop;
 
-use Akawaka\SyliusCMSPlugin\Repository\PageRepository;
+use AKAWAKA\SyliusCMSPlugin\Repository\PageRepository;
 use Sylius\Component\Channel\Context\ChannelContextInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;

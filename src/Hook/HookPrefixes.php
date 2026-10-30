@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Akawaka\SyliusCMSPlugin\Hook;
+namespace AKAWAKA\SyliusCMSPlugin\Hook;
 
 /** The twig hook namespaces content blocks may be attached to (e.g. "sylius_shop"). */
 final readonly class HookPrefixes

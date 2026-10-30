@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Akawaka\SyliusCMSPlugin\DependencyInjection;
+namespace AKAWAKA\SyliusCMSPlugin\DependencyInjection;
 
-use Akawaka\SyliusCMSPlugin\Block\BlockTypeInterface;
+use AKAWAKA\SyliusCMSPlugin\Block\BlockTypeInterface;
 use Sylius\Bundle\CoreBundle\DependencyInjection\PrependDoctrineMigrationsTrait;
 use Sylius\Bundle\ResourceBundle\DependencyInjection\Extension\AbstractResourceExtension;
 use Symfony\Component\Config\FileLocator;
@@ -60,7 +60,7 @@ final class AkawakaSyliusCMSExtension extends AbstractResourceExtension implemen
                         'type' => 'attribute',
                         'is_bundle' => false,
                         'dir' => __DIR__ . '/../Entity',
-                        'prefix' => 'Akawaka\\SyliusCMSPlugin\\Entity',
+                        'prefix' => 'AKAWAKA\\SyliusCMSPlugin\\Entity',
                         'alias' => 'AkawakaSyliusCMSPlugin',
                     ],
                 ],
@@ -70,7 +70,7 @@ final class AkawakaSyliusCMSExtension extends AbstractResourceExtension implemen
 
     protected function getMigrationsNamespace(): string
     {
-        return 'Akawaka\\SyliusCMSPlugin\\Migrations';
+        return 'AKAWAKA\\SyliusCMSPlugin\\Migrations';
     }
 
     protected function getMigrationsDirectory(): string

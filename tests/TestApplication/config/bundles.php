@@ -1,5 +1,5 @@
 <?php
 
 return [
-    Akawaka\SyliusCMSPlugin\AkawakaSyliusCMSPlugin::class => ['all' => true],
+    AKAWAKA\SyliusCMSPlugin\AkawakaSyliusCMSPlugin::class => ['all' => true],
 ];

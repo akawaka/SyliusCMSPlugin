@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Akawaka\SyliusCMSPlugin\Entity;
+namespace AKAWAKA\SyliusCMSPlugin\Entity;
 
-use Akawaka\SyliusCMSPlugin\Entity\Concern\BlocksTrait;
+use AKAWAKA\SyliusCMSPlugin\Entity\Concern\BlocksTrait;
 use Doctrine\ORM\Mapping as ORM;
 use Sylius\Component\Resource\Model\AbstractTranslation;
 

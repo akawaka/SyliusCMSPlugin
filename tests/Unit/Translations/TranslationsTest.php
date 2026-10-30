@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Akawaka\SyliusCMSPlugin\Unit\Translations;
+namespace Tests\AKAWAKA\SyliusCMSPlugin\Unit\Translations;
 
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;

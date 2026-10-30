@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Akawaka\SyliusCMSPlugin\Twig;
+namespace AKAWAKA\SyliusCMSPlugin\Twig;
 
-use Akawaka\SyliusCMSPlugin\Block\BlockCatalog;
-use Akawaka\SyliusCMSPlugin\Renderer\PageRenderer;
+use AKAWAKA\SyliusCMSPlugin\Block\BlockCatalog;
+use AKAWAKA\SyliusCMSPlugin\Renderer\PageRenderer;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 

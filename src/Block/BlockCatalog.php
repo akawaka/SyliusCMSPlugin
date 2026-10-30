@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Akawaka\SyliusCMSPlugin\Block;
+namespace AKAWAKA\SyliusCMSPlugin\Block;
 
 use Symfony\Contracts\Translation\TranslatorInterface;
 

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Akawaka\SyliusCMSPlugin\Functional;
+namespace Tests\AKAWAKA\SyliusCMSPlugin\Functional;
 
 final class AdminPreviewTest extends FunctionalTestCase
 {

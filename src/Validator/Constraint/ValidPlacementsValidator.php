@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Akawaka\SyliusCMSPlugin\Validator\Constraint;
+namespace AKAWAKA\SyliusCMSPlugin\Validator\Constraint;
 
-use Akawaka\SyliusCMSPlugin\Hook\HookPrefixes;
+use AKAWAKA\SyliusCMSPlugin\Hook\HookPrefixes;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;

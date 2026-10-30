@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Tests\Akawaka\SyliusCMSPlugin\Unit\Hook;
+namespace Tests\AKAWAKA\SyliusCMSPlugin\Unit\Hook;
 
-use Akawaka\SyliusCMSPlugin\Hook\HookPrefixes;
+use AKAWAKA\SyliusCMSPlugin\Hook\HookPrefixes;
 use PHPUnit\Framework\TestCase;
 
 final class HookPrefixesTest extends TestCase

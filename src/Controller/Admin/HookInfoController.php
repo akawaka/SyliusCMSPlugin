@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Akawaka\SyliusCMSPlugin\Controller\Admin;
+namespace AKAWAKA\SyliusCMSPlugin\Controller\Admin;
 
-use Akawaka\SyliusCMSPlugin\Hook\CmsHookablesRegistry;
-use Akawaka\SyliusCMSPlugin\Hook\HookPrefixes;
+use AKAWAKA\SyliusCMSPlugin\Hook\CmsHookablesRegistry;
+use AKAWAKA\SyliusCMSPlugin\Hook\HookPrefixes;
 use Sylius\TwigHooks\Hookable\DisabledHookable;
 use Sylius\TwigHooks\Hookable\HookableComponent;
 use Sylius\TwigHooks\Hookable\HookableTemplate;

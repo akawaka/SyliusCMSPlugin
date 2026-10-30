@@ -12,125 +12,125 @@
     <services>
         <defaults autowire="true" autoconfigure="true" />
 
-        <prototype namespace="Akawaka\SyliusCMSPlugin\Block\Type\" resource="../src/Block/Type" />
-        <prototype namespace="Akawaka\SyliusCMSPlugin\Form\Type\Block\" resource="../src/Form/Type/Block" />
+        <prototype namespace="AKAWAKA\SyliusCMSPlugin\Block\Type\" resource="../src/Block/Type" />
+        <prototype namespace="AKAWAKA\SyliusCMSPlugin\Form\Type\Block\" resource="../src/Form/Type/Block" />
 
-        <service id="Akawaka\SyliusCMSPlugin\Block\BlockRegistry">
+        <service id="AKAWAKA\SyliusCMSPlugin\Block\BlockRegistry">
             <argument type="tagged_iterator" tag="akawaka_cms.block_type" />
         </service>
 
-        <service id="Akawaka\SyliusCMSPlugin\Block\Type\RichTextBlockType">
+        <service id="AKAWAKA\SyliusCMSPlugin\Block\Type\RichTextBlockType">
             <argument type="service" id="html_sanitizer.sanitizer.akawaka_cms.rich_text" />
         </service>
 
-        <service id="Akawaka\SyliusCMSPlugin\Block\Type\ProductGridBlockType">
+        <service id="AKAWAKA\SyliusCMSPlugin\Block\Type\ProductGridBlockType">
             <argument type="service" id="sylius.repository.product" />
             <argument type="service" id="sylius.repository.taxon" />
             <argument type="service" id="sylius.context.channel" />
             <argument type="service" id="sylius.context.locale" />
         </service>
 
-        <service id="Akawaka\SyliusCMSPlugin\Validator\BlockTreeValidator" />
-        <service id="Akawaka\SyliusCMSPlugin\Validator\Constraint\ValidBlockTreeValidator" />
+        <service id="AKAWAKA\SyliusCMSPlugin\Validator\BlockTreeValidator" />
+        <service id="AKAWAKA\SyliusCMSPlugin\Validator\Constraint\ValidBlockTreeValidator" />
 
-        <service id="Akawaka\SyliusCMSPlugin\Block\BlockCatalog" />
-        <service id="Akawaka\SyliusCMSPlugin\Renderer\PageRenderer" />
-        <service id="Akawaka\SyliusCMSPlugin\Twig\CmsExtension" />
+        <service id="AKAWAKA\SyliusCMSPlugin\Block\BlockCatalog" />
+        <service id="AKAWAKA\SyliusCMSPlugin\Renderer\PageRenderer" />
+        <service id="AKAWAKA\SyliusCMSPlugin\Twig\CmsExtension" />
 
-        <service id="Akawaka\SyliusCMSPlugin\Controller\Admin\BlockFormController" public="true">
+        <service id="AKAWAKA\SyliusCMSPlugin\Controller\Admin\BlockFormController" public="true">
             <tag name="controller.service_arguments" />
         </service>
 
-        <service id="Akawaka\SyliusCMSPlugin\Preview\PreviewStore">
+        <service id="AKAWAKA\SyliusCMSPlugin\Preview\PreviewStore">
             <argument type="service" id="akawaka_cms.preview_cache" />
         </service>
 
-        <service id="Akawaka\SyliusCMSPlugin\Controller\Admin\PreviewController" public="true">
+        <service id="AKAWAKA\SyliusCMSPlugin\Controller\Admin\PreviewController" public="true">
             <argument key="$csrfTokenManager" type="service" id="security.csrf.token_manager" />
             <tag name="controller.service_arguments" />
         </service>
 
-        <service id="Akawaka\SyliusCMSPlugin\Controller\Shop\PreviewController" public="true">
+        <service id="AKAWAKA\SyliusCMSPlugin\Controller\Shop\PreviewController" public="true">
             <argument key="$pageTranslationFactory" type="service" id="akawaka_cms.factory.page_translation" />
             <tag name="controller.service_arguments" />
         </service>
 
-        <service id="Akawaka\SyliusCMSPlugin\Controller\Shop\PageController" public="true">
+        <service id="AKAWAKA\SyliusCMSPlugin\Controller\Shop\PageController" public="true">
             <argument type="service" id="akawaka_cms.repository.page" />
             <argument type="service" id="sylius.context.channel" />
             <tag name="controller.service_arguments" />
         </service>
 
-        <service id="Akawaka\SyliusCMSPlugin\Controller\Shop\HomepageController" public="true" />
+        <service id="AKAWAKA\SyliusCMSPlugin\Controller\Shop\HomepageController" public="true" />
 
-        <service id="Akawaka\SyliusCMSPlugin\EventListener\HomepageControllerListener">
+        <service id="AKAWAKA\SyliusCMSPlugin\EventListener\HomepageControllerListener">
             <argument key="$homepageRepository" type="service" id="akawaka_cms.repository.homepage" />
         </service>
 
-        <service id="Akawaka\SyliusCMSPlugin\Hook\HookPrefixes">
+        <service id="AKAWAKA\SyliusCMSPlugin\Hook\HookPrefixes">
             <argument>%akawaka_cms.hook_prefixes%</argument>
         </service>
-        <service id="Akawaka\SyliusCMSPlugin\Hook\HookTreeBuilder" />
-        <service id="Akawaka\SyliusCMSPlugin\Twig\HookTreeExtension" />
+        <service id="AKAWAKA\SyliusCMSPlugin\Hook\HookTreeBuilder" />
+        <service id="AKAWAKA\SyliusCMSPlugin\Twig\HookTreeExtension" />
 
-        <service id="Akawaka\SyliusCMSPlugin\Hook\ContentBlockHookablesProvider">
+        <service id="AKAWAKA\SyliusCMSPlugin\Hook\ContentBlockHookablesProvider">
             <argument key="$repository" type="service" id="akawaka_cms.repository.content_block" />
             <argument key="$channelContext" type="service" id="sylius.context.channel" />
             <argument key="$localeContext" type="service" id="sylius.context.locale" />
             <tag name="kernel.reset" method="reset" />
         </service>
 
-        <service id="Akawaka\SyliusCMSPlugin\Hook\CmsHookablesRegistry" decorates="sylius_twig_hooks.registry.hookables" decoration-on-invalid="ignore">
-            <argument key="$inner" type="service" id="Akawaka\SyliusCMSPlugin\Hook\CmsHookablesRegistry.inner" />
+        <service id="AKAWAKA\SyliusCMSPlugin\Hook\CmsHookablesRegistry" decorates="sylius_twig_hooks.registry.hookables" decoration-on-invalid="ignore">
+            <argument key="$inner" type="service" id="AKAWAKA\SyliusCMSPlugin\Hook\CmsHookablesRegistry.inner" />
         </service>
 
-        <service id="Akawaka\SyliusCMSPlugin\Controller\Admin\HookInfoController" public="true">
+        <service id="AKAWAKA\SyliusCMSPlugin\Controller\Admin\HookInfoController" public="true">
             <tag name="controller.service_arguments" />
         </service>
 
-        <service id="Akawaka\SyliusCMSPlugin\Validator\Constraint\ValidPlacementsValidator" />
+        <service id="AKAWAKA\SyliusCMSPlugin\Validator\Constraint\ValidPlacementsValidator" />
 
-        <service id="Akawaka\SyliusCMSPlugin\Menu\AdminMenuListener">
+        <service id="AKAWAKA\SyliusCMSPlugin\Menu\AdminMenuListener">
             <tag name="kernel.event_listener" event="sylius.menu.admin.main" />
         </service>
 
-        <service id="Akawaka\SyliusCMSPlugin\Form\Type\PageAutocompleteType">
+        <service id="AKAWAKA\SyliusCMSPlugin\Form\Type\PageAutocompleteType">
             <argument>%akawaka_cms.model.page.class%</argument>
             <tag name="form.type" />
             <tag name="ux.entity_autocomplete_field" />
         </service>
 
-        <service id="Akawaka\SyliusCMSPlugin\Form\Type\PageType">
+        <service id="AKAWAKA\SyliusCMSPlugin\Form\Type\PageType">
             <argument>%akawaka_cms.model.page.class%</argument>
             <argument>%akawaka_cms.form.type.page.validation_groups%</argument>
             <tag name="form.type" />
         </service>
 
-        <service id="Akawaka\SyliusCMSPlugin\Form\Type\PageTranslationType">
+        <service id="AKAWAKA\SyliusCMSPlugin\Form\Type\PageTranslationType">
             <argument>%akawaka_cms.model.page_translation.class%</argument>
             <argument>%akawaka_cms.form.type.page_translation.validation_groups%</argument>
             <tag name="form.type" />
         </service>
 
-        <service id="Akawaka\SyliusCMSPlugin\Form\Type\HomepageType">
+        <service id="AKAWAKA\SyliusCMSPlugin\Form\Type\HomepageType">
             <argument>%akawaka_cms.model.homepage.class%</argument>
             <argument>%akawaka_cms.form.type.homepage.validation_groups%</argument>
             <tag name="form.type" />
         </service>
 
-        <service id="Akawaka\SyliusCMSPlugin\Form\Type\HomepageTranslationType">
+        <service id="AKAWAKA\SyliusCMSPlugin\Form\Type\HomepageTranslationType">
             <argument>%akawaka_cms.model.homepage_translation.class%</argument>
             <argument>%akawaka_cms.form.type.homepage_translation.validation_groups%</argument>
             <tag name="form.type" />
         </service>
 
-        <service id="Akawaka\SyliusCMSPlugin\Form\Type\ContentBlockType">
+        <service id="AKAWAKA\SyliusCMSPlugin\Form\Type\ContentBlockType">
             <argument>%akawaka_cms.model.content_block.class%</argument>
             <argument>%akawaka_cms.form.type.content_block.validation_groups%</argument>
             <tag name="form.type" />
         </service>
 
-        <service id="Akawaka\SyliusCMSPlugin\Form\Type\ContentBlockTranslationType">
+        <service id="AKAWAKA\SyliusCMSPlugin\Form\Type\ContentBlockTranslationType">
             <argument>%akawaka_cms.model.content_block_translation.class%</argument>
             <argument>%akawaka_cms.form.type.content_block_translation.validation_groups%</argument>
             <tag name="form.type" />

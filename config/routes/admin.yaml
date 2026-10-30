@@ -44,14 +44,14 @@ akawaka_cms_admin_page_unpublish:
 akawaka_cms_admin_block_form:
     path: /admin/cms/blocks/{type}/form
     methods: [GET]
-    controller: Akawaka\SyliusCMSPlugin\Controller\Admin\BlockFormController
+    controller: AKAWAKA\SyliusCMSPlugin\Controller\Admin\BlockFormController
     requirements:
         type: '[a-z_]+'
 
 akawaka_cms_admin_page_preview:
     path: /admin/cms/preview
     methods: [POST]
-    controller: Akawaka\SyliusCMSPlugin\Controller\Admin\PreviewController
+    controller: AKAWAKA\SyliusCMSPlugin\Controller\Admin\PreviewController
 
 akawaka_cms_admin_homepage:
     resource: |
@@ -142,6 +142,6 @@ akawaka_cms_admin_content_block_unpublish:
 akawaka_cms_admin_hook_info:
     path: /admin/cms/hooks/{name}
     methods: [GET]
-    controller: Akawaka\SyliusCMSPlugin\Controller\Admin\HookInfoController
+    controller: AKAWAKA\SyliusCMSPlugin\Controller\Admin\HookInfoController
     requirements:
         name: '[^/]+'

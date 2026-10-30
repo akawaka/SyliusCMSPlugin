@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Akawaka\SyliusCMSPlugin\Preview;
+namespace AKAWAKA\SyliusCMSPlugin\Preview;
 
 use Psr\Cache\CacheItemPoolInterface;
 

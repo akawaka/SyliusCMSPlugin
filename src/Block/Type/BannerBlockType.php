@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Akawaka\SyliusCMSPlugin\Block\Type;
+namespace AKAWAKA\SyliusCMSPlugin\Block\Type;
 
-use Akawaka\SyliusCMSPlugin\Block\AbstractBlockType;
-use Akawaka\SyliusCMSPlugin\Enum\Alignment;
-use Akawaka\SyliusCMSPlugin\Enum\BlockType;
-use Akawaka\SyliusCMSPlugin\Form\Type\Block\BannerBlockType as BannerForm;
+use AKAWAKA\SyliusCMSPlugin\Block\AbstractBlockType;
+use AKAWAKA\SyliusCMSPlugin\Enum\Alignment;
+use AKAWAKA\SyliusCMSPlugin\Enum\BlockType;
+use AKAWAKA\SyliusCMSPlugin\Form\Type\Block\BannerBlockType as BannerForm;
 
 final class BannerBlockType extends AbstractBlockType
 {

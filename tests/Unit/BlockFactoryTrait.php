@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace Tests\Akawaka\SyliusCMSPlugin\Unit;
+namespace Tests\AKAWAKA\SyliusCMSPlugin\Unit;
 
-use Akawaka\SyliusCMSPlugin\Block\BlockRegistry;
-use Akawaka\SyliusCMSPlugin\Block\Type\BannerBlockType;
-use Akawaka\SyliusCMSPlugin\Block\Type\ButtonBlockType;
-use Akawaka\SyliusCMSPlugin\Block\Type\ColumnBlockType;
-use Akawaka\SyliusCMSPlugin\Block\Type\ColumnsBlockType;
-use Akawaka\SyliusCMSPlugin\Block\Type\HtmlBlockType;
-use Akawaka\SyliusCMSPlugin\Block\Type\ImageBlockType;
-use Akawaka\SyliusCMSPlugin\Block\Type\RichTextBlockType;
-use Akawaka\SyliusCMSPlugin\Block\Type\VideoBlockType;
+use AKAWAKA\SyliusCMSPlugin\Block\BlockRegistry;
+use AKAWAKA\SyliusCMSPlugin\Block\Type\BannerBlockType;
+use AKAWAKA\SyliusCMSPlugin\Block\Type\ButtonBlockType;
+use AKAWAKA\SyliusCMSPlugin\Block\Type\ColumnBlockType;
+use AKAWAKA\SyliusCMSPlugin\Block\Type\ColumnsBlockType;
+use AKAWAKA\SyliusCMSPlugin\Block\Type\HtmlBlockType;
+use AKAWAKA\SyliusCMSPlugin\Block\Type\ImageBlockType;
+use AKAWAKA\SyliusCMSPlugin\Block\Type\RichTextBlockType;
+use AKAWAKA\SyliusCMSPlugin\Block\Type\VideoBlockType;
 use Symfony\Component\HtmlSanitizer\HtmlSanitizer;
 use Symfony\Component\HtmlSanitizer\HtmlSanitizerConfig;
 

@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Akawaka\SyliusCMSPlugin\Form\Type;
+namespace AKAWAKA\SyliusCMSPlugin\Form\Type;
 
-use Akawaka\SyliusCMSPlugin\Entity\PageInterface;
-use Akawaka\SyliusCMSPlugin\Enum\PageStatus;
+use AKAWAKA\SyliusCMSPlugin\Entity\PageInterface;
+use AKAWAKA\SyliusCMSPlugin\Enum\PageStatus;
 use Doctrine\ORM\QueryBuilder;
 use Sylius\Bundle\AdminBundle\Form\Type\TranslatableAutocompleteType;
 use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;

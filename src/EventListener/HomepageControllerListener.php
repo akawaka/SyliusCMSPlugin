@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Akawaka\SyliusCMSPlugin\EventListener;
+namespace AKAWAKA\SyliusCMSPlugin\EventListener;
 
-use Akawaka\SyliusCMSPlugin\Controller\Shop\HomepageController;
-use Akawaka\SyliusCMSPlugin\Repository\HomepageRepository;
+use AKAWAKA\SyliusCMSPlugin\Controller\Shop\HomepageController;
+use AKAWAKA\SyliusCMSPlugin\Repository\HomepageRepository;
 use Sylius\Component\Channel\Context\ChannelContextInterface;
 use Sylius\Component\Channel\Context\ChannelNotFoundException;
 use Symfony\Component\EventDispatcher\Attribute\AsEventListener;

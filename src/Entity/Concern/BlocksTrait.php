@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Akawaka\SyliusCMSPlugin\Entity\Concern;
+namespace AKAWAKA\SyliusCMSPlugin\Entity\Concern;
 
-use Akawaka\SyliusCMSPlugin\Validator\Constraint\ValidBlockTree;
+use AKAWAKA\SyliusCMSPlugin\Validator\Constraint\ValidBlockTree;
 use Doctrine\ORM\Mapping as ORM;
 
 /** The block tree of a translation. */

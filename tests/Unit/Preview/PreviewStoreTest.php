@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Tests\Akawaka\SyliusCMSPlugin\Unit\Preview;
+namespace Tests\AKAWAKA\SyliusCMSPlugin\Unit\Preview;
 
-use Akawaka\SyliusCMSPlugin\Entity\PageTranslation;
-use Akawaka\SyliusCMSPlugin\Preview\PagePreview;
-use Akawaka\SyliusCMSPlugin\Preview\PreviewStore;
+use AKAWAKA\SyliusCMSPlugin\Entity\PageTranslation;
+use AKAWAKA\SyliusCMSPlugin\Preview\PagePreview;
+use AKAWAKA\SyliusCMSPlugin\Preview\PreviewStore;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Cache\Adapter\ArrayAdapter;
 

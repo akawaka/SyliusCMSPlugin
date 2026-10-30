@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Akawaka\SyliusCMSPlugin\Form\Type;
+namespace AKAWAKA\SyliusCMSPlugin\Form\Type;
 
-use Akawaka\SyliusCMSPlugin\Entity\HomepageInterface;
-use Akawaka\SyliusCMSPlugin\Entity\HomepageTranslationInterface;
+use AKAWAKA\SyliusCMSPlugin\Entity\HomepageInterface;
+use AKAWAKA\SyliusCMSPlugin\Entity\HomepageTranslationInterface;
 use Sylius\Bundle\ChannelBundle\Form\Type\ChannelChoiceType;
 use Sylius\Bundle\ResourceBundle\Form\Type\AbstractResourceType;
 use Sylius\Bundle\ResourceBundle\Form\Type\ResourceTranslationsType;

@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Tests\Akawaka\SyliusCMSPlugin\Unit\Hook;
+namespace Tests\AKAWAKA\SyliusCMSPlugin\Unit\Hook;
 
-use Akawaka\SyliusCMSPlugin\Entity\ContentBlock;
-use Akawaka\SyliusCMSPlugin\Entity\ContentBlockTranslation;
-use Akawaka\SyliusCMSPlugin\Enum\PageStatus;
-use Akawaka\SyliusCMSPlugin\Hook\ContentBlockHookablesProvider;
-use Akawaka\SyliusCMSPlugin\Hook\HookPrefixes;
-use Akawaka\SyliusCMSPlugin\Repository\ContentBlockRepository;
+use AKAWAKA\SyliusCMSPlugin\Entity\ContentBlock;
+use AKAWAKA\SyliusCMSPlugin\Entity\ContentBlockTranslation;
+use AKAWAKA\SyliusCMSPlugin\Enum\PageStatus;
+use AKAWAKA\SyliusCMSPlugin\Hook\ContentBlockHookablesProvider;
+use AKAWAKA\SyliusCMSPlugin\Hook\HookPrefixes;
+use AKAWAKA\SyliusCMSPlugin\Repository\ContentBlockRepository;
 use PHPUnit\Framework\TestCase;
 use Sylius\Component\Channel\Context\ChannelContextInterface;
 use Sylius\Component\Channel\Context\ChannelNotFoundException;

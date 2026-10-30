@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Akawaka\SyliusCMSPlugin\Preview;
+namespace AKAWAKA\SyliusCMSPlugin\Preview;
 
-use Akawaka\SyliusCMSPlugin\Entity\PageTranslationInterface;
+use AKAWAKA\SyliusCMSPlugin\Entity\PageTranslationInterface;
 
 /** Unsaved content of one page translation, rendered by the storefront preview. */
 final readonly class PagePreview

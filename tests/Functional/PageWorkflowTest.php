@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Tests\Akawaka\SyliusCMSPlugin\Functional;
+namespace Tests\AKAWAKA\SyliusCMSPlugin\Functional;
 
-use Akawaka\SyliusCMSPlugin\Enum\PageStatus;
-use Akawaka\SyliusCMSPlugin\Enum\PageTransition;
+use AKAWAKA\SyliusCMSPlugin\Enum\PageStatus;
+use AKAWAKA\SyliusCMSPlugin\Enum\PageTransition;
 use Symfony\Component\Workflow\Registry;
 
 final class PageWorkflowTest extends FunctionalTestCase

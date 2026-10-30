@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Tests\Akawaka\SyliusCMSPlugin\Unit\Renderer;
+namespace Tests\AKAWAKA\SyliusCMSPlugin\Unit\Renderer;
 
-use Akawaka\SyliusCMSPlugin\Renderer\PageRenderer;
+use AKAWAKA\SyliusCMSPlugin\Renderer\PageRenderer;
 use PHPUnit\Framework\TestCase;
 use Symfony\Bridge\Twig\Extension\TranslationExtension;
 use Symfony\Component\Translation\IdentityTranslator;
-use Tests\Akawaka\SyliusCMSPlugin\Unit\BlockFactoryTrait;
+use Tests\AKAWAKA\SyliusCMSPlugin\Unit\BlockFactoryTrait;
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
 

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Akawaka\SyliusCMSPlugin\Entity;
+namespace AKAWAKA\SyliusCMSPlugin\Entity;
 
-use Akawaka\SyliusCMSPlugin\Enum\PageStatus;
+use AKAWAKA\SyliusCMSPlugin\Enum\PageStatus;
 use Doctrine\ORM\Mapping as ORM;
 use Sylius\Component\Channel\Model\ChannelInterface;
 use Sylius\Component\Resource\Model\TranslatableTrait;

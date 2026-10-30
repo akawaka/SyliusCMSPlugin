@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Tests\Akawaka\SyliusCMSPlugin\Unit\Validator;
+namespace Tests\AKAWAKA\SyliusCMSPlugin\Unit\Validator;
 
-use Akawaka\SyliusCMSPlugin\Validator\BlockTreeValidator;
+use AKAWAKA\SyliusCMSPlugin\Validator\BlockTreeValidator;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Form\Extension\Csrf\CsrfExtension;
 use Symfony\Component\Form\Extension\Validator\ValidatorExtension;
 use Symfony\Component\Form\Forms;
 use Symfony\Component\Security\Csrf\CsrfTokenManager;
 use Symfony\Component\Validator\Validation;
-use Tests\Akawaka\SyliusCMSPlugin\Unit\BlockFactoryTrait;
+use Tests\AKAWAKA\SyliusCMSPlugin\Unit\BlockFactoryTrait;
 
 final class BlockTreeValidatorTest extends TestCase
 {
@@ -31,7 +31,7 @@ final class BlockTreeValidatorTest extends TestCase
     }
 
     /**
-     * @param list<\Akawaka\SyliusCMSPlugin\Validator\BlockTreeViolation> $violations
+     * @param list<\AKAWAKA\SyliusCMSPlugin\Validator\BlockTreeViolation> $violations
      *
      * @return list<string>
      */

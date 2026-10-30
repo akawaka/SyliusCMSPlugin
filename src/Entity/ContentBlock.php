@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Akawaka\SyliusCMSPlugin\Entity;
+namespace AKAWAKA\SyliusCMSPlugin\Entity;
 
-use Akawaka\SyliusCMSPlugin\Enum\PageStatus;
-use Akawaka\SyliusCMSPlugin\Validator\Constraint\ValidPlacements;
+use AKAWAKA\SyliusCMSPlugin\Enum\PageStatus;
+use AKAWAKA\SyliusCMSPlugin\Validator\Constraint\ValidPlacements;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
