@@ -1,15 +1,15 @@
 <p align="center">
-    <img src="doc/logo-akawaka.png" style="width: 500px;">
+    <img src="docs/logo-akawaka.png" width="500" alt="AKAWAKA">
 </p>
 
 <p align="center">
 AKAWAKA is a software development company specializing in e-commerce platforms and custom web applications. 
 We help businesses evolve or rebuild their platforms with a pragmatic approach: improving existing solutions or starting from scratch, notably with Sylius. 
 Our team also handles data migration, SEO preservation, and business continuity. 
-With strong expertise in PHP and Symfony, Akawaka builds web solutions tailored to our clients’ business needs.
+With strong expertise in PHP and Symfony, AKAWAKA builds web solutions tailored to our clients’ business needs.
 </p>
 
-<h1 align="center">Akawaka Sylius CMS Plugin</h1>
+<h1 align="center">AKAWAKA Sylius CMS Plugin</h1>
 
 <p align="center">CMS pages for **Sylius 2.x**, built with a block-based **page builder** in the admin and a **real, live preview** of the storefront on mobile, tablet and desktop.</p>
 
@@ -105,7 +105,7 @@ Replace the first step above with:
     // config/bundles.php
     return [
         // ...
-        Akawaka\SyliusCMSPlugin\AkawakaSyliusCMSPlugin::class => ['all' => true],
+        AKAWAKA\SyliusCMSPlugin\AkawakaSyliusCMSPlugin::class => ['all' => true],
     ];
     ```
 
@@ -178,13 +178,13 @@ Block templates receive `block` (`id`, `type`), `props` (the settings merged wit
 
 ## Custom blocks
 
-A block type is a service implementing `Akawaka\SyliusCMSPlugin\Block\BlockTypeInterface` (usually by extending `AbstractBlockType`). It is registered automatically through autoconfiguration.
+A block type is a service implementing `AKAWAKA\SyliusCMSPlugin\Block\BlockTypeInterface` (usually by extending `AbstractBlockType`). It is registered automatically through autoconfiguration.
 
 ```php
 // src/Cms/QuoteBlockType.php
 namespace App\Cms;
 
-use Akawaka\SyliusCMSPlugin\Block\AbstractBlockType;
+use AKAWAKA\SyliusCMSPlugin\Block\AbstractBlockType;
 
 final class QuoteBlockType extends AbstractBlockType
 {
@@ -241,7 +241,7 @@ Mark a field of the settings form with `'attr' => ['data-akawaka-wysiwyg' => '1'
 `PageAutocompleteType` is a reusable admin field to pick a CMS page with autocompletion (search on the title, slug and code), for instance to link a menu entry to a page from another plugin:
 
 ```php
-use Akawaka\SyliusCMSPlugin\Form\Type\PageAutocompleteType;
+use AKAWAKA\SyliusCMSPlugin\Form\Type\PageAutocompleteType;
 
 $builder->add('page', PageAutocompleteType::class, [
     'label' => 'app.form.page',
@@ -262,26 +262,15 @@ Options must go in `extra_options`: it is the only array sent back to the autoco
 ## Development
 
 ```bash
-composer install
-(cd vendor/sylius/test-application && yarn install && yarn build)
-vendor/bin/console doctrine:database:create && vendor/bin/console doctrine:migrations:migrate -n
-vendor/bin/console sylius:fixtures:load -n
-symfony server:start        # the test application, admin at /admin
-
-vendor/bin/phpunit --testsuite Unit   # PHP unit tests
-APP_ENV=test vendor/bin/phpunit --testsuite Functional   # needs the test database (see below)
-npm test                    # JavaScript unit tests (node --test)
-vendor/bin/ecs check        # coding standard
-vendor/bin/phpstan analyse -c phpstan.neon   # level max
+make init            # start the containers (PHP, MySQL, nginx, mailhog) and install dependencies
+make database-init   # create the test application database, run migrations and load the Sylius fixtures
+make frontend        # build the assets of the test application (only to browse it)
+make test            # ECS, PHPStan (level max), PHPUnit
 ```
 
-The functional tests boot the test application and use the `test` database (`DATABASE_URL` in `tests/TestApplication/.env.test`, override it in your environment). Create it once with `APP_ENV=test vendor/bin/console doctrine:database:create && APP_ENV=test vendor/bin/console doctrine:migrations:migrate -n && APP_ENV=test vendor/bin/console sylius:fixtures:load -n`; the tests clean up the pages they create.
+Project run at [http://plugin.localhost](http://plugin.localhost)
 
 Project conventions are listed in [`AGENTS.md`](AGENTS.md).
-
-## Multi-tenant platforms
-
-The plugin only relies on the ORM and overridable resources; see [docs/multi-tenant.md](docs/multi-tenant.md).
 
 ## Limitations
 
