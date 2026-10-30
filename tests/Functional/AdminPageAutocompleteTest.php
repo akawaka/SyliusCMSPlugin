@@ -10,7 +10,7 @@ final class AdminPageAutocompleteTest extends FunctionalTestCase
 {
     public function testAnonymousUsersCannotSearchPages(): void
     {
-        $this->client->request('GET', '/admin/autocomplete/akawaka_cms_page?query=about');
+        $this->client->request('GET', '/admin/ajax/autocomplete/akawaka_cms_page?query=about');
 
         self::assertResponseRedirects();
     }
@@ -22,7 +22,7 @@ final class AdminPageAutocompleteTest extends FunctionalTestCase
         $this->createPage('other', 'functional-contact');
         $this->logInAsAdministrator();
 
-        $this->client->request('GET', '/admin/autocomplete/akawaka_cms_page?query=functional-about');
+        $this->client->request('GET', '/admin/ajax/autocomplete/akawaka_cms_page?query=functional-about');
 
         self::assertResponseIsSuccessful();
         $texts = $this->resultTexts();
@@ -35,7 +35,7 @@ final class AdminPageAutocompleteTest extends FunctionalTestCase
         $this->createPage('by_code', 'functional-some-slug');
         $this->logInAsAdministrator();
 
-        $this->client->request('GET', '/admin/autocomplete/akawaka_cms_page?query=functional_by_code');
+        $this->client->request('GET', '/admin/ajax/autocomplete/akawaka_cms_page?query=functional_by_code');
 
         self::assertResponseIsSuccessful();
         self::assertCount(1, $this->resultTexts());

@@ -2,8 +2,16 @@ name: CI
 
 on:
     push:
-        branches: [main]
+        branches-ignore:
+            - 'dependabot/**'
+        paths-ignore:
+            - "*.md"
     pull_request:
+        paths-ignore:
+            - "*.md"
+    release:
+        types: [created]
+    workflow_dispatch: ~
 
 jobs:
     quality:

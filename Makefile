@@ -19,11 +19,15 @@ down: ## Stop containers
 php-shell: ## Open a shell in the php container
 	$(PHP) sh
 
-database-init: ## (Re)create the test application database and run migrations
+database-init: ## (Re)create the dev and test databases of the test application, run migrations and load fixtures
 	$(PHP) vendor/bin/console doctrine:database:drop --force --if-exists
 	$(PHP) vendor/bin/console doctrine:database:create
 	$(PHP) vendor/bin/console doctrine:migrations:migrate -n
 	$(PHP) vendor/bin/console sylius:fixtures:load -n
+	$(COMPOSE) exec -e APP_ENV=test php vendor/bin/console doctrine:database:drop --force --if-exists
+	$(COMPOSE) exec -e APP_ENV=test php vendor/bin/console doctrine:database:create
+	$(COMPOSE) exec -e APP_ENV=test php vendor/bin/console doctrine:migrations:migrate -n
+	$(COMPOSE) exec -e APP_ENV=test php vendor/bin/console sylius:fixtures:load -n
 
 frontend: ## Build the admin and shop assets of the test application (needed to open it in a browser)
 	$(COMPOSE) run --rm nodejs

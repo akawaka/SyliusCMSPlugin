@@ -12,8 +12,8 @@ use AKAWAKA\SyliusCMSPlugin\Entity\Page;
 use AKAWAKA\SyliusCMSPlugin\Entity\PageTranslation;
 use AKAWAKA\SyliusCMSPlugin\Enum\PageStatus;
 use Doctrine\ORM\EntityManagerInterface;
+use Sylius\Component\Channel\Repository\ChannelRepositoryInterface;
 use Sylius\Component\Core\Model\ChannelInterface;
-use Sylius\Component\Core\Repository\ChannelRepositoryInterface;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
