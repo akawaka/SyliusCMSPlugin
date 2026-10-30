@@ -20,9 +20,9 @@ use Symfony\Contracts\Service\ResetInterface;
  */
 final class ContentBlockHookablesProvider implements ResetInterface
 {
-    public const string TEMPLATE = '@AkawakaSyliusCMSPlugin/shop/hook/content_block.html.twig';
+    public const TEMPLATE = '@AkawakaSyliusCMSPlugin/shop/hook/content_block.html.twig';
 
-    public const string NAME_PREFIX = 'akawaka_cms_block_';
+    public const NAME_PREFIX = 'akawaka_cms_block_';
 
     /** @var array<string, list<HookableTemplate>>|null */
     private ?array $hookables = null;

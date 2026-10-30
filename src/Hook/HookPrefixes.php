@@ -7,7 +7,7 @@ namespace AKAWAKA\SyliusCMSPlugin\Hook;
 /** The twig hook namespaces content blocks may be attached to (e.g. "sylius_shop"). */
 final readonly class HookPrefixes
 {
-    public const string NAME_PATTERN = '/^[a-z0-9_]+(?:[.#][a-z0-9_]+)*$/';
+    public const NAME_PATTERN = '/^[a-z0-9_]+(?:[.#][a-z0-9_]+)*$/';
 
     /** @param list<string> $prefixes */
     public function __construct(private array $prefixes)

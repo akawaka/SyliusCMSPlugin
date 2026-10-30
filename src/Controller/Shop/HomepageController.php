@@ -13,7 +13,7 @@ use Twig\Environment;
 /** Renders the CMS homepage selected by the HomepageControllerListener in place of the Sylius one. */
 final class HomepageController
 {
-    public const string REQUEST_ATTRIBUTE = '_akawaka_cms_homepage';
+    public const REQUEST_ATTRIBUTE = '_akawaka_cms_homepage';
 
     public function __construct(private readonly Environment $twig)
     {

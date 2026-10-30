@@ -19,7 +19,7 @@ use Symfony\Component\HttpKernel\KernelEvents;
 #[AsEventListener(event: KernelEvents::CONTROLLER)]
 final class HomepageControllerListener
 {
-    public const string HOMEPAGE_ROUTE = 'sylius_shop_homepage';
+    public const HOMEPAGE_ROUTE = 'sylius_shop_homepage';
 
     public function __construct(
         private readonly HomepageRepository $homepageRepository,

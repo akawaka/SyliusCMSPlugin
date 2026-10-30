@@ -13,10 +13,6 @@ use Sylius\Component\Resource\Model\TranslatableInterface;
 
 interface PageInterface extends ResourceInterface, TranslatableInterface, TimestampableInterface
 {
-    public const string STATUS_DRAFT = 'draft';
-
-    public const string STATUS_PUBLISHED = 'published';
-
     public function getCode(): ?string;
 
     public function setCode(?string $code): void;

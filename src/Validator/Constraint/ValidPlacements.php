@@ -10,11 +10,11 @@ use Symfony\Component\Validator\Constraint;
 #[\Attribute(\Attribute::TARGET_PROPERTY | \Attribute::TARGET_METHOD)]
 final class ValidPlacements extends Constraint
 {
-    public const int MAX_PLACEMENTS = 20;
+    public const MAX_PLACEMENTS = 20;
 
-    public const int MIN_PRIORITY = -1000;
+    public const MIN_PRIORITY = -1000;
 
-    public const int MAX_PRIORITY = 1000;
+    public const MAX_PRIORITY = 1000;
 
     public string $message = 'akawaka_cms.content_block.placements.invalid';
 }
